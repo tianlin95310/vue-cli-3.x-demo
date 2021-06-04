@@ -1,0 +1,192 @@
+<template>
+  <div class="test-animation">
+    <h2>测试Animation动画，定义一组的transform</h2>
+    <div class="img">
+      <img src="../../assets/logo.png" :class="initImg" />
+
+      <!--对于v-bind:style绑定animation的时候，需要将绑定的内容用一个对象包起来-->
+      <img src="../../assets/logo.png" class="demo-img" v-bind:style="currentAnim" />
+
+    </div>
+    <div>
+      <button class="button" @click="begin">开始动画</button>
+    </div>
+
+    <ul class="anims">
+      <li v-for="(item, index) in anims" :key="index" @click="testAnim(index)">
+        [{{index + 1}}] {{ item }}
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        anim: false,
+        anims: [
+          'fadein',
+          'fadeinT',
+          'fadeinR',
+          'fadeinB',
+          'fadeinL',
+          'fadeout',
+          'fadeoutT',
+          'fadeoutR',
+          'fadeoutB',
+          'fadeoutL',
+          'bounce',
+          'bouncein',
+          'bounceinT',
+          'bounceinR',
+          'bounceinB',
+          'bounceinL',
+          'bounceout',
+          'bounceoutT',
+          'bounceoutR',
+          'bounceoutB',
+          'bounceoutL',
+          'rotatein',
+          'rotateinLT',
+          'rotateinLB',
+          'rotateinRT',
+          'rotateinRB',
+          'rotateout',
+          'rotateoutLT',
+          'rotateoutLB',
+          'rotateoutRT',
+          'rotateoutBR',
+          'flip',
+          'flipinX',
+          'flipinY',
+          'flipoutX',
+          'flipoutY',
+          'flash',
+          'shake',
+          'swing',
+          'wobble',
+          'ring',
+          'showinT',
+          'hideinT',
+          'autoShake'
+        ],
+        currentAnim: {
+          animation: 'showinT'
+        },
+        index: 0,
+        zIndex: 1
+      }
+    },
+    computed: {
+      initImg() {
+        if (this.anim) {
+          return 'initImg-active'
+        } else {
+          return 'initImg'
+        }
+      }
+    },
+    methods: {
+      testAnim(index) {
+        this.index = index
+        const ca = `${this.anims[this.index]} 1s both`
+        console.log(ca)
+        this.currentAnim = {
+          animation: ca
+        }
+        this.zIndex++
+      },
+      begin() {
+        this.anim = !this.anim
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  @import "../../assets/css/anim.css";
+
+  @keyframes autoShake {
+    0% {
+      transform: scale(1)
+    }
+
+    70%,
+    73% {
+      transform: scale(0.9) rotate(-1deg)
+    }
+
+    77%,
+    83%,
+    90%,
+    97% {
+      transform: scale(1.1) rotate(1deg)
+    }
+
+    80%,
+    87%,
+    93% {
+      transform: scale(1.1) rotate(-1deg)
+    }
+
+    100% {
+      transform: scale(1) rotate(0)
+    }
+  }
+
+  .test-animation {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    .img {
+      text-align: center;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      img {
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+
+        &:first-child {
+        }
+        &:last-child {
+          margin-right: 150px;
+        }
+      }
+    }
+
+    .anims {
+      position: fixed;
+      height: calc(100% - 40px);
+      background: var(--colorInfo);
+      top: 40px;
+      right: 0;
+      list-style: none;
+      overflow-y: scroll;
+
+      li {
+        padding: 8px;
+      }
+
+      li:hover {
+        background-color: var(--colorAccent);
+      }
+    }
+
+    .initImg {
+      width: 200px;
+      height: 200px;
+    }
+
+    .initImg:hover,
+    .initImg-active {
+      animation: autoShake 3s both infinite;
+      width: 200px;
+      height: 200px;
+    }
+  }
+</style>

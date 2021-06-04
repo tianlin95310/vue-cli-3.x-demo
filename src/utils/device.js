@@ -1,12 +1,17 @@
 // create by tianlin
 export default {
-  IsPC () {
-    var userAgentInfo = navigator.userAgent
-    var Agents = ['Android', 'iPhone',
-      'SymbianOS', 'Windows Phone',
-      'iPad', 'iPod']
-    var flag = true
-    for (var v = 0; v < Agents.length; v++) {
+  IsPC() {
+    const userAgentInfo = navigator.userAgent
+    const Agents = [
+      'Android',
+      'iPhone',
+      'SymbianOS',
+      'Windows Phone',
+      'iPad',
+      'iPod'
+    ]
+    let flag = true
+    for (let v = 0; v < Agents.length; v++) {
       if (userAgentInfo.indexOf(Agents[v]) > 0) {
         flag = false
         break

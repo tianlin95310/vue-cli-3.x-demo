@@ -1,0 +1,43 @@
+:root {
+	--primiryColor: #48a167;
+	--primiryColorDark: #377a4f;
+	--colorAccent: #D42D00;
+}
+
+.tag {
+	display: inline-block;
+	background-color: #377A4F;
+	padding: 5px 8px;
+	color: white;
+	border: 1px solid #377A4F;
+	border-radius: 5px;
+}
+
+.span-break {
+	width: 300px;
+	white-space: pre-wrap;
+	word-break: break-word;
+	overflow: hidden;
+}
+
+input {
+	border: 1px solid #377A4F;
+	outline: none;
+	padding: 6px 8px;
+}
+.button {
+	border: none;
+	padding: 8px 12px;
+	border: 1px solid #377A4F;
+	background-color: #377A4F;
+	border-radius: 16px;
+	color: white;
+	cursor: pointer;
+	transition: all 0.2s ease-in;
+}
+
+.button:hover {
+	border-radius: 8px;
+	background-color: #48a167;
+	border: 1px solid #48a167;
+}
