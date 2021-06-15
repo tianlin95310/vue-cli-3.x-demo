@@ -125,8 +125,8 @@
           }
         })
         let isOver = true
-        for (let i = 0; i < this.pukes.length; i++) {
-          if (this.pukes[i].top > '0px') {
+        for (let i = 0; i < this.allPukes.length; i++) {
+          if (this.allPukes[i].top > '0px') {
             isOver = false
           }
         }
