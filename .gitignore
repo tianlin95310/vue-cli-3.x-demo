@@ -3,7 +3,7 @@ node_modules
 /dist
 public/apk
 src/assets/images/pk
-
+src/assets/images/ic
 # local env files
 .env.local
 .env.*.local
