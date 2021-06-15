@@ -553,7 +553,7 @@
     transition: 1s cubic-bezier(0.25, 0.1, 0.25, 1.05);
     transition-property: left, top, opacity, color, box-shadow;
     font-weight: bold;
-    border: 1px solid white;
+    border: 1px solid grey;
   }
 
   .puke-item {
@@ -562,14 +562,17 @@
     font-size: 1.8rem;
     height: 100%;
     width: 100%;
+
     .right-bottom {
       position: absolute;
       bottom: 0;
       width: 100%;
+
       .value {
         transform: rotate(180deg);
         margin-right: 0.5rem;
       }
+
       .type {
         transform: rotate(180deg);
         margin-right: 0.5rem;
@@ -581,6 +584,7 @@
       .value {
         margin-left: 0.5rem;
       }
+
       .type {
         margin-left: 0.5rem;
       }
