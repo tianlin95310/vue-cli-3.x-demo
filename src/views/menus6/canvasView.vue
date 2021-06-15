@@ -18,6 +18,9 @@
       const timer = setInterval(() => {
         console.log('setInterval', this.percent)
         this.percent += 0.01
+        if (this.percent > 1) {
+          this.percent = 0.1
+        }
         if (this.percent >= 1) {
           if (timer) {
             clearInterval(timer)

@@ -6,7 +6,29 @@
            bottom: puke.bottom,
            zIndex: puke.zIndex,
            opacity: puke.opacity,
+           color: getColor(puke.color),
            top: puke.top}" @click="onPukeClick(puke)" :class="['puke']">
+
+      <div class="puke-item">
+        <div class="left-top">
+          <div class="value">{{ puke.textValue}}</div>
+          <div class="type">
+            <span v-if="puke.color === '1'">♠</span>
+            <span v-else-if="puke.color === '2'">♥</span>
+            <span v-else-if="puke.color === '3'">♦</span>
+            <span v-else-if="puke.color === '4'">♣</span>
+          </div>
+        </div>
+        <div class="right-bottom">
+          <div class="type">
+            <span v-if="puke.color === '1'">♠</span>
+            <span v-else-if="puke.color === '2'">♥</span>
+            <span v-else-if="puke.color === '3'">♦</span>
+            <span v-else-if="puke.color === '4'">♣</span>
+          </div>
+          <div class="value">{{ puke.textValue}}</div>
+        </div>
+      </div>
     </div>
     <div class="button begin" @click="begin">发牌</div>
     <div class="button send-puke" @click="sendPuke">出牌</div>
@@ -28,7 +50,7 @@
   function makePoker() {
     var poker = []
     var table = {}
-    var colors = ['s', 'h', 'c', 'd']
+    var colors = ['1', '2', '3', '4']
 
     while (poker.length !== 52) {
       var n = Math.ceil(Math.random() * 13) + 2
@@ -43,21 +65,6 @@
         poker.push(v)
       }
     }
-
-    let wc = {
-      number: 16,
-      color: 'c'
-    }
-    let indexc = Math.ceil(Math.random() * 52)
-    poker.splice(index, 0, wc)
-
-    let wd = {
-      number: 16,
-      color: 'd'
-    }
-    let indexd = Math.ceil(Math.random() * 52)
-    poker.splice(index, 0, wd)
-
     return poker
   }
 
@@ -110,6 +117,13 @@
       }
     },
     methods: {
+      getColor(type) {
+        if (type === '1' || type === '4') {
+          return 'black'
+        } else {
+          return 'red'
+        }
+      },
       begin() {
         this.playA = []
         this.playB = []
@@ -128,7 +142,7 @@
 
         this.selectPuke.forEach(item => {
           item.left = centerX + 'px'
-          item.top = pukeHeight / 2 + 'px'
+          item.top = pukeHeight / 4 + 'px'
           item.zIndex = this.zIndex++
         })
 
@@ -145,7 +159,7 @@
         if (who !== 1 && who !== 2) {
           for (let i = 0; i < this.another.length; i++) {
             let item = this.another[i]
-            item.left = (i + 17 + 1) * this.dividerW + pukeWidth * (dividerCount - 1) / 2 + 'px'
+            item.left = (i + 17 + 1) * this.dividerW + pukeWidth * (dividerCount - 1) / 4 + 'px'
             item.top = height - 1.8 * pukeHeight + 'px'
             item.zIndex = this.zIndex++
           }
@@ -159,7 +173,7 @@
             for (let i = 0; i < this.playA.length; i++) {
               let item = this.playA[i]
               setTimeout(() => {
-                item.left = (i + 1) * this.dividerW + pukeWidth * (dividerCount - 1) / 2 + 'px'
+                item.left = (i + 1) * this.dividerW + pukeWidth * (dividerCount - 1) / 4 + 'px'
                 item.zIndex = this.zIndex++
               }, i * 30)
             }
@@ -215,7 +229,7 @@
         for (let i = 0; i < this.playA.length; i++) {
           let item = this.playA[i]
           setTimeout(() => {
-            item.left = (i + 1) * this.dividerW + pukeWidth * (dividerCount - 1) / 2 + 'px'
+            item.left = (i + 1) * this.dividerW + pukeWidth * (dividerCount - 1) / 4 + 'px'
             item.top = height - 1.8 * pukeHeight + 'px'
           }, i * 30)
         }
@@ -223,7 +237,7 @@
         for (let i = 0; i < this.playA.length; i++) {
           let item = this.playA[i]
           setTimeout(() => {
-            item.left = (i + 1) * this.dividerW + pukeWidth * (dividerCount - 1) / 2 + 'px'
+            item.left = (i + 1) * this.dividerW + pukeWidth * (dividerCount - 1) / 4 + 'px'
             item.zIndex = this.zIndex++
           }, this.playA.length * 30 + 1000 + i * 30)
         }
@@ -262,17 +276,17 @@
           7: 7,
           8: 8,
           9: 9,
-          10: 'T',
+          10: '10',
           11: 'J',
           12: 'Q',
           13: 'K',
           14: 'A',
-          15: 2,
-          16: 'W'
+          15: 2
         }
         let pokers = makePoker()
 
         var exist = {}
+        let flagPo = {}
         while (this.playA.length !== 17) {
           let n = Math.ceil(Math.random() * (pokers.length - 1))
           let poker = pokers[n]
@@ -281,7 +295,15 @@
             pokers.splice(n, 1)
             let src = undefined
             try {
-              src = require('@/assets/images/' + dict[poker.number] + poker.color + '.png')
+              let posi = Math.ceil(Math.random() * 54) + 1
+              let v = (('00' + posi)).slice(-2)
+              console.log('v', v, flagPo[v])
+              while (flagPo[v]) {
+                posi = Math.ceil(Math.random() * 54) + 1
+                v = (('00' + posi)).slice(-2)
+              }
+              flagPo[v] = true
+              src = require('@/assets/images/pk/pk' + v + '.png')
             } catch (e) {
               console.log(e)
             }
@@ -292,7 +314,9 @@
               id: poker.number + ',' + poker.color,
               zIndex: this.zIndex++,
               position: 1,
-              value: poker.number
+              value: poker.number,
+              textValue: dict[poker.number],
+              color: poker.color
             }
             this.playA.push(puke)
           }
@@ -306,7 +330,15 @@
             pokers.splice(n, 1)
             let src = undefined
             try {
-              src = require('@/assets/images/' + dict[poker.number] + poker.color + '.png')
+              let posi = Math.ceil(Math.random() * 54) + 1
+              let v = (('00' + posi)).slice(-2)
+              console.log('v', v, flagPo[v])
+              while (flagPo[v]) {
+                posi = Math.ceil(Math.random() * 54) + 1
+                v = (('00' + posi)).slice(-2)
+              }
+              flagPo[v] = true
+              src = require('@/assets/images/pk/pk' + v + '.png')
             } catch (e) {
               console.log(e)
             }
@@ -317,6 +349,8 @@
               id: poker.number + ',' + poker.color,
               zIndex: this.zIndex++,
               position: 2,
+              textValue: dict[poker.number],
+              color: poker.color,
               value: poker.number
             }
             this.playB.push(puke)
@@ -331,7 +365,15 @@
             pokers.splice(n, 1)
             let src = undefined
             try {
-              src = require('@/assets/images/' + dict[poker.number] + poker.color + '.png')
+              let posi = Math.ceil(Math.random() * 54) + 1
+              let v = (('00' + posi)).slice(-2)
+              console.log('v', v, flagPo[v])
+              while (flagPo[v]) {
+                posi = Math.ceil(Math.random() * 54) + 1
+                v = (('00' + posi)).slice(-2)
+              }
+              flagPo[v] = true
+              src = require('@/assets/images/pk/pk' + v + '.png')
             } catch (e) {
               console.log(e)
             }
@@ -342,35 +384,12 @@
               id: poker.number + ',' + poker.color,
               zIndex: this.zIndex++,
               position: 3,
+              textValue: dict[poker.number],
+              color: poker.color,
               value: poker.number
             }
 
             this.playC.push(puke)
-          }
-        }
-
-        while (this.another.length !== 3) {
-          let n = Math.ceil(Math.random() * (pokers.length - 1))
-          let poker = pokers[n]
-          if (!exist[poker.number + poker.color]) {
-            exist[poker.number + poker.color] = true
-            pokers.splice(n, 1)
-            let src = undefined
-            try {
-              src = require('@/assets/images/' + dict[poker.number] + poker.color + '.png')
-            } catch (e) {
-              console.log(e)
-            }
-            let puke = {
-              left: centerX + 'px',
-              top: 0 + 'px',
-              src: src,
-              id: poker.number + ',' + poker.color,
-              zIndex: this.zIndex++,
-              position: 4,
-              value: poker.number
-            }
-            this.another.push(puke)
           }
         }
         console.log(this.playA.length)
@@ -382,10 +401,14 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .puke {
-    background-size: 100%;
-    background-repeat: round;
+    background-size: 80% auto;
+    background-position: 20% 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    border: 1px solid gold;
     position: absolute;
     width: 136px;
     height: 220px;
@@ -393,6 +416,41 @@
     /*大于1的值会有回弹效果*/
     transition: 1s cubic-bezier(0.25, 0.1, 0.25, 0.9);
     transition-property: all;
+  }
+
+  .puke-item {
+    display: inline-block;
+    position: relative;
+    font-size: 1.8rem;
+    height: 100%;
+    width: 100%;
+
+    .right-bottom {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+
+      .value {
+        transform: rotate(180deg);
+        margin-right: 0.5rem;
+      }
+
+      .type {
+        transform: rotate(180deg);
+        margin-right: 0.5rem;
+        text-align: left;
+      }
+    }
+
+    .left-top {
+      .value {
+        margin-left: 0.5rem;
+      }
+
+      .type {
+        margin-left: 0.5rem;
+      }
+    }
   }
 
   .selected {

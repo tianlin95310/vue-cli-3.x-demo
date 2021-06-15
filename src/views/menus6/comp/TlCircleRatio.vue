@@ -1,7 +1,7 @@
 <template>
   <div class="tl-circle-ratio">
     <canvas ref="canvas" class="canvas" :style="{width: size + unit, height: size + unit}" :width="size + unit"
-      :height="size + unit" @mousedown="onmousedown" @mousemove="onmousemove" @mouseup="onmouseup" />
+      :height="size + unit" />
   </div>
 </template>
 <script>
@@ -30,42 +30,33 @@
       }
     },
     methods: {
-      onmousemove(event) {
-        console.log('onmousemove', event)
-      },
-      onmouseup(event) {
-        console.log('onmouseup', event)
-      },
-      onmousedown(event) {
-        console.log('onmousedown', event)
-      },
       onDraw() {
         const canvas = this.$refs.canvas
-        const cxt = canvas.getContext('2d')
-        cxt.antialias = true
-        if (!cxt) {
-          return
-        }
+        canvas.width = this.size
+        canvas.height = this.size
+        const ctx = canvas.getContext('2d')
+        ctx.antialias = true
         const radius = this.size / 2 * 0.9
         const center = this.size / 2
         const lineWidth = this.size / 2 / 5
-        cxt.lineWidth = lineWidth
+        ctx.lineWidth = lineWidth
 
         // draw background
         // stroke，用于绘制边框，fill用于填充
-        cxt.beginPath()
-        cxt.strokeStyle = '#EBEBEB'
-        cxt.arc(center, center, radius, 0, 2 * Math.PI)
-        cxt.stroke()
+        ctx.beginPath()
+        ctx.strokeStyle = '#EBEBEB'
+        ctx.arc(center, center, radius, 0, 2 * Math.PI)
+        ctx.stroke()
 
-        cxt.beginPath()
-        cxt.strokeStyle = '#FBD990'
+        ctx.beginPath()
+        ctx.strokeStyle = '#FBD990'
         const end = Math.PI * 2 * this.percent - Math.PI / 2
-        cxt.arc(center, center, radius, -Math.PI / 2, end, false)
-        cxt.stroke()
+        ctx.arc(center, center, radius, -Math.PI / 2, end, false)
+        ctx.stroke()
       }
     },
     mounted() {
+      console.log(this.size)
       this.onDraw()
     }
   }

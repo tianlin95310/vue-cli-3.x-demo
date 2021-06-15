@@ -1,7 +1,8 @@
 .DS_Store
 node_modules
 /dist
-
+public/apk
+src/assets/images/pk
 
 # local env files
 .env.local

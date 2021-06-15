@@ -6,10 +6,32 @@
            left: puke.left,
            zIndex: puke.zIndex,
            opacity: puke.opacity,
+           width: pukeWidth + 'px',
+           height: pukeHeight + 'px',
+           color: getColor(puke.color),
            top: puke.top}" @click="onPukeClick(puke)" :class="['puke', puke.id === chooseId ? 'choose': '']">
-      {{ puke.extra }}
+      <div class="puke-item">
+        <div class="left-top">
+          <div class="value">{{ puke.textValue}}</div>
+          <div class="type">
+            <span v-if="puke.color === '1'">♠</span>
+            <span v-else-if="puke.color === '2'">♥</span>
+            <span v-else-if="puke.color === '3'">♦</span>
+            <span v-else-if="puke.color === '4'">♣</span>
+          </div>
+        </div>
+        <div class="right-bottom">
+          <div class="type">
+            <span v-if="puke.color === '1'">♠</span>
+            <span v-else-if="puke.color === '2'">♥</span>
+            <span v-else-if="puke.color === '3'">♦</span>
+            <span v-else-if="puke.color === '4'">♣</span>
+          </div>
+          <div class="value">{{ puke.textValue}}</div>
+        </div>
+      </div>
     </div>
-    <div class="begin" @click="begin">开始</div>
+    <div class="begin" @click="begin">{{ loading ? '请稍后...' : '开始'}}</div>
 
   </div>
 
@@ -21,19 +43,18 @@
   const width = window.screen.width
   const height = window.screen.height
   // 牌的大小
-  const pukeWidth = 136
-  const pukeHeight = 220
+  const pukeWidth = width / (7 + 8 * 0.5)
+  const pukeHeight = pukeWidth * 220 / 136
   // 中心牌的坐标
   let centerX = width / 2 - pukeWidth / 2
-
-  let itemDividerW = (width - 7 * pukeWidth) / 8
+  let itemDividerW = pukeWidth / 2
   let itemDividerH = (height / 2) / 7
 
   // 随机生成一组牌
   function makePoker() {
     var poker = []
     var table = {}
-    var colors = ['s', 'h', 'c', 'd']
+    var colors = ['1', '2', '3', '4']
 
     while (poker.length !== 52) {
       var n = Math.ceil(Math.random() * 13)
@@ -59,7 +80,10 @@
         rightPs: [],
         zIndex: 100,
         chooseId: '',
-        chooseIn: -1
+        chooseIn: -1,
+        loading: false,
+        pukeWidth: pukeWidth,
+        pukeHeight: pukeHeight
       }
     },
     computed: {
@@ -78,6 +102,13 @@
       }
     },
     methods: {
+      getColor(type) {
+        if (type === '1' || type === '4') {
+          return 'black'
+        } else {
+          return 'red'
+        }
+      },
       win(win) {
         if (window.confirm('你赢了，是否再来一局？')) {
           this.begin()
@@ -326,29 +357,29 @@
           7: 7,
           8: 8,
           9: 9,
-          10: 'T',
+          10: '10',
           11: 'J',
           12: 'Q',
           13: 'K'
         }
         let pokers = makePoker()
+        let flagPo = {}
+        console.log(pokers)
         let index = 0
         for (let i = 0; i < 7; i++) {
           for (let j = 0; j < i + 1; j++) {
             let poker = pokers[index++]
-            let extra = ''
-            if (poker.number === 13) {
-              extra = '我自己就可以走'
-            } else {
-              if (dict[13 - poker.number] === 'T') {
-                extra = '我需要10'
-              } else {
-                extra = `我需要${dict[13 - poker.number]}`
-              }
-            }
             let src = undefined
             try {
-              src = require('@/assets/images/' + dict[poker.number] + poker.color + '.png')
+              let posi = Math.ceil(Math.random() * 52) + 1
+              let v = (('00' + posi)).slice(-2)
+              console.log('v', v, flagPo[v])
+              while (flagPo[v]) {
+                posi = Math.ceil(Math.random() * 52) + 1
+                v = (('00' + posi)).slice(-2)
+              }
+              flagPo[v] = true
+              src = require('@/assets/images/pk/pk' + v + '.png')
             } catch (e) {
               console.log(e)
             }
@@ -360,9 +391,10 @@
               zIndex: this.zIndex++,
               position: 0,
               value: poker.number,
+              textValue: dict[poker.number],
+              color: poker.color,
               i: i,
-              j: j,
-              extra: extra
+              j: j
             }
             this.pukes.push(puke)
           }
@@ -371,7 +403,15 @@
           let poker = pokers[i]
           let src = undefined
           try {
-            src = require('@/assets/images/' + dict[poker.number] + poker.color + '.png')
+            let posi = Math.ceil(Math.random() * 52) + 1
+            let v = (('00' + posi)).slice(-2)
+            console.log('v', v, flagPo[v])
+            while (flagPo[v]) {
+              posi = Math.ceil(Math.random() * 52) + 1
+              v = (('00' + posi)).slice(-2)
+            }
+            flagPo[v] = true
+            src = require('@/assets/images/pk/pk' + v + '.png')
           } catch (e) {
             console.log(e)
           }
@@ -382,7 +422,9 @@
             id: poker.number + ',' + poker.color,
             zIndex: this.zIndex++,
             value: poker.number,
-            position: 1
+            position: 1,
+            textValue: dict[poker.number],
+            color: poker.color,
           }
           this.leftPs.push(pukeLeft)
         }
@@ -397,9 +439,9 @@
             let left = centerX
             let center = i / 2
             if (j < center) {
-              left = centerX + (j - center) * (itemDividerW * 0.8 + pukeWidth)
+              left = centerX + (j - center) * (itemDividerW * 0.5 + pukeWidth)
             } else if (j > center) {
-              left = centerX + (j - center) * (itemDividerW * 0.8 + pukeWidth)
+              left = centerX + (j - center) * (itemDividerW * 0.5 + pukeWidth)
             }
             item.left = left + 'px'
             item.top = top + 'px'
@@ -410,17 +452,19 @@
           let item = this.leftPs[k]
           setTimeout(() => {
             item.left = pukeWidth * 0.4 + 'px'
-            item.top = itemDividerH * 2.2 + 'px'
+            item.top = itemDividerH * 1.5 + 'px'
           }, (k + this.pukes.length) * 30)
         }
       },
       begin() {
+        this.loading = true
         this.pukes = []
         this.leftPs = []
         this.rightPs = []
         setTimeout(() => {
           this.resetPuke()
           this.animOneByOne()
+          this.loading = false
         }, 500)
       }
     },
@@ -436,8 +480,8 @@
   }
 </script>
 
-<style scoped>
-  @keyframes auto {
+<style lang="scss" scoped>
+  @keyframes autoShake {
     0% {
       transform: scale(1)
     }
@@ -451,13 +495,13 @@
     83%,
     90%,
     97% {
-      transform: scale(1.3) rotate(1deg)
+      transform: scale(1.1) rotate(1deg)
     }
 
     80%,
     87%,
     93% {
-      transform: scale(1.3) rotate(-1deg)
+      transform: scale(1.1) rotate(-1deg)
     }
 
     100% {
@@ -497,33 +541,55 @@
   .puke {
     user-select: none;
     cursor: pointer;
-    background-size: 100%;
     position: absolute;
-    width: 136px;
-    height: 220px;
+    background-size: 80% auto;
     background-position: 20% 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
     border-radius: 10px;
     /*大于1的值会有回弹效果*/
     transform-origin: 50% 100%;
     transition: 1s cubic-bezier(0.25, 0.1, 0.25, 1.05);
     transition-property: left, top, opacity, color, box-shadow;
-    text-align: center;
     font-weight: bold;
-    color: transparent;
-    background-color: white;
-    border: 1px solid gold;
+    border: 1px solid white;
   }
 
-  .puke:hover {
-    color: gold;
+  .puke-item {
+    display: inline-block;
+    position: relative;
+    font-size: 1.8rem;
+    height: 100%;
+    width: 100%;
+    .right-bottom {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      .value {
+        transform: rotate(180deg);
+        margin-right: 0.5rem;
+      }
+      .type {
+        transform: rotate(180deg);
+        margin-right: 0.5rem;
+        text-align: left;
+      }
+    }
+
+    .left-top {
+      .value {
+        margin-left: 0.5rem;
+      }
+      .type {
+        margin-left: 0.5rem;
+      }
+    }
   }
 
   .choose {
-    animation: auto 3s both 3;
-    transition-property: background-size;
+    animation: autoShake 2s both infinite;
     box-shadow: 0px 0px 3px 3px #ff2ac9;
-    background-size: 120%;
-    background-position: 0 0;
   }
 
   .content {
