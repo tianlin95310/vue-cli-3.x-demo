@@ -4,6 +4,7 @@ node_modules
 public/apk
 src/assets/images/pk
 src/assets/images/ic
+
 # local env files
 .env.local
 .env.*.local
