@@ -191,7 +191,7 @@
           let thisOne = thisOnes[0]
           let index = this.leftPs.indexOf(thisOne)
           if (thisOne.position === 1) {
-            thisOne.top = itemDividerH * 2.2 + 'px'
+            thisOne.top = itemDividerH * 1.5 + 'px'
             thisOne.left = width - pukeWidth * 0.4 - pukeWidth + 'px'
             thisOne.zIndex = this.zIndex++
             setTimeout(() => {
@@ -253,7 +253,7 @@
           })
           let thisOne = thisOnes[0]
           let index = this.rightPs.indexOf(thisOne)
-          thisOne.top = itemDividerH * 2.2 + 'px'
+          thisOne.top = itemDividerH * 1.5 + 'px'
           thisOne.left = pukeWidth * 0.4 + 'px'
           thisOne.zIndex = this.zIndex++
           // 左右两边进行交换
@@ -488,20 +488,20 @@
 
     70%,
     73% {
-      transform: scale(0.9) rotate(-1deg)
+      transform: scale(0.98) rotate(-1deg)
     }
 
     77%,
     83%,
     90%,
     97% {
-      transform: scale(1.1) rotate(1deg)
+      transform: scale(1.02) rotate(1deg)
     }
 
     80%,
     87%,
     93% {
-      transform: scale(1.1) rotate(-1deg)
+      transform: scale(1.02) rotate(-1deg)
     }
 
     100% {
@@ -593,7 +593,7 @@
 
   .choose {
     animation: autoShake 2s both infinite;
-    box-shadow: 0px 0px 3px 3px #ff2ac9;
+    box-shadow: 0px 0px 3px 3px gold;
   }
 
   .content {
