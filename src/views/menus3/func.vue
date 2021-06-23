@@ -2,12 +2,16 @@
   <div>
     <h2>关于函数的一些操作，对象属性操作是"引用"传递的</h2>
     <div>
-      <button class="button" @click="change">changeObject</button>
+      <button class="button" @click="change">作为新参传递</button>
     </div>
 
     <div>
       <button class="button" @click="addList">addList</button>
       <button class="button" @click="delList">delList</button>
+    </div>
+
+    <div>
+      <button class="button" @click="defArg">函数默认参数</button>
     </div>
 
   </div>
@@ -22,14 +26,19 @@
       }
     },
     methods: {
+      fun(arg = '123', arg2 = 'tianlin') {
+        console.log(arg, arg2)
+      },
+      defArg() {
+        this.fun()
+        this.fun('QQ')
+        this.fun('QQ', 'wechat')
+      },
       delList() {
         const index = Math.ceil(Math.random() * this.people.length) - 1
+        this.people.splice(index, 1)
         console.log(index)
-        this.del(this.people, index)
         console.log(JSON.stringify(this.people))
-      },
-      del(people, index) {
-        people.splice(index, 1)
       },
       addList() {
         this.add(this.people)

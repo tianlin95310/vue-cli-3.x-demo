@@ -5,27 +5,27 @@
     <div>
       <img src="../../assets/logo.png" :class="imgAnim1" />
     </div>
-    <button @click="onClick(1)">缩放动画(通过元素的尺寸，会增大块空间)</button>
+    <button class="button" @click="onClick(1)">缩放动画(通过元素的尺寸，会增大块空间)</button>
 
     <div>
       <img src="../../assets/logo.png" :class="imgAnim2" />
     </div>
-    <button @click="onClick(2)">平移动画（平移的偏移量）</button>
+    <button class="button" @click="onClick(2)">平移动画（平移的偏移量）</button>
 
     <div>
       <img src="../../assets/logo.png" :class="imgAnim3" />
     </div>
-    <button @click="onClick(3)">旋转动画</button>
+    <button class="button" @click="onClick(3)">旋转动画</button>
 
     <div>
       <img src="../../assets/logo.png" :class="imgAnim4" />
     </div>
-    <button @click="onClick(4)">透明度动画（通过opacity）</button>
+    <button class="button" @click="onClick(4)">透明度动画（通过opacity）</button>
 
     <div>
       <img src="../../assets/logo.png" :class="imgAnim5" />
     </div>
-    <button @click="onClick(5)">缩放动画(通过Scale,不增大块空间)</button>
+    <button class="button" @click="onClick(5)">缩放动画(通过Scale,不增大块空间)</button>
 
   </div>
 </template>

@@ -11,22 +11,23 @@
     },
     data() {
       return {
-        percent: 0.1
+        percent: 0.0
       }
     },
     created() {
       const timer = setInterval(() => {
         console.log('setInterval', this.percent)
-        this.percent += 0.01
+        this.percent += 0.05
+        this.percent = parseFloat(this.percent.toFixed(2))
         if (this.percent > 1) {
-          this.percent = 0.1
+          this.percent = 0.0
         }
-        if (this.percent >= 1) {
+        if (this.percent > 1) {
           if (timer) {
             clearInterval(timer)
           }
         }
-      }, 50)
+      }, 200)
     }
   }
 </script>

@@ -128,7 +128,7 @@
                 path: '/menu3/testJsListAndMap'
               },
               {
-                menuTitle: '集合操作',
+                menuTitle: '数组操作',
                 isOpen: false,
                 path: '/menu3/listOperate'
               },

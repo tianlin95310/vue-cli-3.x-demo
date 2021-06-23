@@ -1,13 +1,15 @@
 <template>
   <div>
-    <h2>ES6...运算符的法</h2>
+    <h2>ES6...运算符的用法</h2>
     <div><button class="button" @click="test1">定义变量时使用</button></div>
 
     <div><button class="button" @click="test2">作为形参传递</button></div>
 
-    <div><button class="button" @click="test3">取对象的key</button></div>
+    <div><button class="button" @click="test3">取对象key对应的值赋值给变量</button></div>
 
     <div><button class="button" @click="test4">作为运算符</button></div>
+
+    <div><button class="button" @click="test5">对象的克隆</button></div>
   </div>
 </template>
 <script>
@@ -18,13 +20,7 @@
       }
     },
     methods: {
-      test4() {
-        const a = [1, 2, 3]
-        // 作为数组输出
-        console.log(a)
-        // 单个匹配输出
-        console.log(...a)
-
+      test5() {
         const b = {
           key: 'key',
           value: 'value'
@@ -38,12 +34,19 @@
         b.key = 'change'
         console.log('---b---', b)
         console.log('---bb---', bb)
-        console.log('fun4', {
-          ...b
-        })
+      },
+      test4() {
+        const a = [1, 2, 3]
+        // 作为数组输出
+        console.log(a)
+        // 此种写法错误
+        // const aa = ...a
+        // 单个匹配输出
+        console.log(...a)
         // 解析为数组
         const c = 'tianlin'
-        console.log([...c])
+        const cc = [...c]
+        console.log(cc)
       },
       test3() {
         const data = {
@@ -66,8 +69,8 @@
       },
       test2() {
         const a = [1, 2, 3]
-        this.fun1([1])
-        this.fun1(a)
+        // this.fun1([1, 2])
+        // this.fun1(a)
         this.fun2(a)
       },
       test1() {
