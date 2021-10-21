@@ -1,6 +1,7 @@
 <template>
   <div class="html-deal">
 
+<h2>输入框的处理</h2>
     <div>
       <input v-model="number1" />
       {{number1}}
@@ -19,7 +20,7 @@
       <input v-model="number4" type="text" @input="onInput">
       {{number4}}
     </div>
-    <button @click="show">show</button>
+    <button @click="show" class="button">显示记录的实际值</button>
   </div>
 </template>
 

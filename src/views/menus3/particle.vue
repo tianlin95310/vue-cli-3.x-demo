@@ -17,10 +17,12 @@
 
     <h3>(undefined || 1) - (undefined || 2) = {{(undefined || 1) - (undefined || 2)}}</h3>
 
-    <div><button class="button" @click="random">随机数</button>
+<h3>0.00 == 0 = {{0.00 == 0}}</h3>
+<h3>0.000 === 0 = {{0.000 === 0}}</h3>
+    <div><button class="button" @click="random">产生随机数</button>
     <span class="tag" style="margin-left: 16px;">{{ number }}</span></div>
 
-    <button class="button" @click="var_let">var与let</button>
+    <button class="button" @click="var_let">var与let的区别</button>
   </div>
 </template>
 <script>

@@ -143,7 +143,7 @@
                 path: '/menu3/objectAnal'
               },
               {
-                menuTitle: '特殊点',
+                menuTitle: '数值的特殊处理',
                 isOpen: false,
                 path: '/menu3/particle'
               }
