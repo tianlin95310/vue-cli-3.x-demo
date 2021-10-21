@@ -34,6 +34,8 @@ input {
 	color: white;
 	cursor: pointer;
 	transition: all 0.2s ease-in;
+	
+	margin: 16px 8px;
 }
 
 .button:hover {

@@ -1,6 +1,7 @@
 <template>
   <div class="vue-life-cycle">
     <h2>测试vue的生命周期方法，以及调用组件的方法</h2>
+    <!-- <h3 style="margin: 16px 0;">{{ 1 | testFilter('111') }}</h3> -->
     <child/>
     <child3-x></child3-x>
   </div>
@@ -18,6 +19,11 @@
       child,
       child3X
     },
+    // filters: {
+    //   testFilter(param) {
+    //     return param + 'testFilter'
+    //   }
+    // },
     beforeCreate: function() {
       console.log('parent beforeCreate')
     },

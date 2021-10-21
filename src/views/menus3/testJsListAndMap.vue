@@ -12,11 +12,14 @@
       <button class="button" @click="obj_fun">Object的用法</button>
       <br />
       <br />
-      <div>
-        <button class="button" @click="testNull">测试空的判断</button>
-      </div>
+      <button class="button" @click="testNull">测试空的判断</button>
+      <br />
+      <br />
+      <button class="button" @click="fun5">或运算</button>
+      <br />
+      <br />
+      <button class="button" @click="fun6">类型判断</button>
     </div>
-
   </div>
 </template>
 
@@ -27,6 +30,39 @@
     },
     created() {},
     methods: {
+      /**
+       * instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
+       * 可以用于判断数据类型
+       */
+      fun6() {
+        const a = ''
+        console.log(a instanceof String)
+        console.log(typeof a === 'string')
+        console.log('------------------------')
+        const b = String('1232')
+        console.log(b instanceof String)
+        console.log(typeof b === 'string')
+        console.log('------------------------')
+        const c = {}
+        console.log(c instanceof Object)
+        console.log(typeof c === 'object')
+        console.log(typeof c)
+        console.log('------------------------')
+        const d = new Date()
+        console.log(d instanceof Object)
+        console.log(typeof d === 'object')
+        console.log(typeof d)
+        console.log('------------------------')
+        const e = new Date()
+        console.log(e instanceof Date)
+        console.log(typeof e === 'object')
+        console.log(typeof e)
+        console.log('------------------------')
+      },
+      fun5() {
+        console.log(undefined || 1 - undefined || 2)
+        console.log((undefined || 1) - (undefined || 2))
+      },
       testNull() {
         let test1
         if (test1) {

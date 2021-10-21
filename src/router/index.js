@@ -118,6 +118,10 @@ const routes = [
       {
         path: 'promiseUse',
         component: () => import('@/views/menus4/promiseUse.vue')
+      },
+      {
+        path: 'htmlDeal',
+        component: () => import('@/views/menus4/htmlDeal.vue')
       }
     ]
   },

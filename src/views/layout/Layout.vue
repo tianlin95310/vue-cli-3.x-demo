@@ -177,6 +177,11 @@
                 menuTitle: 'Promise的使用',
                 isOpen: false,
                 path: '/menu4/promiseUse'
+              },
+              {
+                menuTitle: '元素的处理',
+                isOpen: false,
+                path: '/menu4/htmlDeal'
               }
             ]
           },
