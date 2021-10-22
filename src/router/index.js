@@ -92,6 +92,10 @@ const routes = [
       {
         path: 'particle',
         component: () => import('@/views/menus3/particle.vue')
+      },
+      {
+        path: 'regExp',
+        component: () => import('@/views/menus3/regExp.vue')
       }
     ]
   },

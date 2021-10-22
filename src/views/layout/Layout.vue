@@ -146,6 +146,11 @@
                 menuTitle: '数值的特殊处理',
                 isOpen: false,
                 path: '/menu3/particle'
+              },
+              {
+                menuTitle: '正则表达式',
+                isOpen: false,
+                path: '/menu3/regExp'
               }
             ]
           },

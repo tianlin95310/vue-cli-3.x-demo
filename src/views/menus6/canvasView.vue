@@ -9,25 +9,25 @@
     components: {
       TlCircleRatio
     },
+    timer: {},
     data() {
       return {
         percent: 0.0
       }
     },
     created() {
-      const timer = setInterval(() => {
+      this.$options.timer = setInterval(() => {
         console.log('setInterval', this.percent)
         this.percent += 0.05
         this.percent = parseFloat(this.percent.toFixed(2))
         if (this.percent > 1) {
           this.percent = 0.0
         }
-        if (this.percent > 1) {
-          if (timer) {
-            clearInterval(timer)
-          }
-        }
       }, 200)
+    },
+    unmounted() {
+      console.log('unmounted---', this.$options.timer)
+      clearInterval(this.$options.timer)
     }
   }
 </script>

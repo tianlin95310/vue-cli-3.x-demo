@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import { getToken } from '@/cookies/Cookies.js'
 
+import directives from './directives/index.js'
+
 const whiteList = ['/login']
 
 router.beforeEach(async(to, from, next) => {
@@ -28,4 +30,4 @@ router.beforeEach(async(to, from, next) => {
 router.afterEach(() => {
   // finish progress bar
 })
-createApp(App).use(store).use(router).mount('#app')
+createApp(App).use(store).use(router).use(directives).mount('#app')

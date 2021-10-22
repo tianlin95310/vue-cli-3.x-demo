@@ -17,8 +17,12 @@
       <button class="button" @click="testStart">判断是以某段开头</button>
     </div>
 
+<div>
+      <button class="button" @click="testReg()">去点数字前面的0</button>
+    </div>
+
     <div>
-      <button class="button" @click="testTeshu">判断是否包含图书字符</button>
+      <button class="button" @click="testTeshu">判断是否包含特殊字符</button>
     </div>
 
  <h2>
@@ -80,7 +84,7 @@
     methods: {
       numberFormat: numberFormat,
       testTeshu() {
-        const str = '123456'
+        const str = '12345&6'
         alert(str.indexOf('&') !== -1)
       },
       testStart() {
