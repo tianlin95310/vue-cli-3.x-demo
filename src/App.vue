@@ -19,7 +19,7 @@
     setup(props, context) {
       console.log('setup---', this)
       onBeforeMount(() => {
-        console.log('onBeforeMount---', this)
+        console.log('app onBeforeMount---', this)
       })
       onMounted(() => {
         let size = '14px'
@@ -38,25 +38,25 @@
         console.log('is Pc =', device.IsPC(), '\t', 'document.style.fontSize =', size)
       })
       onBeforeUpdate(() => {
-        console.log('onBeforeUpdate')
+        console.log('app onBeforeUpdate')
       })
       onUpdated(() => {
-        console.log('onUpdated')
+        console.log('app onUpdated')
       })
       onBeforeUnmount(() => {
-        console.log('onBeforeUnmount')
+        console.log('app onBeforeUnmount')
       })
       onUnmounted(() => {
-        console.log('onUnmounted')
+        console.log('app onUnmounted')
       })
       onErrorCaptured(() => {
-        console.log('onErrorCaptured')
+        console.log('app onErrorCaptured')
       })
       onRenderTracked(() => {
-        console.log('onRenderTracked')
+        console.log('app onRenderTracked')
       })
       onRenderTriggered(() => {
-        console.log('onRenderTriggered')
+        console.log('app onRenderTriggered')
       })
       return {
         tip2: 'v3.x采用setup返回data'

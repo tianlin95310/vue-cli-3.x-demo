@@ -2,6 +2,8 @@
   <div class="promise-use">
 
     <button class="button" @click="defaultPromise">默认的promise</button>
+
+    <button class="button" @click="test">特殊的用法尝试</button>
   </div>
 </template>
 <script>
@@ -11,6 +13,11 @@
       }
     },
     methods: {
+      async test() {
+        const va1 = await this.fun()
+        console.log(va1)
+        console.log('---fun call end---')
+      },
       fun() {
         return new Promise(function(resolve, reject) {
           const random = Math.ceil(Math.random() * 3)
