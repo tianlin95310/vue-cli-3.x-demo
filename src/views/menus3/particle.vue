@@ -23,6 +23,10 @@
     <span class="tag" style="margin-left: 16px;">{{ number }}</span></div>
 
     <button class="button" @click="var_let">var与let的区别</button>
+
+    <button class="button" @click="newKeyWord">新的运算符...， ?., ??</button>
+
+    <button class="button" @click="JsonFormat">测试Json字符串格式化</button>
   </div>
 </template>
 <script>
@@ -39,6 +43,37 @@
       }
     },
     methods: {
+      JsonFormat() {
+        const value = {
+          v1: undefined,
+          v2: null,
+          v3: '',
+          v4: 123,
+          v5: 'tianlin'
+        }
+        function rep(key, value) {
+          console.log(key, value)
+          if (value === null) {
+            return undefined
+          } else if(value === '') {
+            return undefined
+          } else {
+            return value
+          }
+        }
+        console.log(JSON.stringify(value, rep))
+      },
+      newKeyWord() {
+        const a = undefined ?? 1
+        console.log(a)
+
+        const b = {
+          key: 'value'
+        }
+        console.log(b?.key)
+        const c = undefined
+        console.log(c?.key)
+      },
       var_let() {
         {
           var a = 10

@@ -3,27 +3,26 @@
 
     <h2>输入框的处理</h2>
     <div>
-      原值<input v-model="number1" />
+      <div>原值</div><input v-model="number1" />
       {{number1}}
     </div>
     <div>
-      oninput替换value<input v-model="number2" type="text" oninput="value = value.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')">
+      <div>oninput替换value</div><input v-model="number2" type="text" oninput="value = value.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')">
       {{number2}}
     </div>
     <div>
-      oninput替换value<input v-model="number3" type="text" oninput="value=value.replace(/[^\d.]/g, '')">
+      <div>oninput替换value</div><input v-model="number3" type="text" oninput="value=value.replace(/[^\d.]/g, '')">
       {{number3}}
     </div>
     <div>
-     oninput替换v-model <input v-model="number5" type="text" @input="number5 = number5.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')">{{number5}}
-    </div>
-  <div>
-      自定义指令<input v-model="number4" type="text" v-pnumber>{{number4}}
+     <div>oninput替换v-model</div> <input v-model="number5" type="text" @input="number5 = number5.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')">{{number5}}
     </div>
     <div>
-      自定义指令<input v-model="number6" type="text" v-number>{{number6}}
+      <div>自定义指令页面内</div><input v-model="number4" type="text" v-pnumber>{{number4}}
     </div>
-
+    <div>
+      <div>自定义指令全局</div><input v-model="number6" type="text" v-number>{{number6}}
+    </div>
     <button @click="show" class="button">显示记录的实际值</button>
   </div>
 </template>
@@ -81,6 +80,13 @@
 
     div {
       margin-top: 10px;
+
+      div {
+        display: inline-block;
+        width: 120px;
+      }
+      input {
+      }
     }
   }
 </style>

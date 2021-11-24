@@ -21,10 +21,13 @@
 </template>
 <script>
   export default {
+    name: 'TlMinistepView',
     props: {
       currentStatus: {
         type: Number,
-        default: 0
+        default() {
+          return 0
+        }
       },
       steps: {
         type: Array,
@@ -32,9 +35,6 @@
           return []
         }
       }
-    },
-    data() {
-      return {}
     }
   }
 </script>

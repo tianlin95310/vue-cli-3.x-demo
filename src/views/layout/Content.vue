@@ -1,12 +1,18 @@
 <template>
-  <div class="main-content">
+  <div id="main-content" class="main-content">
     <div class='header'>
       <img :class="['icon-item', isShow ? 'menu-show' : 'menu']" src="@/assets/svg/ic_collapse.svg" @click="collapse">
+      <span style="float: right;">{{username}}</span>
       <img class="icon-item wind-mill" src="@/assets/svg/test_svg.svg" title="莫挨老子" @click="logout">
     </div>
-    <div class="route-content">
-      <router-view :key="key" />
-    </div>
+
+    <router-view v-slot="{ Component}" >
+      <transition name="fade-transform" mode="out-in">
+        <keep-alive :include="cachedViews">
+          <component :is="Component"></component>
+        </keep-alive>
+      </transition>
+    </router-view>
   </div>
 </template>
 
@@ -14,6 +20,7 @@
   import {
     removeToken
   } from '@/cookies/Cookies.js'
+  import { mapGetters } from 'vuex'
   export default {
     props: {
       key: {
@@ -25,6 +32,12 @@
       return {
         isShow: true
       }
+    },
+    computed: {
+      ...mapGetters([
+        'username',
+        'cachedViews'
+      ])
     },
     methods: {
       logout() {
@@ -40,6 +53,21 @@
 </script>
 
 <style lang="scss">
+  /* fade-transform */
+  .fade-transform-leave-active,
+  .fade-transform-enter-active {
+    transition: all .3s;
+  }
+
+  .fade-transform-enter {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  .fade-transform-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
   @keyframes rotateAll {
     0% {
       transform: rotate(deg)
@@ -53,12 +81,12 @@
   .main-content {
     overflow-x: hidden;
 
-    .route-content {
-      width: 100%;
-      padding: 16px;
-      height: calc(100% - 40px);
-      background-color: #F5F5F5;
-    }
+    // .route-content {
+    //   width: 100%;
+    //   padding: 16px;
+    //   height: calc(100% - 40px);
+    //   background-color: #F5F5F5;
+    // }
 
     .header {
       padding: 0 16px;

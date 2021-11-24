@@ -2,17 +2,18 @@ import {
   createRouter,
   createWebHashHistory
 } from 'vue-router'
+
 import Layout from '@/views/layout/Layout.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Layout',
     component: Layout,
     redirect: '/dashboard',
     children: [
       {
         path: '/dashboard',
+        name: 'Dashboard',
         component: () => import('@/views/Dashboard.vue')
       }
     ]
@@ -66,6 +67,10 @@ const routes = [
       {
         path: 'testFlex',
         component: () => import('@/views/menus2/testFlex.vue')
+      },
+      {
+        path: 'scroll',
+        component: () => import('@/views/menus2/scroll.vue')
       }
     ]
   },
@@ -135,10 +140,12 @@ const routes = [
     children: [
       {
         path: 'drawPuke',
+        name: 'drawPuke',
         component: () => import('@/views/menus5/drawPuke.vue')
       },
       {
         path: 'drawPukeInCanvas',
+        name: 'drawPukeInCanvas',
         component: () => import('@/views/menus5/drawPukeInCanvas.vue')
       }
     ]
@@ -148,12 +155,17 @@ const routes = [
     component: Layout,
     children: [
       {
-        path: 'indexView',
-        component: () => import('@/views/menus6/indexView.vue')
+        path: 'htmlView',
+        name: 'HtmlView',
+        component: () => import('@/views/menus6/htmlView.vue')
       },
       {
         path: 'canvasView',
-        component: () => import('@/views/menus6/canvasView.vue')
+        name: 'CanvasView',
+        component: () => import('@/views/menus6/canvasView.vue'),
+        meta: {
+          keepAlive: true
+        }
       }
     ]
   },
@@ -162,6 +174,7 @@ const routes = [
     component: Layout,
     children: [
       {
+        name: 'Algorithm',
         path: 'Algorithm',
         component: () => import('@/views/menus7/Algorithm.vue')
       }
@@ -171,6 +184,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import('@/views/Login.vue')
+  },
+  {
+    path: '/login2',
+    name: 'login2',
+    component: () => import('@/views/LoginStepTwo.vue')
   },
   {
     path: '/pukegame1',

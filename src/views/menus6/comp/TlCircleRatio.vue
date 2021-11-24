@@ -1,28 +1,21 @@
 <template>
   <div class="tl-circle-ratio">
-    <canvas ref="canvas" class="canvas" :style="{width: size + unit, height: size + unit}" :width="size + unit"
-      :height="size + unit" />
+    <canvas ref="canvas" class="canvas" width="400" height="400" />
   </div>
 </template>
 <script>
   export default {
     name: 'TlCircleRatio',
     props: {
-      size: {
-        type: Number,
-        default: 2
-      },
-      unit: {
-        type: String,
-        default: 'rem'
-      },
       percent: {
         type: Number,
         default: 0
       }
     },
     data() {
-      return {}
+      return {
+        size: 400
+      }
     },
     watch: {
       percent() {
@@ -40,6 +33,7 @@
         const center = this.size / 2
         const lineWidth = this.size / 2 / 5
         ctx.lineWidth = lineWidth
+        ctx.clearRect(0, 0, this.size, this.size)
 
         // draw background
         // stroke，用于绘制边框，fill用于填充
@@ -56,7 +50,7 @@
       }
     },
     mounted() {
-      console.log(this.size)
+      // console.log(this.size)
       this.onDraw()
     }
   }
@@ -65,5 +59,11 @@
 <style scoped>
   .tl-circle-ratio {
     display: inline-block;
+    width: 100%;
+    height: 100%;
+    .canvas {
+      width: 100%;
+      height: 100%;
+    }
   }
 </style>

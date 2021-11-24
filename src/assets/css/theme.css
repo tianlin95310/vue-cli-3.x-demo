@@ -4,6 +4,10 @@
 	--colorAccent: #D42D00;
 }
 
+.page {
+	padding: 16px;
+}
+
 .tag {
 	display: inline-block;
 	background-color: #377A4F;
@@ -34,7 +38,7 @@ input {
 	color: white;
 	cursor: pointer;
 	transition: all 0.2s ease-in;
-	
+
 	margin: 16px 8px;
 }
 
@@ -48,4 +52,9 @@ a {
   font-size: 1.2rem;
   display: block;
   height: 32px;
+}
+
+.page-container {
+	padding: 16px;
+	/*margin-top: 40px;*/
 }

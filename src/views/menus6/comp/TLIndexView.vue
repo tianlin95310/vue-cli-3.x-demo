@@ -11,7 +11,7 @@
 </template>
 <script>
   export default {
-    name: 'tl-index-view',
+    name: 'TlIndexView',
     props: {
       vColor: {
         type: String,

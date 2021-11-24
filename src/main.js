@@ -6,9 +6,9 @@ import { getToken } from '@/cookies/Cookies.js'
 
 import directives from './directives/index.js'
 
-const whiteList = ['/login']
+const whiteList = ['/login', '/login2']
 
-router.beforeEach(async(to, from, next) => {
+router.beforeEach((to, from, next) => {
   console.log(from.path, to.path, getToken())
   if (getToken()) {
     if (to.path === '/login') {
@@ -23,7 +23,8 @@ router.beforeEach(async(to, from, next) => {
       next()
     } else {
       console.log('2222222222222222222222')
-      next({ path: '/login' })
+      // next({ path: '/login' })
+      next(`/login?redirect=${to.path}`)
     }
   }
 })
