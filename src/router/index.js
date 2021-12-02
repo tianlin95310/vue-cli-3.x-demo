@@ -71,6 +71,10 @@ const routes = [
       {
         path: 'scroll',
         component: () => import('@/views/menus2/scroll.vue')
+      },
+      {
+        path: 'selector',
+        component: () => import('@/views/menus2/selector.vue')
       }
     ]
   },

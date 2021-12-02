@@ -113,6 +113,11 @@
                 menuTitle: '滚动条探索',
                 path: '/menu2/scroll',
                 isOpen: false
+              },
+              {
+                menuTitle: '特殊的选择器',
+                path: '/menu2/selector',
+                isOpen: false
               }
             ]
           },
