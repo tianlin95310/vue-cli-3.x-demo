@@ -5,11 +5,13 @@
 
     <div><button class="button" @click="test2">作为形参传递</button></div>
 
-    <div><button class="button" @click="test3">取对象key对应的值赋值给变量</button></div>
+    <div><button class="button" @click="test3">取对象key对应的值 并直接赋值给变量</button></div>
 
     <div><button class="button" @click="test4">作为运算符</button></div>
 
-    <div><button class="button" @click="test5">对象的克隆</button></div>
+    <div><button class="button" @click="test5">单层对象的克隆</button></div>
+
+    <div><button class="button" @click="test6">多层对象的克隆(无法实现)</button></div>
   </div>
 </template>
 <script>
@@ -20,6 +22,20 @@
       }
     },
     methods: {
+      test6() {
+        const map1 = {
+          v1: {
+            a: 1,
+            b: '2'
+          },
+          v2: [1, 2, 3]
+        }
+        const map2 = { ...map1 }
+        map2.v1.a = 10
+        console.log('map1---', map1)
+        console.log('map2---', map2)
+        console.log('===', map1 === map2)
+      },
       test5() {
         const b = {
           key: 'key',
@@ -34,6 +50,7 @@
         b.key = 'change'
         console.log('---b---', b)
         console.log('---bb---', bb)
+        console.log('===', b === bb)
       },
       test4() {
         const a = [1, 2, 3]
@@ -61,8 +78,9 @@
         } = data
         console.log(name, age, score)
       },
-      fun2(...args) {
-        console.log(args)
+      // 可变长度参数
+      fun2(array, ...args) {
+        console.log(args.length, args)
       },
       fun1([a, b, c]) {
         console.log(a, b, c)
@@ -70,8 +88,8 @@
       test2() {
         const a = [1, 2, 3]
         // this.fun1([1, 2])
-        // this.fun1(a)
-        this.fun2(a)
+        this.fun1(a)
+        this.fun2(a, 1, 'str', [])
       },
       test1() {
         const [a, ...b] = [1, 2, 3, 4]
