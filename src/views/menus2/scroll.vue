@@ -1,0 +1,76 @@
+<template>
+  <div class="scroll-info page-container">
+    <div ref="table" id="table" class="table">
+      <div class="content">
+        我是可以滑动的行内容
+      </div>
+    </div>
+
+    <div id="custom-scroll" class="custom-scroll">
+      <div :style="{left: left + 'px'}" class="my-scroll"></div>
+    </div>
+  </div>
+
+</template>
+
+<script>
+  export default {
+    name: 'Scroll',
+    data() {
+      return {
+        left: 0
+      }
+    },
+    created() {
+      console.log('scroll created')
+    },
+    mounted() {
+      const table1 = this.$refs.table
+      const table2 = document.getElementById('table')
+      const custom = document.getElementById('custom-scroll')
+      console.log('scroll mounted', table1, table2, custom)
+      const width = custom.clientWidth
+      const scrollW = table1.clientWidth / (table1.scrollWidth / table1.clientWidth)
+      table1.onscroll = (event) => {
+        this.left = event.target.scrollLeft / (width - width / 2) * (event.target.scrollWidth - scrollW)
+        console.log(scrollW, width, event.target.scrollLeft, this.left)
+      }
+      custom.onmousemove = (event) => {
+        console.log(event.clientX)
+        this.left = event.offsetX
+        table1.scrollLeft = this.left * (width - width / 2) / (event.target.scrollWidth - scrollW)
+      }
+    }
+  }
+
+</script>
+
+<style lang="scss" scoped>
+.scroll-info {
+  width: 100%;
+  .custom-scroll {
+    margin: 16px 0;
+    width: 100%;
+    background: #6f7a84;
+    position: relative;
+    height: 20px;
+    .my-scroll {
+      position: absolute;
+      height: 20px;
+      background: #42b983;
+      width: 50%;
+    }
+  }
+  .table {
+    width: 100%;
+    overflow: auto;
+
+    .content {
+      width: 2000px;
+      height: 2000px;
+      background: url("../../assets/logo.png") repeat;
+    }
+  }
+
+}
+</style>

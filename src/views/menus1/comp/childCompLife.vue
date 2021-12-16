@@ -24,10 +24,11 @@
         console.log('组件的this---', this)
 
         setTimeout(() => {
+          // 箭头函数被工具添加过辅助代码let _this = this
           console.log('组件内的函数的this1---', this)
         })
 
-        const fun = function() {
+        const fun = () => {
           console.log('组件内的函数的this2---', this)
         }
         return fun

@@ -1,35 +1,74 @@
 <template>
-  <div>
+  <div class="date-format page">
     <div>
       必须要有分隔符，才能识别字符串时间：{{date1}}
     </div>
-    <br />
     <div>
       数字类的时间戳： {{date2}}
     </div>
-
-    <br />
     <div>
       字符串类的时间戳： {{date3}}
     </div>
-
-    <br />
     <div>
-      数字类的时间戳： {{date4}}
+      数字类的时间戳(字符串转型)： {{date4}}
     </div>
-    <br />
     <div>
-      指定日期加1天： {{date5}}
+      2019-2-28指定日期加1天（闰月）： {{date5}}
     </div>
-    <br />
     <div>
       明天是： {{date6}}
     </div>
-    <br />
     <div>
       日期差： {{date7}}
     </div>
-
+    <div>
+      日期格式为yyyy-MM-dd的日期格式化：
+      {{ new Date(new Date().format('yyyy-MM-dd')).format('yyyy-MM-dd HH:mm:ss')}} ---LocalString---
+      {{ new Date(new Date().format('yyyy-MM-dd')) }}
+    </div>
+    <div>
+      日期格式为yyyy/MM/dd的日期格式化：
+      {{ new Date(new Date().format('yyyy/MM/dd')).format('yyyy-MM-dd HH:mm:ss')}} ---LocalString---
+      {{ new Date(new Date().format('yyyy/MM/dd')) }}
+    </div>
+    <div>
+      日期格式为yyyy-MM-dd的日期格式化：
+      {{new Date('2021-12-12').format('yyyy-MM-dd HH:mm:ss')}} ---LocalString---
+      {{ new Date('2021-12-12').toLocaleDateString() + new Date('2021-12-12').toLocaleTimeString() }}
+    </div>
+    <div>
+      日期格式为yyyy/MM/dd的日期格式化：
+      {{new Date('2021/12/12').format('yyyy-MM-dd HH:mm:ss')}} ---LocalString---
+      {{ new Date('2021/12/12').toLocaleDateString() + new Date('2021/12/12').toLocaleTimeString() }}
+    </div>
+    <div>
+      日期格式为yyyy-MM-dd HH:mm:ss的日期格式化：
+      {{new Date('2021-12-12 09:00:00').format('yyyy-MM-dd HH:mm:ss')}} ---LocalString---
+      {{new Date('2021-12-12 09:00:00').toLocaleTimeString() }}
+    </div>
+    <div>
+      日期格式为yyyy/MM/dd HH:mm:ss的日期格式化：
+      {{ new Date('2021/12/12 09:00:00').format('yyyy-MM-dd HH:mm:ss') }} ---LocalString---
+      {{ new Date('2021/12/12 09:00:00').toLocaleTimeString() }}
+    </div>
+    <div>
+      时间加一年： {{ timeOffset('year', 1, new Date()).format('yyyy-MM-dd HH:mm:ss') }}
+    </div>
+    <div>
+      时间减一年： {{ timeOffset('year', -2, new Date()).format('yyyy-MM-dd HH:mm:ss') }}
+    </div>
+    <div>
+      时间加二月： {{ timeOffset('month', 2, new Date()).format('yyyy-MM-dd HH:mm:ss') }}
+    </div>
+    <div>
+      时间减一月： {{ timeOffset('month', -1, new Date()).format('yyyy-MM-dd HH:mm:ss') }}
+    </div>
+    <div>
+      时间加1天： {{ timeOffset('day', 1, new Date()).format('yyyy-MM-dd HH:mm:ss') + timeOffset('day', 1, new Date()).nowFewWeeks()}}
+    </div>
+    <div>
+      时间加4天： {{ timeOffset('month', 4, new Date()).format('yyyy-MM-dd HH:mm:ss') + timeOffset('day', 4, new Date()).nowFewWeeks() }}
+    </div>
   </div>
 </template>
 
@@ -87,10 +126,19 @@
         const date = new Date('2017-10-20')
         return date.format('yyyy-MM-dd')
       }
+    },
+    methods: {
+      timeOffset: dateFormat.timeOffset
     }
   }
 </script>
 
-<style>
+<style lang="scss" scoped>
+  .date-format {
+    font-size: 18px;
+    div {
+      margin-top: 16px;
+    }
+  }
 
 </style>

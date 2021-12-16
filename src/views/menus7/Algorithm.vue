@@ -23,6 +23,7 @@
     treeDataTranslate
   } from './util/TreeData'
   export default {
+    name: 'Algorithm',
     data() {
       return {
         abc: 'asdasd'

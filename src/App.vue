@@ -1,5 +1,11 @@
 <template>
-  <router-view />
+  <router-view></router-view>
+<!--  第一层路由使用keep-alive有效-->
+<!--  <router-view v-slot="{ Component}" >-->
+<!--    <keep-alive>-->
+<!--      <component :is="Component"></component>-->
+<!--    </keep-alive>-->
+<!--  </router-view>-->
 </template>
 
 <script>
@@ -17,46 +23,48 @@
   } from 'vue'
   export default {
     setup(props, context) {
-      console.log('setup---', this)
+      console.log('App setup---', this)
       onBeforeMount(() => {
-        console.log('app onBeforeMount---', this)
+        console.log('App onBeforeMount---', this)
       })
       onMounted(() => {
-        let size = '14px'
-
-        if (device.IsPC()) {
-          const width = document.body.clientWidth
-
-          size = width / (1920 / 14) + 'px'
-        } else {
-          const width = document.body.clientWidth
-          size = width / (320 / 14) + 'px'
+        function resetFont() {
+          let size = '14px'
+          if (device.IsPC()) {
+            const width = document.body.clientWidth
+            size = width / (1600 / 14) + 'px'
+          } else {
+            const width = document.body.clientWidth
+            size = width / (375 / 14) + 'px'
+          }
           document.getElementById('app').style.fontSize = size
+          console.log('is Pc =', device.IsPC(), '\t', 'document.style.fontSize =', size)
         }
-        document.getElementById('app').style.fontSize = size
-        console.log('onMounted', 'clientWidth =', document.body.clientWidth, 'clientHeight =', document.body.clientHeight)
-        console.log('is Pc =', device.IsPC(), '\t', 'document.style.fontSize =', size)
+        resetFont()
+        window.onresize = resetFont
+        console.log('App onMounted', 'clientWidth =', document.body.clientWidth, 'clientHeight =', document.body.clientHeight)
+        console.log('App onMounted', 'screen.width =', screen.width, 'screen.height =', screen.height)
       })
       onBeforeUpdate(() => {
-        console.log('app onBeforeUpdate')
+        console.log('App onBeforeUpdate')
       })
       onUpdated(() => {
-        console.log('app onUpdated')
+        console.log('App onUpdated')
       })
       onBeforeUnmount(() => {
-        console.log('app onBeforeUnmount')
+        console.log('App onBeforeUnmount')
       })
       onUnmounted(() => {
-        console.log('app onUnmounted')
+        console.log('App onUnmounted')
       })
       onErrorCaptured(() => {
-        console.log('app onErrorCaptured')
+        console.log('App onErrorCaptured')
       })
       onRenderTracked(() => {
-        console.log('app onRenderTracked')
+        console.log('App onRenderTracked')
       })
       onRenderTriggered(() => {
-        console.log('app onRenderTriggered')
+        console.log('App onRenderTriggered')
       })
       return {
         tip2: 'v3.x采用setup返回data'

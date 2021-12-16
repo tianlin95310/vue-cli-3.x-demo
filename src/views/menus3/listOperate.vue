@@ -4,16 +4,15 @@
     <div>
       <button class="button" @click="sort">测试数组排序</button>
     </div>
-
     <div>
       <button class="button" @click="splice">splice(1, 1)</button>
     </div>
-
     <div>
       <button class="button" @click="spliceNo">splice(0，0)</button>
     </div>
-
-    <br />
+    <div>
+      <button class="button" @click="SetArray">不重复的集合Set</button>
+    </div>
   </div>
 </template>
 
@@ -37,6 +36,27 @@
       return {}
     },
     methods: {
+      SetArray() {
+        let set = new Set()
+        set.add(12)
+        set.add(78)
+        set.add(12)
+        set.add(34)
+        set.add(12)
+        console.log(set)
+        
+        let set2 = new Set()
+        set2.add({
+          a: 1
+        })
+        set2.add({
+          a: 2
+        })
+        set2.add({
+          a: 1
+        })
+        console.log(set2)
+      },
       spliceNo() {
         const array = [1, 2]
         array.splice(0, 0)

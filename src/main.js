@@ -4,9 +4,11 @@ import router from './router'
 import store from './store'
 import { getToken } from '@/cookies/Cookies.js'
 
-const whiteList = ['/login']
+import directives from './directives/index.js'
 
-router.beforeEach(async(to, from, next) => {
+const whiteList = ['/login', '/login2']
+
+router.beforeEach((to, from, next) => {
   console.log(from.path, to.path, getToken())
   if (getToken()) {
     if (to.path === '/login') {
@@ -21,11 +23,12 @@ router.beforeEach(async(to, from, next) => {
       next()
     } else {
       console.log('2222222222222222222222')
-      next({ path: '/login' })
+      // next({ path: '/login' })
+      next(`/login?redirect=${to.path}`)
     }
   }
 })
 router.afterEach(() => {
   // finish progress bar
 })
-createApp(App).use(store).use(router).mount('#app')
+createApp(App).use(store).use(router).use(directives).mount('#app')

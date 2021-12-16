@@ -3,7 +3,7 @@
 
 // create by tianlin
 var dateFormat = {
-  format (date, format) {
+  format(date, format) {
     var o = {
       "M+": date.getMonth() + 1, // 月份
       "d+": date.getDate(), // 日
@@ -35,8 +35,18 @@ var dateFormat = {
       }
     }
     return format
+  },
+  timeOffset(unit, offset, raw) {
+    let date = new Date(raw.getTime())
+    if (unit === 'year') {
+      date.setYear(date.getFullYear() + offset)
+    } else if (unit === 'month') {
+      date.setMonth(date.getMonth() + offset)
+    } else if (unit === 'day'){
+      date.setHours(date.getHours() + 24 * offset)
+    }
+    return new Date(date.getTime())
   }
-
 }
 
 module.exports = dateFormat

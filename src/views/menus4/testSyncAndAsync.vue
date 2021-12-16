@@ -22,8 +22,8 @@
     },
     methods: {
       testTimeout() {
-        console.log('testTimeout')
-        // 延时，并非异步，setTimeout会将时间运行放进队列，类似于消息机制，即使将延时时间设置为0
+        console.log('testTimeout1')
+        // 延时，并非异步，setTimeout会将事件运行放进队列，类似于消息机制，即使将延时时间设置为0
         // fun也不会立即执行，他始终会比testTimeout慢，但执行后会和testTimeout的其他代码抢cpu时间
         setTimeout(() => {
           console.log('setTimeout 0')
@@ -31,6 +31,7 @@
         setTimeout(() => {
           console.log('setTimeout 200')
         }, 200)
+        console.log('testTimeout2')
       },
       funa(callback) {
         console.log('11111111111111')

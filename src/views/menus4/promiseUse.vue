@@ -3,7 +3,7 @@
 
     <button class="button" @click="defaultPromise">默认的promise</button>
 
-    <button class="button" @click="test">特殊的用法尝试</button>
+    <button class="button" @click="useWithAwait">Promise与async和await的结合使用</button>
   </div>
 </template>
 <script>
@@ -13,10 +13,25 @@
       }
     },
     methods: {
-      async test() {
-        const va1 = await this.fun()
-        console.log(va1)
-        console.log('---fun call end---')
+      async useWithAwait() {
+        const v1 = await this.step1()
+        console.log(v1)
+
+        const v2 = await this.step2()
+        console.log(v2)
+      },
+      step1() {
+        return new Promise(function(resolve, reject) {
+          // 模拟延时
+          setTimeout(() => {
+            resolve('步骤1')
+          }, 1000)
+        })
+      },
+      step2() {
+        return new Promise(function(resolve, reject) {
+          resolve('步骤2')
+        })
       },
       fun() {
         return new Promise(function(resolve, reject) {

@@ -22,7 +22,6 @@
           </ul>
         </li>
       </ul>
-
     </div>
 
     <content :style="{paddingLeft: navWidth}" :key="menuPath" class="level1-route" @collapse="collapse"/>
@@ -33,10 +32,9 @@
 <script>
   /*eslint-disable*/
   import Content from './Content.vue'
-  import { mapGetters } from 'vuex'
   // @ is an alias to /src
   export default {
-    name: 'Home',
+    name: 'Layout',
     components: {
       Content
     },
@@ -45,11 +43,6 @@
         tip2: 'v3.x采用setup返回data'
       }
     },
-		computed: {
-			...mapGetters([
-				'username'
-			]),
-		},
     mounted() {
       this.menuPath = this.$route.path
       this.updateFlag()
@@ -115,6 +108,16 @@
                 menuTitle: 'flex布局',
                 path: '/menu2/testFlex',
                 isOpen: false
+              },
+              {
+                menuTitle: '滚动条探索',
+                path: '/menu2/scroll',
+                isOpen: false
+              },
+              {
+                menuTitle: '特殊的选择器',
+                path: '/menu2/selector',
+                isOpen: false
               }
             ]
           },
@@ -143,9 +146,14 @@
                 path: '/menu3/objectAnal'
               },
               {
-                menuTitle: '特殊点',
+                menuTitle: '数值的特殊处理',
                 isOpen: false,
                 path: '/menu3/particle'
+              },
+              {
+                menuTitle: '正则表达式',
+                isOpen: false,
+                path: '/menu3/regExp'
               }
             ]
           },
@@ -177,6 +185,11 @@
                 menuTitle: 'Promise的使用',
                 isOpen: false,
                 path: '/menu4/promiseUse'
+              },
+              {
+                menuTitle: '元素的处理',
+                isOpen: false,
+                path: '/menu4/htmlDeal'
               }
             ]
           },
@@ -211,12 +224,12 @@
             isOpen: false,
             path: '/menu6',
             subMenus: [{
-                menuTitle: 'html+css',
+                menuTitle: 'html的重新组合',
                 isOpen: false,
-                path: '/menu6/indexView'
+                path: '/menu6/htmlView'
               },
               {
-                menuTitle: 'canvas',
+                menuTitle: 'Canvas绘制',
                 isOpen: false,
                 path: '/menu6/canvasView'
               }
@@ -233,7 +246,7 @@
             }]
           }
         ],
-        navWidth: '18%',
+        navWidth: '18vw',
         menuPath: undefined,
       }
     },
@@ -256,9 +269,9 @@
       },
       collapse(isShow) {
         if (isShow) {
-          this.navWidth = '18%'
+          this.navWidth = '18vw'
         } else {
-          this.navWidth = '12%'
+          this.navWidth = '12vw'
         }
       },
       onNavClick(obj) {
@@ -290,7 +303,7 @@
       transition: padding-left 0.5s ease;
     }
     .nav-div {
-      width: 18%;
+      width: 18vw;
       height: 100%;
       position: fixed;
       z-index: 100;

@@ -1,28 +1,25 @@
 <template>
-  <div class="index-view">
-    <tl-rating score="3" size="1.8em" />
-
-    <tl-mini-step-view :steps="steps" :currentStatus="currentStatus" />
-
-    <tl-index-view style="position: absolute;right: 0;top: 40px;"></tl-index-view>
+  <div class="page-container index-view">
+    <tl-rating score="4" size="1.8em" />
+    <tl-index-view :items="items" style="position: absolute;right: 0;top: 40px;"></tl-index-view>
+    <!-- <tl-ministep-view :steps="steps" :current-status="2" /> -->
   </div>
 </template>
 <script>
+  /*eslint-disable*/
   import TlIndexView from './comp/TLIndexView.vue'
   import TlRating from './comp/TlRating.vue'
-  import TlMiniStepView from './comp/TlMiniStepView.vue'
+  import TlMinistepView from './comp/TlMiniStepView.vue'
   export default {
+    name: 'HtmlView',
     components: {
       TlIndexView,
       TlRating,
-      TlMiniStepView
+      TlMinistepView
     },
-    data() {
+    setup() {
       return {
-        currentStatus: 1,
-        steps: [
-          '买家付款', '已服务', '交易完成', '案说法'
-        ],
+        steps: ['买家付款', '已服务', '交易完成', '已退款'],
         items: [
           'A', 'B', 'C', 'D', 'E', 'F', 'G',
           'H', 'I', 'J', 'K', 'L', 'M', 'N',
