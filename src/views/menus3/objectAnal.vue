@@ -11,7 +11,7 @@
 
     <div><button class="button" @click="test5">单层对象的克隆</button></div>
 
-    <div><button class="button" @click="test6">多层对象的克隆(无法实现)</button></div>
+    <div><button class="button" @click="test6">多层对象的克隆(一级可实现，多级无法实现)</button></div>
   </div>
 </template>
 <script>
@@ -28,10 +28,12 @@
             a: 1,
             b: '2'
           },
-          v2: [1, 2, 3]
+          v2: [1, 2, 3],
+          v3: 11
         }
         const map2 = { ...map1 }
         map2.v1.a = 10
+        map2.v3 = 22
         console.log('map1---', map1)
         console.log('map2---', map2)
         console.log('===', map1 === map2)
