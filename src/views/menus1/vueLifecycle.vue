@@ -15,6 +15,11 @@
    * 组件的加载采用递归的模式
    */
   export default {
+    data() {
+      return {
+        v1: 123
+      }
+    },
     components: {
       child,
       child3X
@@ -26,9 +31,11 @@
     // },
     beforeCreate: function() {
       console.log('parent beforeCreate')
+      console.log(this.v1)
     },
     created() {
       console.log('parent created')
+      console.log(this.v1)
     },
     beforeMount() {
       console.log('parent beforeMount')
