@@ -166,10 +166,7 @@ const routes = [
       {
         path: 'canvasView',
         name: 'CanvasView',
-        component: () => import('@/views/menus6/canvasView.vue'),
-        meta: {
-          keepAlive: true
-        }
+        component: () => import('@/views/menus6/canvasView.vue')
       }
     ]
   },
@@ -197,10 +194,6 @@ const routes = [
   {
     path: '/pukegame1',
     component: () => import('@/views/menus5/pukegame1.vue')
-  },
-  {
-    path: '/pukegame2',
-    component: () => import('@/views/menus5/pukegame2.vue')
   }
   // {
   //   path: '/about',

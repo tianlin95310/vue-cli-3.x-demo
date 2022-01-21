@@ -1,11 +1,7 @@
 <template>
-  <router-view></router-view>
-<!--  第一层路由使用keep-alive有效-->
-<!--  <router-view v-slot="{ Component}" >-->
-<!--    <keep-alive>-->
-<!--      <component :is="Component"></component>-->
-<!--    </keep-alive>-->
-<!--  </router-view>-->
+  <router-view v-slot="{ Component}" >
+    <component :is="Component" />
+  </router-view>
 </template>
 
 <script>
@@ -41,7 +37,8 @@
           console.log('is Pc =', device.IsPC(), '\t', 'document.style.fontSize =', size)
         }
         resetFont()
-        window.onresize = resetFont
+        // 全局事件
+        // window.onresize = resetFont
         console.log('App onMounted', 'clientWidth =', document.body.clientWidth, 'clientHeight =', document.body.clientHeight)
         console.log('App onMounted', 'screen.width =', screen.width, 'screen.height =', screen.height)
       })

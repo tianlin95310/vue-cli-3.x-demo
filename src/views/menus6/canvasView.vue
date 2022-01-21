@@ -26,7 +26,6 @@
   import TlCircleRatioRound from './comp/TlCircleRatioRound.vue'
   import chart from './comp/chart.vue'
   import { swapEvent } from '@/utils/event.js'
-
   export default {
     name: 'CanvasView',
     components: {
@@ -45,6 +44,16 @@
     },
     created() {
       console.log('canvasView created', this.$el)
+      const timer = setInterval(() => {
+        // console.log('setInterval', this.percent)
+        this.percent += 0.01
+        this.percent = parseFloat(this.percent.toFixed(2))
+        if (this.percent >= 1) {
+          if (timer) {
+            clearInterval(timer)
+          }
+        }
+      }, 10)
     },
     mounted() {
       console.log('canvasView mounted', this.$el)
@@ -56,16 +65,6 @@
     },
     activated() {
       console.log('canvasView activated---', this.$el)
-      const timer = setInterval(() => {
-        // console.log('setInterval', this.percent)
-        this.percent += 0.01
-        this.percent = parseFloat(this.percent.toFixed(2))
-        if (this.percent >= 1) {
-          if (timer) {
-            clearInterval(timer)
-          }
-        }
-      }, 10)
     },
     deactivated() {
       console.log('canvasView deactivated---', this.$el)

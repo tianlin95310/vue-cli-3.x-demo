@@ -5,11 +5,10 @@
       <span style="float: right;">{{username}}</span>
       <img class="icon-item wind-mill" src="@/assets/svg/test_svg.svg" title="莫挨老子" @click="logout">
     </div>
-
     <router-view v-slot="{ Component}" >
       <transition name="fade-transform" mode="out-in">
-        <keep-alive :include="cachedViews">
-          <component :is="Component"></component>
+        <keep-alive :include="['CanvasView', 'HtmlView']">
+          <component :is="Component" />
         </keep-alive>
       </transition>
     </router-view>

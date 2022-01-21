@@ -379,7 +379,7 @@
                 v = (('00' + posi)).slice(-2)
               }
               flagPo[v] = true
-              src = require('@/assets/images/pk/pk' + v + '.png')
+              // src = Promise.resolve(require('@/assets/images/pk/pk' + v + '.png').default)
             } catch (e) {
               console.log(e)
             }
@@ -411,7 +411,7 @@
               v = (('00' + posi)).slice(-2)
             }
             flagPo[v] = true
-            src = require('@/assets/images/pk/pk' + v + '.png')
+            // src = Promise.resolve(require('@/assets/images/pk/pk' + v + '.png').default)
           } catch (e) {
             console.log(e)
           }

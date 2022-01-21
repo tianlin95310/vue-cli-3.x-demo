@@ -14,6 +14,20 @@
 </template>
 
 <script>
+
+// let s1 = this.$refs.scrollTop.wrap
+// let s2 = this.$refs.multipleTable.bodyWrapper
+// let c1 = this.$refs.scrollContent
+// let c2 = document.getElementsByClassName('el-table__header')[0]
+// this.$nextTick(() => {
+//   c1.style.width = c2.style.width
+// })
+// s1.addEventListener('scroll', function (e) {
+//   s2.scrollLeft = s1.scrollLeft
+// })
+// s2.addEventListener('scroll', function (e) {
+//   s1.scrollLeft = s2.scrollLeft
+// })
   export default {
     name: 'Scroll',
     data() {

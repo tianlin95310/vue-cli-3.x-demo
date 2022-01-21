@@ -2,7 +2,7 @@
   <div class="home">
     <div class="nav-div" :style="{width: navWidth}">
       <div
-        style="height: 60px;font-size: 14rpx;text-align: center;color: white;line-height: 30px;background-color: black;">
+        style="height: 60px;font-size: 14px;text-align: center;color: white;line-height: 30px;background-color: black;">
         <div>{{ tip1 }}</div>
         <div>{{ tip2 }}</div>
       </div>
@@ -32,226 +32,29 @@
 <script>
   /*eslint-disable*/
   import Content from './Content.vue'
+  import { menus } from './menus'
+  import { onMounted, toRefs, ref, reactive } from "vue"
   // @ is an alias to /src
   export default {
     name: 'Layout',
     components: {
       Content
     },
-    setup() {
-      return {
-        tip2: 'v3.x采用setup返回data'
-      }
-    },
-    mounted() {
-      this.menuPath = this.$route.path
-      this.updateFlag()
-    },
-    data() {
+    setup(props, context) {
+      console.log('Layout---', props, context)
+      onMounted(() => {})
       return {
         tip1: 'vue3.x仍然可以使用data',
-        menus: [{
-            menuTitle: '测试vue的特性',
-            path: '/menu1',
-            isOpen: false,
-            subMenus: [{
-                menuTitle: '子组件更改父组件的data属性',
-                isOpen: false,
-                path: '/menu1/testChildModP'
-              }, {
-                menuTitle: 'vue的生命周期方法',
-                isOpen: false,
-                path: '/menu1/vueLifecycle'
-              },
-              {
-                menuTitle: 'vue的transition动画',
-                isOpen: false,
-                path: '/menu1/vueTransition'
-              },
-              {
-                menuTitle: '自定义双向绑定组件',
-                isOpen: false,
-                path: '/menu1/selfVModelEle'
-              },
-              {
-                menuTitle: '自定义指令',
-                isOpen: false,
-                path: '/menu1/selfDirective'
-              },
-              {
-                menuTitle: 'Vue响应数组数据',
-                isOpen: false,
-                path: '/menu1/bindArray'
-              }
-            ]
-          },
-          {
-            menuTitle: '测试CSS的属性',
-            path: '/menu2',
-            isOpen: false,
-            subMenus: [{
-                menuTitle: 'Transition过渡和Transform变换',
-                isOpen: false,
-                path: '/menu2/testTransition'
-              },
-              {
-                menuTitle: 'animation动画',
-                isOpen: false,
-                path: '/menu2/testAnimation'
-              },
-              {
-                menuTitle: 'css布局属性探索',
-                path: '/menu2/testCssStyle',
-                isOpen: false
-              },
-              {
-                menuTitle: 'flex布局',
-                path: '/menu2/testFlex',
-                isOpen: false
-              },
-              {
-                menuTitle: '滚动条探索',
-                path: '/menu2/scroll',
-                isOpen: false
-              },
-              {
-                menuTitle: '特殊的选择器',
-                path: '/menu2/selector',
-                isOpen: false
-              }
-            ]
-          },
-          {
-            menuTitle: '测试JavaScript属性',
-            isOpen: false,
-            path: '/menu3',
-            subMenus: [{
-                menuTitle: 'js对象的属性',
-                isOpen: false,
-                path: '/menu3/testJsListAndMap'
-              },
-              {
-                menuTitle: '数组操作',
-                isOpen: false,
-                path: '/menu3/listOperate'
-              },
-              {
-                menuTitle: '函数',
-                isOpen: false,
-                path: '/menu3/func'
-              },
-              {
-                menuTitle: '解构操作符',
-                isOpen: false,
-                path: '/menu3/objectAnal'
-              },
-              {
-                menuTitle: '数值的特殊处理',
-                isOpen: false,
-                path: '/menu3/particle'
-              },
-              {
-                menuTitle: '正则表达式',
-                isOpen: false,
-                path: '/menu3/regExp'
-              }
-            ]
-          },
-          {
-            menuTitle: '工具的使用',
-            isOpen: false,
-            path: '/menu4',
-            subMenus: [{
-                menuTitle: '同步和异步的调用',
-                isOpen: false,
-                path: '/menu4/testSyncAndAsync'
-              },
-              {
-                menuTitle: '测试async和await的方法',
-                isOpen: false,
-                path: '/menu4/asyncAndAwait'
-              },
-              {
-                menuTitle: '日期的格式化',
-                isOpen: false,
-                path: '/menu4/dateFormat'
-              },
-              {
-                menuTitle: '字符串的处理',
-                isOpen: false,
-                path: '/menu4/stringDealwith'
-              },
-              {
-                menuTitle: 'Promise的使用',
-                isOpen: false,
-                path: '/menu4/promiseUse'
-              },
-              {
-                menuTitle: '元素的处理',
-                isOpen: false,
-                path: '/menu4/htmlDeal'
-              }
-            ]
-          },
-          {
-            menuTitle: '练手小项目',
-            isOpen: false,
-            path: '/menu5',
-            subMenus: [{
-                menuTitle: '画出扑克牌',
-                isOpen: false,
-                path: '/menu5/drawPuke'
-              },
-              {
-                menuTitle: '画出扑克牌用Canvas',
-                isOpen: false,
-                path: '/menu5/drawPukeInCanvas'
-              },
-              {
-                menuTitle: '金字塔扑克牌游戏',
-                isOpen: false,
-                path: '/pukegame1'
-              },
-              {
-                menuTitle: '斗地主',
-                isOpen: false,
-                path: '/pukegame2'
-              }
-            ]
-          },
-          {
-            menuTitle: '自定义控件',
-            isOpen: false,
-            path: '/menu6',
-            subMenus: [{
-                menuTitle: 'html的重新组合',
-                isOpen: false,
-                path: '/menu6/htmlView'
-              },
-              {
-                menuTitle: 'Canvas绘制',
-                isOpen: false,
-                path: '/menu6/canvasView'
-              }
-            ]
-          },
-          {
-            menuTitle: '数学算法',
-            isOpen: false,
-            path: '/menu7',
-            subMenus: [{
-              menuTitle: 'Algorithm',
-              isOpen: false,
-              path: '/menu7/Algorithm'
-            }]
-          }
-        ],
+        tip2: 'v3.x采用setup返回data',
+        menus,
         navWidth: '18vw',
-        menuPath: undefined,
+        menuPath: null,
       }
     },
     methods: {
       updateFlag() {
+        this.menuPath = this.$route.path
+        console.log('this.menuPath', this.menuPath)
         this.menus.forEach((menu) => {
           if (this.menuPath.indexOf(menu.path) !== -1) {
             menu.isOpen = true

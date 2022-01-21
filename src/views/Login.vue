@@ -60,6 +60,7 @@
       }
     }
     .login-b {
+      padding-top: 16px;
       width: 200px;
       height: 200px;
       left: calc(50% - 100px);

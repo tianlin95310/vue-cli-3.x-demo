@@ -28,6 +28,9 @@
         ]
       }
     },
+    created() {
+      console.log('htmlView---', 'created')
+    },
     methods: {
       onIndexClick(item) {
         console.log('---onIndexClick---', item)
