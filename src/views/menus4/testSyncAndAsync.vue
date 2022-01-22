@@ -1,5 +1,5 @@
 <template>
-  <div class="test-sync-and-async">
+  <div class="test-sync-and-async page-container">
     <div>
       <button class="button" @click="funa">测试同步回调</button>
     </div>
@@ -47,8 +47,6 @@
 
 <style lang="scss" scoped>
   .test-sync-and-async {
-    padding: 0 16px;
-
     div {
       margin-top: 10px;
     }

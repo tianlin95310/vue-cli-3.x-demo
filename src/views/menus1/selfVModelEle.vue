@@ -1,5 +1,5 @@
 <template>
-  <div class="self-model-ele">
+  <div class="self-model-ele page-container">
     <h2>自定义一个能使用v-model指令的可编辑div,能带格式复制内容</h2>
     <edit-div v-model="text" :canEdit="canEdit" @change="change"></edit-div>
     <div>输入框的内容：{{ text }}</div>
@@ -13,7 +13,7 @@
     },
     data() {
       return {
-        text: '111',
+        text: 'tianlin',
         canEdit: true
       }
     },

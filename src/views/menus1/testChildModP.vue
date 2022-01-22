@@ -1,5 +1,5 @@
 <template>
-  <div class="test-child-mod">
+  <div class="test-child-mod page-container">
 
     <h2>测试子组件更改父组件的data数据，测试更改父组件数据的方式</h2>
     <div>

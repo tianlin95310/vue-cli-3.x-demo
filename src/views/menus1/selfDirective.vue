@@ -1,5 +1,5 @@
 <template>
-  <div class="self-directive">
+  <div class="self-directive page-container">
     <h2>测试使用自定义指令，前面加v-</h2>
 
     <div class="move-able" :style="{left: left + 'px', top: top + 'px'}" @mousedown="mousedown" @mousemove="mousemove"

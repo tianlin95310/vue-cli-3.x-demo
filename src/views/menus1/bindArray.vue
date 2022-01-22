@@ -1,5 +1,5 @@
 <template>
-  <div class="bind-array">
+  <div class="bind-array page-container">
     <div v-for="(tab, index) in attr" :key="index" class="attr-item">
       <div @click="onFClick(index)">{{ tab.attrName }} - {{ tab.selected }}</div>
       <div>

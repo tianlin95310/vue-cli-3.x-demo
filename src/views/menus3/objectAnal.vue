@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-container">
     <h2>ES6...运算符的用法</h2>
     <div><button class="button" @click="test1">定义变量时使用</button></div>
 

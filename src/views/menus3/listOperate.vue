@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-container">
     <h2>集合的常见操作</h2>
     <div>
       <button class="button" @click="sort">测试数组排序</button>
@@ -44,7 +44,7 @@
         set.add(34)
         set.add(12)
         console.log(set)
-        
+
         let set2 = new Set()
         set2.add({
           a: 1

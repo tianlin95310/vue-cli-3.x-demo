@@ -9,7 +9,6 @@
         我是底部内容，我占100px
       </div>
     </div>
-
   </div>
 </template>
 <script>

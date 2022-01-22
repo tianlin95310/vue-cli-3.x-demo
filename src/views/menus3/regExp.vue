@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-container">
     <div>
       <h2>判断是否为纯数字，最多两位小数(n.2)</h2>
       <input v-model="v1"/> {{ decimal }}

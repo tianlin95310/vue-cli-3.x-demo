@@ -7,7 +7,6 @@
  * @param {*} id
  * @param {*} pid
  */
-
 export function treeDataTranslate(data, id = 'id', pid = 'parentId') {
   var res = []
   var temp = {}

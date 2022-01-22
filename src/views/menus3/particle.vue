@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-container">
     <h2>js的特殊点</h2>
     <h3>在js中 1/2 = {{ 1 / 2 }}</h3>
 

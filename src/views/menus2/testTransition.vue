@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 16px;">
+  <div class="page-container">
     <h2>测试Transition动画</h2>
 
     <div>

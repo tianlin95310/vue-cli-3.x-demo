@@ -1,5 +1,5 @@
 <template>
-  <div class="html-deal">
+  <div class="html-deal page-container">
 
     <h2>输入框的处理</h2>
     <div>
@@ -76,8 +76,6 @@
 
 <style lang="scss" scoped>
   .html-deal {
-    padding: 0 16px;
-
     div {
       margin-top: 10px;
 

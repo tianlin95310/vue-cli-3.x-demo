@@ -1,5 +1,5 @@
 <template>
-  <div class="async-and-await">
+  <div class="async-and-await page-container">
     <div><button class="button" @click="funTest1">调用普通方法测试（不用await）</button></div>
     <div><button class="button" @click="funTest2">调用方法测试（全部用await）</button></div>
     <div><button class="button" @click="funTest3">调用方法测试（最后一步不用await）</button></div>
@@ -83,8 +83,6 @@
 
 <style lang="scss" scoped>
   .async-and-await {
-    padding: 16px;
-
     div {
 
       margin-top: 16px;

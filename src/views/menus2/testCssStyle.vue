@@ -1,5 +1,5 @@
 <template>
-  <div class="test-css-style">
+  <div class="test-css-style page-container">
     <h2>测试css的属性</h2>
     <div class="parent">
       <p class="test">我在父块的右下角</p>

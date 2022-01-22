@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-container">
     <h2>关于函数的一些操作，对象属性操作是"引用"传递的</h2>
     <div>
       <button class="button" @click="change">作为新参传递</button>

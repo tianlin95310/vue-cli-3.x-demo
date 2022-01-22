@@ -1,5 +1,5 @@
 <template>
-  <div class="date-format page">
+  <div class="date-format page-container">
     <div>
       必须要有分隔符，才能识别字符串时间：{{date1}}
     </div>

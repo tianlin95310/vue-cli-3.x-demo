@@ -1,5 +1,5 @@
 <template>
-  <div class="algorithm">
+  <div class="algorithm page-container">
 
     <div>
       <h2>列表得到笛卡尔积（组合）</h2>
@@ -10,7 +10,6 @@
       <h2>列表数据得到树形数据</h2>
       {{ treeData() }}
     </div>
-
   </div>
 
 </template>

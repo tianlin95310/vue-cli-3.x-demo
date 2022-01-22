@@ -1,5 +1,5 @@
 <template>
-  <div class="promise-use">
+  <div class="promise-use page-container">
 
     <button class="button" @click="defaultPromise">默认的promise</button>
 
