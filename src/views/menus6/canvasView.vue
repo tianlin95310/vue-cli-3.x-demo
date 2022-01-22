@@ -33,41 +33,37 @@
       TlCircleRatioRound,
       chart
     },
-    timer: {},
     data() {
       return {
         percent: 0.0,
         eventPo: {},
         leftWidth: 0,
-        inputValue: ''
+        inputValue: '',
+        isDone: false
       }
     },
     created() {
       console.log('canvasView created', this.$el)
-      const timer = setInterval(() => {
-        // console.log('setInterval', this.percent)
-        this.percent += 0.01
-        this.percent = parseFloat(this.percent.toFixed(2))
-        if (this.percent >= 1) {
-          if (timer) {
-            clearInterval(timer)
-          }
-        }
-      }, 10)
     },
     mounted() {
       console.log('canvasView mounted', this.$el)
       this.leftWidth = 18 * document.documentElement.clientWidth / 100
     },
-    unmounted() {
-      console.log('canvasView unmounted---', this.$options.timer, this.$el)
-      clearInterval(this.$options.timer)
-    },
     activated() {
       console.log('canvasView activated---', this.$el)
-    },
-    deactivated() {
-      console.log('canvasView deactivated---', this.$el)
+      if (!this.isDone) {
+        const timer = setInterval(() => {
+          // console.log('setInterval', this.percent)
+          this.percent += 0.01
+          this.percent = parseFloat(this.percent.toFixed(2))
+          if (this.percent >= 1) {
+            this.isDone = true
+            if (timer) {
+              clearInterval(timer)
+            }
+          }
+        }, 10)
+      }
     },
     methods: {
       onMouseMove(event) {

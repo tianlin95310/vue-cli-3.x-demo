@@ -24,7 +24,7 @@
       </ul>
     </div>
 
-    <content :style="{paddingLeft: navWidth}" :key="menuPath" class="level1-route" @collapse="collapse"/>
+    <content :style="{paddingLeft: navWidth}" class="level1-route" @collapse="collapse"/>
   </div>
 
 </template>
@@ -32,8 +32,8 @@
 <script>
   /*eslint-disable*/
   import Content from './Content.vue'
-  import { menus } from './menus'
-  import { onMounted, toRefs, ref, reactive } from "vue"
+  import { MENUS } from './menus'
+  import { onMounted, ref } from "vue"
   // @ is an alias to /src
   export default {
     name: 'Layout',
@@ -42,18 +42,28 @@
     },
     setup(props, context) {
       console.log('Layout---', props, context)
-      onMounted(() => {})
+      onMounted(() => {
+        console.log('Layout onMounted')
+      })
+      const menus = ref([])
+      const navWidth = ref('18vw')
+      const menuPath = ref('')
+      menus.value = MENUS
       return {
         tip1: 'vue3.x仍然可以使用data',
         tip2: 'v3.x采用setup返回data',
         menus,
-        navWidth: '18vw',
-        menuPath: null,
+        navWidth,
+        menuPath
       }
+    },
+    mounted() {
+      console.log('Layout mounted')
+      this.menuPath = this.$route.path
+      this.updateFlag()
     },
     methods: {
       updateFlag() {
-        this.menuPath = this.$route.path
         console.log('this.menuPath', this.menuPath)
         this.menus.forEach((menu) => {
           if (this.menuPath.indexOf(menu.path) !== -1) {
@@ -78,6 +88,7 @@
         }
       },
       onNavClick(obj) {
+        console.log('onNavClick', obj)
         if (obj.path && obj.path !== '') {
           this.$router.push(obj.path)
         }

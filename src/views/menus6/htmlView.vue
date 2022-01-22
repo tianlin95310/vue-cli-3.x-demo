@@ -9,13 +9,11 @@
   /*eslint-disable*/
   import TlIndexView from './comp/TLIndexView.vue'
   import TlRating from './comp/TlRating.vue'
-  import TlMinistepView from './comp/TlMiniStepView.vue'
   export default {
     name: 'HtmlView',
     components: {
       TlIndexView,
       TlRating,
-      TlMinistepView
     },
     setup() {
       return {

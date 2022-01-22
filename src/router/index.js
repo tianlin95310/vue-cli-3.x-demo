@@ -1,6 +1,6 @@
 import {
   createRouter,
-  createWebHashHistory
+  createWebHistory
 } from 'vue-router'
 
 import Layout from '@/views/layout/Layout.vue'
@@ -24,26 +24,32 @@ const routes = [
     children: [
       {
         path: 'testChildModP',
+        name: 'TestChildModP',
         component: () => import('@/views/menus1/testChildModP.vue')
       },
       {
         path: 'vueTransition',
+        name: 'VueTransition',
         component: () => import('@/views/menus1/vueTransition.vue')
       },
       {
         path: 'vueLifecycle',
+        name: 'VueLifecycle',
         component: () => import('@/views/menus1/vueLifecycle.vue')
       },
       {
         path: 'selfVModelEle',
+        name: 'SelfVModelEle',
         component: () => import('@/views/menus1/selfVModelEle.vue')
       },
       {
         path: 'selfDirective',
+        name: 'SelfDirective',
         component: () => import('@/views/menus1/selfDirective.vue')
       },
       {
         path: 'bindArray',
+        name: 'BindArray',
         component: () => import('@/views/menus1/bindArray.vue')
       }
     ]
@@ -54,26 +60,32 @@ const routes = [
     children: [
       {
         path: 'testTransition',
+        name: 'TestTransition',
         component: () => import('@/views/menus2/testTransition.vue')
       },
       {
         path: 'testAnimation',
+        name: 'TestAnimation',
         component: () => import('@/views/menus2/testAnimation.vue')
       },
       {
         path: 'testCssStyle',
+        name: 'TestCssStyle',
         component: () => import('@/views/menus2/testCssStyle.vue')
       },
       {
         path: 'testFlex',
+        name: 'TestFlex',
         component: () => import('@/views/menus2/testFlex.vue')
       },
       {
         path: 'scroll',
+        name: 'Scroll',
         component: () => import('@/views/menus2/scroll.vue')
       },
       {
         path: 'selector',
+        name: 'Selector',
         component: () => import('@/views/menus2/selector.vue')
       }
     ]
@@ -84,26 +96,32 @@ const routes = [
     children: [
       {
         path: 'testJsListAndMap',
+        name: 'TestJsListAndMap',
         component: () => import('@/views/menus3/testJsListAndMap.vue')
       },
       {
         path: 'listOperate',
+        name: 'ListOperate',
         component: () => import('@/views/menus3/listOperate.vue')
       },
       {
         path: 'func',
+        name: 'Func',
         component: () => import('@/views/menus3/func.vue')
       },
       {
         path: 'objectAnal',
+        name: 'ObjectAnal',
         component: () => import('@/views/menus3/objectAnal.vue')
       },
       {
         path: 'particle',
+        name: 'Particle',
         component: () => import('@/views/menus3/particle.vue')
       },
       {
         path: 'regExp',
+        name: 'RegExp',
         component: () => import('@/views/menus3/regExp.vue')
       }
     ]
@@ -114,26 +132,32 @@ const routes = [
     children: [
       {
         path: 'testSyncAndAsync',
+        name: 'TestSyncAndAsync',
         component: () => import('@/views/menus4/testSyncAndAsync.vue')
       },
       {
         path: 'asyncAndAwait',
+        name: 'AsyncAndAwait',
         component: () => import('@/views/menus4/asyncAndAwait.vue')
       },
       {
         path: 'dateFormat',
+        name: 'DateFormat',
         component: () => import('@/views/menus4/dateFormat.vue')
       },
       {
         path: 'stringDealwith',
+        name: 'StringDealwith',
         component: () => import('@/views/menus4/stringDealwith.vue')
       },
       {
         path: 'promiseUse',
+        name: 'PromiseUse',
         component: () => import('@/views/menus4/promiseUse.vue')
       },
       {
         path: 'htmlDeal',
+        name: 'HtmlDeal',
         component: () => import('@/views/menus4/htmlDeal.vue')
       }
     ]
@@ -144,12 +168,12 @@ const routes = [
     children: [
       {
         path: 'drawPuke',
-        name: 'drawPuke',
+        name: 'DrawPuke',
         component: () => import('@/views/menus5/drawPuke.vue')
       },
       {
         path: 'drawPukeInCanvas',
-        name: 'drawPukeInCanvas',
+        name: 'DrawPukeInCanvas',
         component: () => import('@/views/menus5/drawPukeInCanvas.vue')
       }
     ]
@@ -175,24 +199,25 @@ const routes = [
     component: Layout,
     children: [
       {
-        name: 'Algorithm',
         path: 'Algorithm',
+        name: 'Algorithm',
         component: () => import('@/views/menus7/Algorithm.vue')
       }
     ]
   },
   {
     path: '/login',
-    name: 'login',
+    name: 'Login',
     component: () => import('@/views/Login.vue')
   },
   {
     path: '/login2',
-    name: 'login2',
+    name: 'LoginStepTwo',
     component: () => import('@/views/LoginStepTwo.vue')
   },
   {
     path: '/pukegame1',
+    name: 'PukeGame',
     component: () => import('@/views/menus5/pukegame1.vue')
   }
   // {
@@ -205,7 +230,7 @@ const routes = [
   // }
 ]
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
 

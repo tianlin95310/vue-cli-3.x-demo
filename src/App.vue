@@ -38,7 +38,7 @@
         }
         resetFont()
         // 全局事件
-        // window.onresize = resetFont
+        window.onresize = resetFont
         console.log('App onMounted', 'clientWidth =', document.body.clientWidth, 'clientHeight =', document.body.clientHeight)
         console.log('App onMounted', 'screen.width =', screen.width, 'screen.height =', screen.height)
       })

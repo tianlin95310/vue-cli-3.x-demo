@@ -21,12 +21,6 @@
   } from '@/cookies/Cookies.js'
   import { mapGetters } from 'vuex'
   export default {
-    props: {
-      key: {
-        type: String,
-        default: '/'
-      }
-    },
     data() {
       return {
         isShow: true

@@ -1,4 +1,4 @@
-export const menus = [
+export const MENUS = [
   {
     menuTitle: '测试vue的特性',
     path: '/menu1',
@@ -131,10 +131,6 @@ export const menus = [
       menuTitle: '金字塔扑克牌游戏',
       isOpen: false,
       path: '/pukegame1'
-    }, {
-      menuTitle: '斗地主',
-      isOpen: false,
-      path: '/pukegame2'
     }]
   }, {
     menuTitle: '自定义控件',
