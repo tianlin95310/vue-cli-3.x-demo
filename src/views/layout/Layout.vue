@@ -63,17 +63,20 @@
       this.updateFlag()
     },
     methods: {
+      updateDir() {
+        this.menus.forEach((menu) => {
+          if (this.menuPath === menu.path) {
+            menu.isOpen = !menu.isOpen
+          }
+        })
+      },
       updateFlag() {
         console.log('this.menuPath', this.menuPath)
         this.menus.forEach((menu) => {
-          if (this.menuPath.indexOf(menu.path) !== -1) {
-            menu.isOpen = true
-          } else {
-            menu.isOpen = false
-          }
           menu.subMenus.forEach((subMenu) => {
             if (this.menuPath === subMenu.path) {
               subMenu['isOpen'] = true
+              menu.isOpen = true
             } else {
               subMenu['isOpen'] = false
             }
@@ -97,7 +100,7 @@
       },
       show(menu) {
         this.menuPath = menu.path
-        this.updateFlag()
+        this.updateDir()
       }
     }
   }
