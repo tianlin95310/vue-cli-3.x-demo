@@ -47,7 +47,7 @@
       vertical-align: top;
     }
 
-    /*::after不在dom上，不能相应时间*/
+    /*::after不在dom上，不能响应事件*/
     .test-before::after {
       content: '\2715';
       position: absolute;

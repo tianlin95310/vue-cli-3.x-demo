@@ -6,7 +6,7 @@
         <div>{{ tip1 }}</div>
         <div>{{ tip2 }}</div>
       </div>
-      <ul class="nav">
+      <ul class="nav scroll-bar">
         <li v-for="(menu, index) in menus" :key="index" class="menu-item">
           <div :class="['menu-item-title', menu.isOpen ? 'opend' : '']" @click="show(menu)">
             <span>[{{index + 1}}] {{ menu.menuTitle }}</span>
@@ -130,7 +130,7 @@
       .nav {
         overflow-y: auto;
         overflow-x: hidden;
-        height: 100%;
+        height: calc(100% - 60px);
 
         .menu-item {
           color: white;

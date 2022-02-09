@@ -1,3 +1,5 @@
+@import "mixins.scss";
+
 :root {
 	--primiryColor: #48a167;
 	--primiryColorDark: #377a4f;
@@ -52,4 +54,7 @@ a {
 .page-container {
 	padding: 16px;
 	/*margin-top: 40px;*/
+}
+.scroll-bar {
+	@include scrollBar;
 }

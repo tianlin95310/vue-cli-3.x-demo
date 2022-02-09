@@ -131,6 +131,10 @@ export const MENUS = [
       menuTitle: '金字塔扑克牌游戏',
       isOpen: false,
       path: '/pukegame1'
+    }, {
+      menuTitle: '抽奖',
+      isOpen: false,
+      path: '/menu5/lot'
     }]
   }, {
     menuTitle: '自定义控件',

@@ -70,7 +70,7 @@
   }
 </script>
 <style lang="scss">
-  @import "./assets/css/theme.css";
+  @import "assets/css/theme";
   body {
     background-color: whitesmoke;
   }

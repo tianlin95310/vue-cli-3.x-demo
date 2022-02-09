@@ -1,5 +1,5 @@
 <template>
-  <div class="draw-puke">
+  <div class="draw-puke page-container">
     <div class="puke" v-for="(item, index) in pukes" :key="index" :style="{color: getColor(item.type)}">
       <div class="left-top">
         <div class="value">{{ item.value}}</div>
