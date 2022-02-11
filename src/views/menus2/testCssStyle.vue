@@ -31,11 +31,8 @@
 </script>
 <style lang="scss">
   .test-css-style {
-    width: 100%;
-    height: 100%;
     background-color: var(--primiryColor);
     color: white;
-
     .test-before {
       display: inline-block;
       margin-left: 16px;
@@ -46,7 +43,6 @@
       background: lightgrey;
       vertical-align: top;
     }
-
     /*::after不在dom上，不能响应事件*/
     .test-before::after {
       content: '\2715';
@@ -59,13 +55,14 @@
 
   .parent {
     position: relative;
-    width: 100px;
+    width: 200px;
     height: 100px;
     display: inline-block;
     background: yellow;
     font-size: 0.7rem;
 
     .test {
+      color: #0f131c;
       position: absolute;
       right: 0;
       bottom: 0;

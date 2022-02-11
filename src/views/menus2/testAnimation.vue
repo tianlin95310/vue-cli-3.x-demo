@@ -12,7 +12,7 @@
       <button class="button" @click="begin">开始动画</button>
     </div>
 
-    <ul class="anims">
+    <ul class="anims scroll-bar">
       <li v-for="(item, index) in anims" :key="index" @click="testAnim(index)">
         [{{index + 1}}] {{ item }}
       </li>
@@ -136,8 +136,6 @@
   }
 
   .test-animation {
-    width: 100%;
-    height: 100%;
     position: relative;
 
     .img {
@@ -145,7 +143,7 @@
       width: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: center;
       img {
         width: 200px;
         height: 200px;
@@ -161,15 +159,16 @@
 
     .anims {
       position: fixed;
-      height: calc(100% - 40px);
+      height: 50%;
       background: var(--colorInfo);
-      top: 40px;
-      right: 0;
+      top: 25%;
+      right: 40px;
       list-style: none;
-      overflow-y: scroll;
+      overflow-y: auto;
 
       li {
         padding: 8px;
+        cursor: pointer;
       }
 
       li:hover {

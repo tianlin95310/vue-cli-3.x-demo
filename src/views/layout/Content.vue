@@ -1,11 +1,15 @@
 <template>
   <div id="main-content" class="main-content">
     <div class='header'>
-      <img :class="['icon-item', isShow ? 'menu-show' : 'menu']" src="@/assets/svg/ic_collapse.svg" @click="collapse">
-      <span style="float: right;">{{username}}</span>
-      <img class="icon-item wind-mill" src="@/assets/svg/test_svg.svg" title="莫挨老子" @click="logout">
+      <div class="head-content">
+        <img :class="['icon-item-icon', isShow ? 'menu-show' : 'menu']" src="@/assets/svg/ic_collapse.svg" @click="collapse">
+        <div class="right-icon">
+          <div class="icon-item">{{username}}</div>
+          <img class="icon-item-icon wind-mill" src="@/assets/svg/test_svg.svg" title="莫挨老子" @click="logout">
+        </div>
+      </div>
     </div>
-    <router-view v-slot="{ Component}" >
+    <router-view v-slot="{ Component}" class="route-content scroll-bar" >
       <transition name="fade-transform" mode="out-in">
         <keep-alive :include="['CanvasView', 'HtmlView']">
           <component :is="Component" />
@@ -63,7 +67,7 @@
   }
   @keyframes rotateAll {
     0% {
-      transform: rotate(deg)
+      transform: rotate(0deg)
     }
 
     100% {
@@ -73,51 +77,67 @@
 
   .main-content {
     overflow-x: hidden;
-
-    // .route-content {
-    //   width: 100%;
-    //   padding: 16px;
-    //   height: calc(100% - 40px);
-    //   background-color: #F5F5F5;
-    // }
-
+    position: relative;
+     .route-content {
+       width: 100%;
+       margin-top: 40px;
+       height: calc(100% - 40px);
+       overflow-x: hidden;
+       overflow-y: auto;
+     }
     .header {
-      padding: 0 16px;
+      position: fixed;
+      left: 0;
       height: 40px;
-      line-height: 40px;
-      background-color: #6f7a84;
+      width: 100%;
+      background-color: #545C64;
+      z-index: 100;
       color: white;
-
-      .wind-mill {
-        float: right;
-        margin: 8px 16px !important;
-        /*linear匀速，可防止出现停顿的问题*/
-        animation: rotateAll 1s linear 0s both infinite;
-      }
-
-      .wind-mill:hover {
-        float: right;
-        margin: 7px 15px !important;
-        animation: none;
-        /*linear匀速，可防止出现停顿的问题*/
-        // animation: rotateAll 1s linear 0s both infinite;
-      }
-
-      .icon-item {
-        margin: 8px 0;
-        width: 24px;
-        height: 24px;
-        cursor: pointer;
-        transition: 0.5s all;
-      }
-
-      .menu {
-        transform: rotate(-90deg);
-      }
-
-      .menu-show {
-        transform: rotate(-180deg);
-
+      .head-content {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        line-height: 40px;
+        .icon-item {
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          cursor: pointer;
+          transition: 0.5s all;
+          vertical-align: top;
+        }
+        .icon-item-icon {
+          display: inline-block;
+          width: 26px;
+          height: 26px;
+          cursor: pointer;
+          margin-top: 7px;
+          transition: 0.5s all;
+        }
+        .menu {
+          transform: rotate(-90deg);
+          float: left;
+          margin-left: 12vw;
+        }
+        .menu-show {
+          float: left;
+          margin-left: 18vw;
+          transform: rotate(-180deg);
+        }
+        .right-icon {
+          float: right;
+          height: 100%;
+          line-height: 40px;
+          .wind-mill {
+            margin: 8px 16px !important;
+            animation: rotateAll 1s linear 0s both infinite;
+          }
+          .wind-mill:hover {
+            margin: 7px 15px !important;
+            animation: none;
+          }
+        }
       }
     }
   }

@@ -1,8 +1,7 @@
 <template>
   <div class="home">
     <div class="nav-div" :style="{width: navWidth}">
-      <div
-        style="height: 60px;font-size: 14px;text-align: center;color: white;line-height: 30px;background-color: black;">
+      <div class="logo">
         <div>{{ tip1 }}</div>
         <div>{{ tip2 }}</div>
       </div>
@@ -123,10 +122,19 @@
       width: 18vw;
       height: 100%;
       position: fixed;
-      z-index: 100;
+      z-index: 201;
       transition: all 0.5s ease;
       background-color: #545C64;
 
+      .logo {
+        height: 60px;
+        font-size: 14px;
+        text-align: center;
+        color: white;
+        line-height: 30px;
+        background-color: #545C64;
+        border-bottom: 1px solid grey;
+      }
       .nav {
         overflow-y: auto;
         overflow-x: hidden;

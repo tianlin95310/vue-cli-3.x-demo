@@ -72,7 +72,7 @@
 <style lang="scss">
   @import "assets/css/theme";
   body {
-    background-color: whitesmoke;
+    background-color: white;
   }
   * {
     padding: 0;

@@ -1,16 +1,14 @@
 <template>
   <div class="canvas-view page-container" @mousemove="onMouseMove">
-    <input v-model="inputValue"/>
-    <div style="width: 100px;height: 100px;display: inline-block;">
+    <input v-model="inputValue" style="vertical-align: middle"/>
+    <div style="width: 100px;height: 100px;display: inline-block;vertical-align: middle">
       <tl-circle-ratio :percent="percent" />
     </div>
-    <div style="width: 100px;height: 100px;display: inline-block;">
+    <div style="width: 100px;height: 100px;display: inline-block;vertical-align: middle">
       <tl-circle-ratio-round :percent="percent" />
     </div>
     <div style="width: 480px;height: 270px;">
       <chart></chart>
-    </div>
-    <div style="height: 600px;">
     </div>
     <div style="width: 100px;height: 100px;display: inline-block;">
       <tl-circle-ratio-round :percent="percent" />
@@ -86,7 +84,6 @@
 <style lang="scss" scoped>
   .canvas-view {
     font-size: 14px;
-    background: gainsboro;
     position: relative;
 
     .move-position {

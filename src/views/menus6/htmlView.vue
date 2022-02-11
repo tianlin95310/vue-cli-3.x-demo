@@ -1,8 +1,7 @@
 <template>
-  <div class="page-container index-view">
+  <div class="page-container html-view">
     <tl-rating score="4" size="1.8em" />
-    <tl-index-view :items="items" style="position: absolute;right: 0;top: 40px;"></tl-index-view>
-    <!-- <tl-ministep-view :steps="steps" :current-status="2" /> -->
+    <tl-index-view :items="items" class="index" />
   </div>
 </template>
 <script>
@@ -41,17 +40,8 @@
 </script>
 
 <style lang="scss">
-  .index-view {
+  .html-view {
     width: 100%;
-    height: 100%;
-    background-color: #E5E5E5;
-
-    .div-item {
-      height: 300px;
-      font-size: 4rem;
-      text-align: center;
-    }
-
     .index {
       position: fixed;
       right: 17px;

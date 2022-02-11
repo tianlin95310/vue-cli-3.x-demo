@@ -1,5 +1,5 @@
 <template>
-  <div class="test-flex">
+  <div class="test-flex page-container">
     <div class="left1">
       <h2>测试flex布局，特别是在竖直方向上</h2>
       <div class="top">
@@ -22,8 +22,6 @@
 
 <style lang="scss" scoped>
   .test-flex {
-    width: 100%;
-    height: 100%;
     color: white;
     background-color: var(--colorAccent);
 
