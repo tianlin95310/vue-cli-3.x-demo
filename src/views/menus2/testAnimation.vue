@@ -72,7 +72,7 @@
           'autoShake'
         ],
         currentAnim: {
-          animation: 'showinT'
+          animation: null
         },
         index: 0,
         zIndex: 1
@@ -81,7 +81,7 @@
     computed: {
       initImg() {
         if (this.anim) {
-          return 'initImg-active'
+          return 'initImg initImg-active'
         } else {
           return 'initImg'
         }
@@ -148,9 +148,6 @@
         width: 200px;
         height: 200px;
         display: inline-block;
-
-        &:first-child {
-        }
         &:last-child {
           margin-right: 150px;
         }
@@ -159,12 +156,13 @@
 
     .anims {
       position: fixed;
-      height: 50%;
+      height: 70%;
       background: var(--colorInfo);
-      top: 25%;
+      top: 15%;
       right: 40px;
       list-style: none;
       overflow-y: auto;
+      border: 1px solid gainsboro;
 
       li {
         padding: 8px;
@@ -180,12 +178,8 @@
       width: 200px;
       height: 200px;
     }
-
-    .initImg:hover,
     .initImg-active {
-      animation: autoShake 3s both infinite;
-      width: 200px;
-      height: 200px;
+      animation: autoShake 1s both infinite;
     }
   }
 </style>

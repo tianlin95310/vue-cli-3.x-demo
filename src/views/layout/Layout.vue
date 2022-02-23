@@ -1,20 +1,19 @@
 <template>
   <div class="home">
     <div class="nav-div" :style="{width: navWidth}">
-      <div class="logo">
+      <div class="logo" @click="$router.push('/dashboard')">
         <div>{{ tip1 }}</div>
-        <div>{{ tip2 }}</div>
       </div>
-      <ul class="nav scroll-bar">
+      <ul class="nav scroll-bar-menus">
         <li v-for="(menu, index) in menus" :key="index" class="menu-item">
-          <div :class="['menu-item-title', menu.isOpen ? 'opend' : '']" @click="show(menu)">
+          <div class="menu-item-title" @click="show(menu)">
             <span>[{{index + 1}}] {{ menu.menuTitle }}</span>
-            <i :class="['fa', 'fa-chevron-down', menu.isOpen ? 'fa-open' : 'fa-close']"></i>
+            <span :class="['fa', menu.isOpen ? 'fa-open' : 'fa-close']">﹀</span>
           </div>
 
-          <ul :class="[menu.isOpen ? 'sub-menu-open' : 'sub-menu-close']">
+          <ul class="sub-menu-ul">
             <li v-for="(subMenu, index) in menu.subMenus" :key="index"
-              :class="['menu-item-common', menu.isOpen ? 'sub-menu-item-open' : 'sub-menu-item-close', subMenu.isOpen ? 'opend' : '']"
+              :class="['menu-item-common', menu.isOpen ? 'sub-menu-item-open' : 'sub-menu-item-close', subMenu.isOpen ? 'child-opend' : '']"
               @click="onNavClick(subMenu)">
               {{ subMenu.menuTitle }}
             </li>
@@ -49,8 +48,8 @@
       const menuPath = ref('')
       menus.value = MENUS
       return {
-        tip1: 'vue3.x仍然可以使用data',
-        tip2: 'v3.x采用setup返回data',
+        tip1: 'Vue3.x Demo @TianLin',
+        tip2: 'v3.x采用setup返回data, 仍然可以使用data, 但不可同时使用',
         menus,
         navWidth,
         menuPath
@@ -124,51 +123,55 @@
       position: fixed;
       z-index: 201;
       transition: all 0.5s ease;
-      background-color: #545C64;
+      background-color: white;
 
       .logo {
-        height: 60px;
+        height: 40px;
         font-size: 14px;
         text-align: center;
         color: white;
-        line-height: 30px;
+        line-height: 40px;
         background-color: #545C64;
         border-bottom: 1px solid grey;
+        cursor: pointer;
       }
       .nav {
         overflow-y: auto;
         overflow-x: hidden;
-        height: calc(100% - 60px);
+        height: calc(100% - 40px);
+        border-right: 1px solid whitesmoke;
 
         .menu-item {
-          color: white;
 
+          .sub-menu-ul {
+
+          }
           .menu-item-common {
             cursor: pointer;
             padding-left: 16px;
             line-height: 40px;
-            transition: all 0.5s ease;
+            transition: all 0.3s ease;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis
           }
 
           .menu-item-common:hover {
-            background-color: #434A50;
+            background-color: gainsboro;
+            transform: scale(1.02);
           }
 
           .sub-menu-item-open {
             height: 40px;
-            background-color: #6f7a84;
+            background-color: white;
           }
 
           /*对于li元素高度为0是，如果文字还是出现并且重叠时，说明是overflow为可见时，这时需要将隐藏*/
           .sub-menu-item-close {
             height: 0px;
           }
-
-          .opend {
-            background-color: #434A50;
+          .child-opend {
+            color: #42b983;
           }
 
           .menu-item-title {
@@ -177,11 +180,11 @@
             line-height: 40px;
             padding-left: 8px;
             cursor: pointer;
-            transition: all 0.5s ease;
+            transition: all 0.3s ease;
           }
 
           .menu-item-title:hover {
-            background-color: #434A50;
+            background-color: gainsboro;
           }
 
         }
@@ -193,15 +196,14 @@
     float: right;
     margin-right: 8px;
     line-height: 40px;
+    transition: all 0.5s;
   }
 
   .fa-open {
-    transition: all 0.5s;
     transform: rotate(0deg)
   }
 
   .fa-close {
     transform: rotate(-90deg);
-    transition: all 0.5s;
   }
 </style>

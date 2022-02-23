@@ -1,21 +1,18 @@
 <template>
   <div class="canvas-view page-container" @mousemove="onMouseMove">
-    <input v-model="inputValue" style="vertical-align: middle"/>
+    <div style="display: inline-block;width: 240px;vertical-align: middle">
+      <div>点的屏幕坐标：{{ eventPo.mx }}, {{eventPo.my }}</div>
+      <div>相对应右侧内容块的坐标：{{ eventPo.mx - leftWidth }}, {{eventPo.my - 40}}</div>
+      <input v-model="inputValue" style="vertical-align: middle" placeholder="测试keep Alive"/>
+    </div>
     <div style="width: 100px;height: 100px;display: inline-block;vertical-align: middle">
       <tl-circle-ratio :percent="percent" />
     </div>
     <div style="width: 100px;height: 100px;display: inline-block;vertical-align: middle">
       <tl-circle-ratio-round :percent="percent" />
     </div>
-    <div style="width: 480px;height: 270px;">
-      <chart></chart>
-    </div>
-    <div style="width: 100px;height: 100px;display: inline-block;">
-      <tl-circle-ratio-round :percent="percent" />
-    </div>
-    <div class="move-position" :style="{left: eventPo.mx - leftWidth - 40 + 'px', top: eventPo.my - 40 - 15 + 'px', 'z-index': 100}">
-    <!-- {{ eventPo.mx - leftWidth }}, {{eventPo.my - 40}} -->
-    {{ eventPo.mx }}, {{eventPo.my }}
+    <div style="height: 320px;display: flex;flex-direction: column;justify-content: center;align-items: center">
+      <chart style="width: 480px;height: 270px;"></chart>
     </div>
   </div>
 </template>
@@ -85,17 +82,5 @@
   .canvas-view {
     font-size: 14px;
     position: relative;
-
-    .move-position {
-      pointer-events: none;
-      background-color: yellowgreen;
-      opacity: 0.7;
-      width: 80px;
-      height: 30px;
-      text-align: center;
-      line-height: 30px;
-      position: absolute;
-      color: white;
-    }
   }
 </style>

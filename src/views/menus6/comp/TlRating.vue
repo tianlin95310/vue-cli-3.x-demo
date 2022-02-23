@@ -1,8 +1,8 @@
 <template>
   <div class="tl-mini-rating" :style="{fontSize: size}">
     <span v-for="value in total" :key="value">
-      <span v-if="value <= score" :style="{color: primaryColor}">★</span>
-      <span v-else-if="value > score" :style="{color: bgColor}">☆</span>
+      <span v-if="value <= score" :style="{color: foreColor}" @click="update(value)">★</span>
+      <span v-else-if="value > score" :style="{color: bgColor}" @click="update(value)">☆</span>
     </span>
   </div>
 </template>
@@ -18,7 +18,7 @@
       score: {
         default: 0
       },
-      primaryColor: {
+      foreColor: {
         default: '#F44336'
       },
       bgColor: {
@@ -28,12 +28,22 @@
     data() {
       return {}
     },
-    methods: {}
+    methods: {
+      update(value) {
+        this.$emit('update', value)
+      }
+    }
   }
 </script>
 
 <style lang="scss" scoped>
   .tl-mini-rating {
     width: 100%;
+    span {
+      cursor: pointer;
+      > span {
+        margin-left: 5px;
+      }
+    }
   }
 </style>

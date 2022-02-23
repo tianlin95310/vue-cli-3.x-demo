@@ -1,5 +1,5 @@
 <template>
-  <div class="tl-circle-ratio" @mousemove="onMouseMove" @mouseover="onmouseover" @mouseout="onmouseout">
+  <div class="tl-circle-ratio">
     <canvas ref="canvas" class="canvas" :width="size" :height="size" />
   </div>
 </template>
@@ -29,45 +29,6 @@
       }
     },
     methods: {
-      onMouseMove (event) {
-        // 1，获取相对于“触发事件的元素”的坐标
-        // console.log('相对坐标', event.offsetX, event.offsetY)
-        this.onClick()
-      },
-      onmouseout() {
-        if (this.timer) {
-          return
-        }
-        this.timer = setInterval(() => {
-          this.canvas.lineWidth -= 1
-          if (this.canvas.lineWidth < 60) {
-            this.canvas.lineWidth = 60
-            clearInterval(this.timer)
-            this.timer = undefined
-            this.zoomIn = false
-          }
-          console.log(this.canvas.lineWidth)
-          this.onDraw()
-        }, 10)
-      },
-      onmouseover() {
-        if (this.timer) {
-          return
-        }
-        this.timer = setInterval(() => {
-         this.canvas.lineWidth += 2
-         if (this.canvas.lineWidth > 80) {
-           this.canvas.lineWidth = 80
-           clearInterval(this.timer)
-           this.timer = undefined
-         }
-          console.log(this.canvas.lineWidth)
-          this.onDraw()
-        }, 10)
-      },
-      onClick() {
-
-      },
       onDraw() {
         let canvas = this.canvas
 
@@ -116,7 +77,7 @@
 
         // 绘制文字进度
         canvas.beginPath()
-        canvas.font = '108px Helvetica'
+        canvas.font = '136px Helvetica'
         canvas.fillStyle = color
         canvas.textAlign = 'center'
         canvas.textBaseline = 'middle'
@@ -144,12 +105,11 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .tl-circle-ratio {
     display: inline-block;
     width: 100%;
     height: 100%;
-    border:  1px solid gainsboro;
     .canvas {
       width: 100%;
       height: 100%;

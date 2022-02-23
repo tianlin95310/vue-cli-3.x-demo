@@ -1,6 +1,6 @@
 <template>
   <div class="page-container html-view">
-    <tl-rating score="4" size="1.8em" />
+    <tl-rating :score="score" size="1.8em" @update="update" />
     <tl-index-view :items="items" class="index" />
   </div>
 </template>
@@ -8,6 +8,7 @@
   /*eslint-disable*/
   import TlIndexView from './comp/TLIndexView.vue'
   import TlRating from './comp/TlRating.vue'
+  import { ref } from 'vue'
   export default {
     name: 'HtmlView',
     components: {
@@ -16,7 +17,7 @@
     },
     setup() {
       return {
-        steps: ['买家付款', '已服务', '交易完成', '已退款'],
+        score: ref(3),
         items: [
           'A', 'B', 'C', 'D', 'E', 'F', 'G',
           'H', 'I', 'J', 'K', 'L', 'M', 'N',
@@ -29,6 +30,9 @@
       console.log('htmlView---', 'created')
     },
     methods: {
+      update(v) {
+        this.score = v
+      },
       onIndexClick(item) {
         console.log('---onIndexClick---', item)
         this.$refs[item][0].scrollIntoView({

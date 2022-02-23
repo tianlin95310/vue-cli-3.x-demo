@@ -85,6 +85,10 @@ export const MENUS = [
       menuTitle: '正则表达式',
       isOpen: false,
       path: '/menu3/regExp'
+    }, {
+      menuTitle: '测试JS的事件传递',
+      isOpen: false,
+      path: '/menu3/testEvent'
     }]
   }, {
     menuTitle: '工具的使用',

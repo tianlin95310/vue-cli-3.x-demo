@@ -56,5 +56,9 @@ a {
 	/*margin-top: 40px;*/
 }
 .scroll-bar {
-	@include scrollBar;
+	@include scrollBar(transparent, grey);
+}
+
+.scroll-bar-menus {
+	@include scrollBar(transparent, grey);
 }

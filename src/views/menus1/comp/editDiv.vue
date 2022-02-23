@@ -43,6 +43,7 @@
 
       &:empty:before {
         content: attr(placeholder);
+        font-size: 0.9em;
         display: block;
         color: #ccc;
       }

@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard">
+  <div class="dashboard page-container">
     <h2>测试下载文件</h2>
     <a href="/apk/app-dev-debug.apk" download="app-dev-debug.apk">下载public文件夹二进制文件</a>
 
