@@ -153,12 +153,13 @@
             transition: all 0.3s ease;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis
+            text-overflow: ellipsis;
+            font-size: 0.9rem;
           }
 
           .menu-item-common:hover {
             background-color: gainsboro;
-            transform: scale(1.02);
+            font-size: .91rem;
           }
 
           .sub-menu-item-open {
