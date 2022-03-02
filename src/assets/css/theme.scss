@@ -62,3 +62,26 @@ a {
 .scroll-bar-menus {
 	@include scrollBar(transparent, grey);
 }
+
+// 清除右侧的浮动，浮动的元素会移动至下行
+.clearfix {
+	&:after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: " ";
+		clear: both;
+		height: 0;
+	}
+}
+
+.clearfix-before {
+	&:before {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: " ";
+		clear: both;
+		height: 0;
+	}
+}

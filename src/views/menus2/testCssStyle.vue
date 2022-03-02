@@ -14,7 +14,7 @@
     </div>
 
     <div style="background: white;display: inline-block;width: 300px;height: 200px;vertical-align: middle;text-align: center;margin-left: 1px">
-      <div style="background: #D42D00;height: 50%;width: 50%;text-align: center;margin: 50px auto;line-height: 100px">已知父高度和自身高度竖直居中</div>
+      <div style="background: #D42D00;height: 50%;width: 50%;text-align: center;margin: 50px auto;">已知父高度和自身高度实现竖直居中</div>
     </div>
     <div>
       <div style="width: 39%;background: red;display: inline-block">我占39%</div>
@@ -26,6 +26,17 @@
     <div style="width: 100%;">
       <div style="width: 50%;background: red;display: inline-block;font-size: 12px">我占50%</div>
       <div style="width: 50%;background: blue;display: inline-block;font-size: 12px">我占50%</div>
+    </div>
+    <div class="test-float">
+      <span class="left">111</span>
+      <span class="left">222</span>
+      <span>111</span>
+      <span>测试元素的浮动属性</span>
+      <div>333</div>
+      <div class="clearfix">666</div>
+      <span class="right-not-line-l">555</span>
+      <div class="clearfix-before">666</div>
+      <span class="right">777</span>
     </div>
 
   </div>
@@ -40,6 +51,24 @@
   .test-css-style {
     background-color: var(--primiryColor);
     color: white;
+
+    .test-float {
+      height: 80px;
+      background: #D42D00;
+      .left {
+        float: left;
+        color: black;
+      }
+      .right-not-line-l {
+        float: right;
+        color: black;
+      }
+      .right {
+        line-height: 40px;
+        float: right;
+        color: black;
+      }
+    }
     .test-before {
       display: inline-block;
       height: 120px;

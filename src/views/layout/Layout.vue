@@ -201,10 +201,10 @@
   }
 
   .fa-open {
-    transform: rotate(0deg)
+    transform: rotate(0deg) scale(1)
   }
 
   .fa-close {
-    transform: rotate(-90deg);
+    transform: rotate(-90deg) scale(0.8);
   }
 </style>
