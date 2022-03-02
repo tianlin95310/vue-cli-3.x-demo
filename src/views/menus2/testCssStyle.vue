@@ -9,6 +9,13 @@
       我的div
     </div>
 
+    <div style="background: white;display: inline-block;width: 300px;height: 200px;vertical-align: middle;text-align: center">
+      <div style="background: #D42D00;width: 50%;text-align: center;margin: 0 auto;">div水平居中</div>
+    </div>
+
+    <div style="background: white;display: inline-block;width: 300px;height: 200px;vertical-align: middle;text-align: center;margin-left: 1px">
+      <div style="background: #D42D00;height: 50%;width: 50%;text-align: center;margin: 50px auto;line-height: 100px">已知父高度和自身高度竖直居中</div>
+    </div>
     <div>
       <div style="width: 39%;background: red;display: inline-block">我占39%</div>
       <div style="width: 70%;background: blue;display: inline-block">我占70%</div>
@@ -35,13 +42,12 @@
     color: white;
     .test-before {
       display: inline-block;
-      margin-left: 16px;
       height: 120px;
       width: 120px;
       position: relative;
       line-height: 120px;
       background: lightgrey;
-      vertical-align: top;
+      vertical-align: middle;
     }
     /*::after不在dom上，不能响应事件*/
     .test-before::after {
@@ -60,6 +66,7 @@
     display: inline-block;
     background: yellow;
     font-size: 0.7rem;
+    vertical-align: middle;
 
     .test {
       color: #0f131c;

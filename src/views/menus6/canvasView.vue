@@ -1,19 +1,39 @@
 <template>
   <div class="canvas-view page-container" @mousemove="onMouseMove">
-    <div style="display: inline-block;width: 240px;vertical-align: middle">
-      <div>点的屏幕坐标：{{ eventPo.mx }}, {{eventPo.my }}</div>
-      <div>相对应右侧内容块的坐标：{{ eventPo.mx - leftWidth }}, {{eventPo.my - 40}}</div>
-      <input v-model="inputValue" style="vertical-align: middle" placeholder="测试keep Alive"/>
-    </div>
-    <div style="width: 100px;height: 100px;display: inline-block;vertical-align: middle">
-      <tl-circle-ratio :percent="percent" />
-    </div>
-    <div style="width: 100px;height: 100px;display: inline-block;vertical-align: middle">
-      <tl-circle-ratio-round :percent="percent" />
-    </div>
+   <div>
+     <div style="display: inline-block;width: 240px;vertical-align: middle">
+       <div>点的屏幕坐标：{{ eventPo.mx }}, {{eventPo.my }}</div>
+       <div>相对应右侧内容块的坐标：{{ eventPo.mx - leftWidth }}, {{eventPo.my - 40}}</div>
+       <input v-model="inputValue" style="vertical-align: middle" placeholder="测试keep Alive"/>
+     </div>
+     <div style="width: 100px;height: 100px;display: inline-block;vertical-align: middle">
+       <tl-circle-ratio :percent="percent" />
+     </div>
+     <div style="width: 100px;height: 100px;display: inline-block;vertical-align: middle">
+       <tl-circle-ratio-round :percent="percent" />
+     </div>
+     <button class="button" @click="showDialog">图片裁剪</button>
+   </div>
     <div style="height: 320px;display: flex;flex-direction: column;justify-content: center;align-items: center">
       <chart style="width: 480px;height: 270px;"></chart>
     </div>
+    <t-l-dialog v-model="visible">
+      <template v-slot:content>
+        <div class="dialog-content">
+          <div>
+            <input type="file" @change="onFileChange">
+          </div>
+          <div class="img-content">
+            <div class="img-div">
+              <img :src="currentImg" class="img">
+            </div>
+            <div class="img-cut">
+              <t-l-image-cut style="z-index: 210" />
+            </div>
+          </div>
+        </div>
+      </template>
+    </t-l-dialog>
   </div>
 </template>
 <script>
@@ -21,12 +41,16 @@
   import TlCircleRatioRound from './comp/TlCircleRatioRound.vue'
   import chart from './comp/chart.vue'
   import { swapEvent } from '@/utils/event.js'
+  import TLDialog from '@/components/TLDialog'
+  import TLImageCut from './comp/TLImageCut'
   export default {
     name: 'CanvasView',
     components: {
       TlCircleRatio,
       TlCircleRatioRound,
-      chart
+      chart,
+      TLDialog,
+      TLImageCut
     },
     data() {
       return {
@@ -34,7 +58,9 @@
         eventPo: {},
         leftWidth: 0,
         inputValue: '',
-        isDone: false
+        isDone: false,
+        visible: false,
+        currentImg: null
       }
     },
     created() {
@@ -61,6 +87,14 @@
       }
     },
     methods: {
+      onFileChange(event) {
+        console.log('onFileChange', event)
+        const file = event.target.files[0]
+        this.currentImg = URL.createObjectURL(file)
+      },
+      showDialog() {
+        this.visible = true
+      },
       onMouseMove(event) {
         event = swapEvent(event, document.getElementById('main-content'))
         this.eventPo = event
@@ -82,5 +116,37 @@
   .canvas-view {
     font-size: 14px;
     position: relative;
+    .dialog-content {
+      .img-content {
+        height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        .img-div {
+          position: absolute;
+          display: flex;
+          top: 0;
+          left: 0;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          z-index: 200;
+          .img {
+            width: 500px;
+            height: auto;
+          }
+        }
+        .img-cut {
+          z-index: 210;
+          position: absolute;
+          width: 100%;
+          top: 0;
+          left: 0;
+          text-align: center;
+        }
+      }
+    }
   }
 </style>

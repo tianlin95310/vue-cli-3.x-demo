@@ -13,7 +13,7 @@
      </div>
    </div>
     <div>
-<!--      只有点击自己的部分才会触发事件，被覆盖的内容被点击不响应-->
+<!--      只有点击自己的部分才会触发事件，被覆盖的内容被点击不响应，child会响应自己的事件-->
       <div class="parent" @click.self="parEvent">
         <div class="child" @click.stop="childEvent">.stop 阻止透传，当前消费</div>
         <div class="child" @click.prevent="childEvent">.prevent 组织默认事件</div>
