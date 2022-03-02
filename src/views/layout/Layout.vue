@@ -7,13 +7,13 @@
       <ul class="nav scroll-bar-menus">
         <li v-for="(menu, index) in menus" :key="index" class="menu-item">
           <div class="menu-item-title" @click="show(menu)">
-            <span>[{{index + 1}}] {{ menu.menuTitle }}</span>
+            <span :class="[menu.isOpen ? 'menu-selected' : '']">[{{index + 1}}] {{ menu.menuTitle }}</span>
             <span :class="['fa', menu.isOpen ? 'fa-open' : 'fa-close']">﹀</span>
           </div>
 
           <ul class="sub-menu-ul">
             <li v-for="(subMenu, index) in menu.subMenus" :key="index"
-              :class="['menu-item-common', menu.isOpen ? 'sub-menu-item-open' : 'sub-menu-item-close', subMenu.isOpen ? 'child-opend' : '']"
+              :class="['menu-item-common', menu.isOpen ? 'sub-menu-item-open' : 'sub-menu-item-close', subMenu.isOpen ? 'menu-selected' : '']"
               @click="onNavClick(subMenu)">
               {{ subMenu.menuTitle }}
             </li>
@@ -171,7 +171,7 @@
           .sub-menu-item-close {
             height: 0px;
           }
-          .child-opend {
+          .menu-selected {
             color: #42b983;
           }
 
@@ -197,11 +197,12 @@
     float: right;
     margin-right: 8px;
     line-height: 40px;
-    transition: all 0.5s;
+    transition: all 0.3s ease-in;
+    transform-origin: center center;
   }
 
   .fa-open {
-    transform: rotate(0deg) scale(1)
+    transform: rotate(0deg) scale(0.9)
   }
 
   .fa-close {

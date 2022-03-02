@@ -37,10 +37,10 @@
         }
         const dx = event.offsetX - this.sx
         const dy = event.offsetY - this.sy
-        console.log('onMove', event.offsetX, event.offsetY, dx, dy)
+        // console.log('onMove', event.offsetX, event.offsetY, dx, dy)
         this.x += dx
         this.y += dy
-        console.log('onMove', this.x, this.y)
+        // console.log('onMove', this.x, this.y)
         this.sx = event.offsetX
         this.sy = event.offsetY
         this.onDraw()

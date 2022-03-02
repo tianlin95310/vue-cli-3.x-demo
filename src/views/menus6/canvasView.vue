@@ -25,7 +25,7 @@
           </div>
           <div class="img-content">
             <div class="img-div">
-              <img :src="currentImg" class="img">
+              <img :src="currentImg" :style="styleObj" class="img">
             </div>
             <div class="img-cut">
               <t-l-image-cut style="z-index: 210" />
@@ -60,7 +60,11 @@
         inputValue: '',
         isDone: false,
         visible: false,
-        currentImg: null
+        currentImg: null,
+        styleObj: {
+          height: '500px',
+          width: 'auto'
+        }
       }
     },
     created() {
@@ -91,6 +95,23 @@
         console.log('onFileChange', event)
         const file = event.target.files[0]
         this.currentImg = URL.createObjectURL(file)
+        const image = new Image()
+        image.src = this.currentImg
+        const _this = this
+        image.onload = function() {
+          console.log(this.naturalWidth, this.naturalHeight)
+          if (this.naturalWidth > this.naturalHeight) {
+            _this.styleObj = {
+              height: 'auto',
+              width: '500px'
+            }
+          } else {
+            _this.styleObj = {
+              height: '500px',
+              width: 'auto'
+            }
+          }
+        }
       },
       showDialog() {
         this.visible = true
@@ -133,10 +154,6 @@
           width: 100%;
           height: 100%;
           z-index: 200;
-          .img {
-            width: 500px;
-            height: auto;
-          }
         }
         .img-cut {
           z-index: 210;
