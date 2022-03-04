@@ -1,7 +1,10 @@
 <template>
   <div class="home">
-    <div class="nav-div" :style="{width: navWidth}">
-      <div class="logo" @click="$router.push('/dashboard')">
+    <transition name="fade" mode="out-in">
+      <div v-if="!isPc && isShow" class="nav-mask" @click="$refs.content.collapse()"/>
+    </transition>
+    <div :class="['nav-div', isPc ? '' : 'is-mobile']" :style="{width: navWidth, left: navLeft}">
+      <div class="logo" @click="$router.push('/dashboard');$refs.content.collapse()">
         <div>{{ tip1 }}</div>
       </div>
       <ul class="nav scroll-bar-menus">
@@ -22,7 +25,7 @@
       </ul>
     </div>
 
-    <content :style="{paddingLeft: navWidth}" class="level1-route" @collapse="collapse"/>
+    <content ref="content" :style="{paddingLeft: contentPaddingLeft}" class="level1-route" @collapse="collapse"/>
   </div>
 
 </template>
@@ -32,6 +35,7 @@
   import Content from './Content.vue'
   import { MENUS } from './menus'
   import { onMounted, ref } from "vue"
+  import device from '../../utils/Device.js'
   // @ is an alias to /src
   export default {
     name: 'Layout',
@@ -44,15 +48,32 @@
         console.log('Layout onMounted')
       })
       const menus = ref([])
-      const navWidth = ref('18vw')
-      const menuPath = ref('')
       menus.value = MENUS
+      const menuPath = ref('')
+      const isPc = device.IsPC()
+      const navWidth = ref('18vw')
+      const navLeft = ref('-60vw')
+      const contentPaddingLeft = ref('18vw')
+      if (isPc) {
+        navWidth.value = '18vw'
+        navLeft.value = '0'
+        contentPaddingLeft.value = '18vw'
+      } else {
+        navWidth.value = '60vw'
+        navLeft.value = '-60vw'
+        contentPaddingLeft.value = '0'
+      }
+
       return {
         tip1: 'Vue3.x Demo @TianLin',
         tip2: 'v3.x采用setup返回data, 仍然可以使用data, 但不可同时使用',
         menus,
         navWidth,
-        menuPath
+        menuPath,
+        navLeft,
+        contentPaddingLeft,
+        isShow: isPc ? ref(true) : ref(false),
+        isPc: isPc
       }
     },
     mounted() {
@@ -82,10 +103,27 @@
         })
       },
       collapse(isShow) {
-        if (isShow) {
-          this.navWidth = '18vw'
+        this.isShow = isShow
+        if (this.isPc) {
+          if (isShow) {
+            this.navWidth = '18vw'
+            this.navLeft = '0'
+            this.contentPaddingLeft = '18vw'
+          } else {
+            this.navWidth = '12vw'
+            this.navLeft = '0'
+            this.contentPaddingLeft = '12vw'
+          }
         } else {
-          this.navWidth = '12vw'
+          if (isShow) {
+            this.navWidth = '60vw'
+            this.navLeft = '0'
+            this.contentPaddingLeft = '0'
+          } else {
+            this.navWidth = '60vw'
+            this.navLeft = '-60vw'
+            this.contentPaddingLeft = '0'
+          }
         }
       },
       onNavClick(obj) {
@@ -95,6 +133,9 @@
         }
         this.menuPath = obj.path
         this.updateFlag()
+        if (!this.isPc) {
+          this.$refs.content.collapse()
+        }
       },
       show(menu) {
         this.menuPath = menu.path
@@ -111,14 +152,36 @@
     width: 100%;
     height: 100vh;
 
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: opacity .5s;
+    }
+    .fade-enter-from {
+      opacity: 0;
+    }
+    .fade-leave-to {
+      opacity: 0;
+    }
+
     .level1-route {
       width: 100%;
       height: 100%;
       position: absolute;
       transition: padding-left 0.5s ease;
     }
+    .nav-mask {
+      z-index: 200;
+      transition: opacity 0.3s ease;
+      background: rgba(12, 12, 12, 0.5);
+      top: 0;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+    }
+    .is-mobile {
+      position: fixed;
+    }
     .nav-div {
-      width: 18vw;
       height: 100%;
       position: fixed;
       z-index: 201;

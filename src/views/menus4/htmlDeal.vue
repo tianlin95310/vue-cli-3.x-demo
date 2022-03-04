@@ -15,7 +15,7 @@
       {{number3}}
     </div>
     <div>
-     <div>oninput替换v-model</div> <input v-model="number5" type="text" @input="number5 = number5.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')">{{number5}}
+     <div>oninput替换v-model</div><input v-model="number5" type="text" @input="number5 = number5.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')">{{number5}}
     </div>
     <div>
       <div>自定义指令页面内</div><input v-model="number4" type="text" v-pnumber>{{number4}}
@@ -67,8 +67,7 @@
         console.log(e)
       },
       show() {
-        alert(`${this.number1}\n${this.number2}\n${this.number3}\n${this.number5}\n${this.number4}\n${this.number6}\n
-        `)
+        alert(`${this.number1 || null}\n${this.number2 || null}\n${this.number3 || null}\n${this.number5 || null}\n${this.number4 || null}\n${this.number6 || null}`)
       }
     }
   }
@@ -78,10 +77,9 @@
   .html-deal {
     div {
       margin-top: 10px;
-
       div {
         display: inline-block;
-        width: 120px;
+        width: 140px;
       }
       input {
       }

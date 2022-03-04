@@ -103,6 +103,10 @@ export const MENUS = [
       isOpen: false,
       path: '/menu4/asyncAndAwait'
     }, {
+      menuTitle: 'Promise的使用',
+      isOpen: false,
+      path: '/menu4/promiseUse'
+    }, {
       menuTitle: '日期的格式化',
       isOpen: false,
       path: '/menu4/dateFormat'
@@ -110,10 +114,6 @@ export const MENUS = [
       menuTitle: '字符串的处理',
       isOpen: false,
       path: '/menu4/stringDealwith'
-    }, {
-      menuTitle: 'Promise的使用',
-      isOpen: false,
-      path: '/menu4/promiseUse'
     }, {
       menuTitle: '元素的处理',
       isOpen: false,
