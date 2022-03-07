@@ -145,8 +145,8 @@
       flex-direction: row;
       justify-content: center;
       img {
-        width: 200px;
-        height: 200px;
+        width: 100px;
+        height: 100px;
         display: inline-block;
         &:last-child {
           margin-right: 150px;

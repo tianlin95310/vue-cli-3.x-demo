@@ -2,10 +2,9 @@
   <div class="self-directive page-container">
     <h2>测试使用自定义指令，前面加v-</h2>
 
-    <div class="move-able" :style="{left: left + 'px', top: top + 'px'}" @mousedown="mousedown" @mousemove="mousemove"
-      @mouseup="mouseup">
+    <div class="move-able" :style="{left: left + 'px', top: top + 'px'}" @mousedown="mousedown" @mousemove="mousemove" @mouseup="mouseup">
       <span>视频自动播放</span>
-      <video v-autoplay muted>
+      <video v-autoplay :muted="true">
         <source src="@/assets/video/demo.mp4" type="video/mp4" />
       </video>
     </div>
@@ -79,8 +78,8 @@
     },
     data() {
       return {
-        left: 800,
-        top: 0,
+        left: 100,
+        top: 100,
         mouseX: 0,
         mouseY: 0,
         isDown: false

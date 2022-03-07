@@ -1,34 +1,35 @@
 <template>
-  <div class="page-container">
-    <h2>js的特殊点</h2>
-    <h3>在js中 1/2 = {{ 1 / 2 }}</h3>
-
-    <h3>undefined + 1 = {{ undefined + 1 }}</h3>
-
-    <h3>1 + undefined = {{ 1 + undefined }}</h3>
-
-    <h3>null + 1 = {{ null + 1 }}</h3>
-
-    <h3>1 / 0 = {{ 1 / 0 }}</h3>
-
-    <h3>'123' + 123 = {{ '123' + 123 }}</h3>
-
-    <h3>undefined || 1 - undefined || 2 = {{ undefined || 1 - undefined || 2 }}</h3>
-
-    <h3>(undefined || 1) - (undefined || 2) = {{ (undefined || 1) - (undefined || 2) }}</h3>
-
-    <h3>0.00 == 0 = {{ 0.00 == 0 }}</h3>
-    <h3>0.000 === 0 = {{ 0.000 === 0 }}</h3>
-    <div>
-      <button class="button" @click="random">产生随机数</button>
-      <span class="tag" style="margin-left: 16px;">{{ number }}</span>
+  <div class="page-container particle">
+    <div style="flex: 1">
+      <h2>js的特殊点,无整除运算</h2>
+      <h3>在js中 1/2 = {{ 1 / 2 }}</h3>
+      <h3>在js中 2/4 = {{ 2 / 4 }}</h3>
+      <h3>在js中 3/4 = {{ 3 / 4 }}</h3>
+      <h3>在js中 4/4 = {{ 4 / 4 }}</h3>
+      <h3>undefined + 1 = {{ undefined + 1 }}</h3>
+      <h3>1 + undefined = {{ 1 + undefined }}</h3>
+      <h3>null + 1 = {{ null + 1 }}</h3>
+      <h3>1 / 0 = {{ 1 / 0 }}</h3>
+      <h3>'123' + 123 = {{ '123' + 123 }}</h3>
+      <h3>||运算 undefined || 1 - undefined || 2 = {{ undefined || 1 - undefined || 2 }}</h3>
+      <h3>||运算 (undefined || 1) - (undefined || 2) = {{ (undefined || 1) - (undefined || 2) }}</h3>
+      <h3>浮点数与0 0.00 == 0 = {{ 0.00 == 0 }}</h3>
+      <h3>浮点数与0 0.000 === 0 = {{ 0.000 === 0 }}</h3>
+      <h3>取余数1 % 3 = {{ 1 % 3 }}</h3>
+      <h3>取余数2 % 3 = {{ 2 % 3 }}</h3>
+      <h3>取余数3 % 3 = {{ 3 % 3 }}</h3>
+      <h3>取余数4 % 3 = {{ 4 % 3 }}</h3>
+      <h3>取余数5 % 3 = {{ 5 % 3 }}</h3>
     </div>
-
-    <button class="button" @click="var_let">var与let的区别</button>
-
-    <button class="button" @click="newKeyWord">新的运算符...， ?., ??</button>
-
-    <button class="button" @click="JsonFormat">测试Json字符串格式化</button>
+    <div style="flex: 1">
+      <div>
+        <button class="button" @click="random">产生随机数</button>
+        <span class="tag" style="margin-left: 16px;">{{ number }}</span>
+      </div>
+      <button class="button" @click="var_let">var与let的区别</button>
+      <button class="button" @click="newKeyWord">新的运算符...， ?., ??</button>
+      <button class="button" @click="JsonFormat">测试Json字符串格式化</button>
+    </div>
   </div>
 </template>
 <script>
@@ -111,6 +112,17 @@ export default {
 div {
   margin-top: 10px;
 
+}
+
+.particle {
+  display: flex;
+  flex-direction: row;
+
+  > div {
+    display: inline-block;
+    width: 50%;
+    flex: 1;
+  }
 }
 
 h3 {
