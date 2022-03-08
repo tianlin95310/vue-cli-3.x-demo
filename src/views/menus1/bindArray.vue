@@ -3,8 +3,12 @@
     <div v-for="(tab, index) in attr" :key="index" class="attr-item">
       <div @click="onFClick(index)">{{ tab.attrName }} - {{ tab.selected }}</div>
       <div>
-        <span class="tag" v-for="(value, childIndex) in tab.attrValue" :key="childIndex" :style="{background: (childIndex === tab.selected ? '#377A4F' : 'white'),
-              color: (childIndex === tab.selected ? 'white' : 'grey')}" @click="onAttrChoose(index, childIndex)">
+        <span
+          v-for="(value, childIndex) in tab.attrValue"
+          :key="childIndex"
+          :style="{background: (childIndex === tab.selected ? '#377A4F' : 'white'), color: (childIndex === tab.selected ? 'white' : 'grey')}"
+          class="tag"
+          @click="onAttrChoose(index, childIndex)">
           {{ value.name }}
         </span>
       </div>

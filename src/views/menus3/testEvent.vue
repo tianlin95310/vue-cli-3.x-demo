@@ -6,7 +6,7 @@
        <div class="child" @click.prevent="childEvent">.prevent 组织默认事件</div>
        <div class="child" @click.capture="childEvent">.capture</div>
        <div class="child" @click.self="childEvent">.self</div>
-       <div class="child" @click.once.stop="childEvent">.once</div>
+       <div class="child" @click.once="childEvent">.once</div>
        <div class="child" @click.passive="childEvent">.passive</div>
        <div class="child" @click.left="childEvent">.left</div>
        <div class="child" @click.right="childEvent">.right</div>
@@ -19,13 +19,38 @@
         <div class="child" @click.prevent="childEvent">.prevent 组织默认事件</div>
         <div class="child" @click.capture="childEvent">.capture</div>
         <div class="child" @click.self="childEvent">.self</div>
-        <div class="child" @click.once.stop="childEvent">.once</div>
+        <div class="child" @click.once="childEvent">.once</div>
         <div class="child" @click.passive="childEvent">.passive</div>
         <div class="child" @click.left="childEvent">.left</div>
         <div class="child" @click.right="childEvent">.right</div>
       </div>
     </div>
 
+    <div>
+      <div class="parent" @click.stop="parEvent">
+        <div class="child" @click.stop="childEvent">.stop 阻止透传，当前消费</div>
+        <div class="child" @click.prevent="childEvent">.prevent 组织默认事件</div>
+        <div class="child" @click.capture="childEvent">.capture</div>
+        <div class="child" @click.self="childEvent">.self</div>
+        <div class="child" @click.once="childEvent">.once</div>
+        <div class="child" @click.passive="childEvent">.passive</div>
+        <div class="child" @click.left="childEvent">.left</div>
+        <div class="child" @click.right="childEvent">.right</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="parent" @click.capture="parEvent">
+        <div class="child" @click.stop="childEvent">.stop 阻止透传，当前消费</div>
+        <div class="child" @click.prevent="childEvent">.prevent 组织默认事件</div>
+        <div class="child" @click.capture="childEvent">.capture</div>
+        <div class="child" @click.self="childEvent">.self</div>
+        <div class="child" @click.once="childEvent">.once</div>
+        <div class="child" @click.passive="childEvent">.passive</div>
+        <div class="child" @click.left="childEvent">.left</div>
+        <div class="child" @click.right="childEvent">.right</div>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -43,6 +43,7 @@
         set.add(12)
         set.add(34)
         set.add(12)
+        set.add(34)
         console.log(set)
 
         let set2 = new Set()

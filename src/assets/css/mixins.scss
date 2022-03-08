@@ -7,6 +7,6 @@
   &::-webkit-scrollbar-thumb {
     border-radius: 7px;
     background: $bg;
-    -webkit-box-shadow: inset 1px 1px 5px $fore;
+    -webkit-box-shadow: 0 0 2px 1px $fore inset;
   }
 }

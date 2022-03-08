@@ -1,6 +1,6 @@
 <template>
   <div class="self-model-ele page-container">
-    <h2>自定义一个能使用v-model指令的可编辑div,能带格式复制内容</h2>
+    <h2>自定义一个能使用v-model指令的可编辑div,能带格式复制内容,max 100</h2>
     <div style="height: 100px">
       <edit-div v-model="text" :canEdit="canEdit" @change="change" />
     </div>
@@ -27,7 +27,7 @@
     methods: {
       change(value) {
         console.log(this.text)
-        if (value.length > 100) {
+        if (value.length > 200) {
           console.log('------------------')
           this.canEdit = false
         }

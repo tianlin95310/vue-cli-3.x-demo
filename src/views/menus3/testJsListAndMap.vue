@@ -11,8 +11,6 @@
       <br />
       <button class="button" @click="testNull">测试空的判断</button>
       <br />
-      <button class="button" @click="fun5">或运算</button>
-      <br />
       <button class="button" @click="fun6">类型判断</button>
     </div>
   </div>
@@ -30,11 +28,11 @@
        * 可以用于判断数据类型
        */
       fun6() {
-        const a = ''
-        console.log(a instanceof String)
-        console.log(typeof a === 'string')
+        const a = '123'
+        console.log('a instanceof String', a instanceof String)
+        console.log('typeof a === \'string\'', typeof a === 'string')
         console.log('------------------------')
-        const b = String('1232')
+        const b = String('123')
         console.log(b instanceof String)
         console.log(typeof b === 'string')
         console.log('------------------------')
@@ -54,39 +52,38 @@
         console.log(typeof e)
         console.log('------------------------')
       },
-      fun5() {
-        console.log(undefined || 1 - undefined || 2)
-        console.log((undefined || 1) - (undefined || 2))
-      },
       testNull() {
         let test1
         if (test1) {
-          console.log('111111111')
+          console.log('test1 is true value')
         } else {
-          console.log('222222222')
+          console.log('test1 is false value')
         }
-        //        test = undefined
-        //        test = null
         const test2 = ''
-        console.log(test2)
+        console.log('test2 = ' + test2)
         if (test2) {
-          console.log('33333333333333')
+          console.log('test2 is true value')
         } else {
-          console.log('44444444444444444')
+          console.log('test2 is false value')
         }
         const test3 = '""'
-        console.log('-----' + test3)
+        console.log('test3 = ' + test3)
         if (test3) {
-          console.log('5555555555555')
+          console.log('test3 is true value')
         } else {
-          console.log('6666666666666666')
+          console.log('test3 is false value')
         }
-
         const val4 = NaN
         if (val4) {
-          console.log('val4---')
+          console.log('val4 is true value')
         } else {
-          console.log('val4 is false')
+          console.log('val4 is false value')
+        }
+        const v5 = []
+        if (v5) {
+          console.log('v5 is true value')
+        } else {
+          console.log('v5 is false value')
         }
       },
       array_fun() {
@@ -142,7 +139,7 @@
         // 以object为key只能用[]访问
         obj[obj] = 'obj为key'
         // 输出所有的key
-        console.log(obj.id + ', ' + ', ' + obj[NaN] + ', ' + obj[obj])
+        console.log(obj.id + ', ' + obj[NaN] + ', ' + obj[obj])
       }
     }
   }

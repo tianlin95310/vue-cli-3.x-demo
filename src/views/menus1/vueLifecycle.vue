@@ -30,12 +30,10 @@
     //   }
     // },
     beforeCreate: function() {
-      console.log('parent beforeCreate')
-      console.log(this.v1)
+      console.log('parent beforeCreate', this.v1)
     },
     created() {
-      console.log('parent created')
-      console.log(this.v1)
+      console.log('parent created', this.v1)
     },
     beforeMount() {
       console.log('parent beforeMount')

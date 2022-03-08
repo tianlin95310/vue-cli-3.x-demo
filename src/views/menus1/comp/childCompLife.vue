@@ -3,8 +3,6 @@
     <i class="child">i am vue child component</i>
     <button class="button" @click="testCompFun">测试methods定义的函数</button>
 
-    <button class="button" @click="callInnerFun">调用函数内部函数</button>
-
     <button class="button" @click="callOuterFun">调用组件内的顶层函数</button>
 
     <div ref="childDiv"></div>
@@ -22,19 +20,18 @@
     methods: {
       testCompFun() {
         console.log('组件的this---', this)
-
         setTimeout(() => {
           // 箭头函数被工具添加过辅助代码let _this = this
           console.log('组件内的函数的this1---', this)
         })
-
-        const fun = () => {
+        const fun2 = () => {
           console.log('组件内的函数的this2---', this)
         }
-        return fun
-      },
-      callInnerFun() {
-        this.testCompFun()()
+        const fun3 = function() {
+          console.log('组件内的函数的this3---', this)
+        }
+        fun2()
+        fun3()
       },
       callOuterFun() {
         outter()
