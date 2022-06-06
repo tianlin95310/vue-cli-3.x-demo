@@ -21,7 +21,7 @@
       <template v-slot:content>
         <div class="dialog-content">
           <div>
-            <input type="file" @change="onFileChange">
+            <input type="file" class="button" @change="onFileChange">
           </div>
           <div class="img-content">
             <div class="img-div">
@@ -94,6 +94,9 @@
       onFileChange(event) {
         console.log('onFileChange', event)
         const file = event.target.files[0]
+        if (!file) {
+          return
+        }
         this.currentImg = URL.createObjectURL(file)
         const image = new Image()
         image.src = this.currentImg
