@@ -13,6 +13,9 @@
        <tl-circle-ratio-round :percent="percent" />
      </div>
      <button class="button" @click="showDialog">图片裁剪</button>
+     <div style="display: inline-block;width: 200px;height: 200px;vertical-align: middle;background: #D42D00">
+       <tl-round-count-down :progress="progress" />
+     </div>
    </div>
     <div style="height: 320px;display: flex;flex-direction: column;justify-content: center;align-items: center">
       <chart style="width: 480px;height: 270px;"></chart>
@@ -43,6 +46,7 @@
   import { swapEvent } from '@/utils/event.js'
   import TLDialog from '@/components/TLDialog'
   import TLImageCut from './comp/TLImageCut'
+  import TlRoundCountDown from './comp/tl-round-count-down'
   export default {
     name: 'CanvasView',
     components: {
@@ -50,7 +54,8 @@
       TlCircleRatioRound,
       chart,
       TLDialog,
-      TLImageCut
+      TLImageCut,
+      TlRoundCountDown
     },
     data() {
       return {
@@ -64,7 +69,8 @@
         styleObj: {
           height: '500px',
           width: 'auto'
-        }
+        },
+        progress: 60
       }
     },
     created() {
@@ -89,6 +95,14 @@
           }
         }, 10)
       }
+      const timer2 = setInterval(() => {
+        this.progress--
+        if (this.progress <= 0) {
+          if (timer2) {
+            clearInterval(timer2)
+          }
+        }
+      }, 1000)
     },
     methods: {
       onFileChange(event) {
