@@ -51,6 +51,11 @@ const routes = [
         path: 'bindArray',
         name: 'BindArray',
         component: () => import('@/views/menus1/bindArray.vue')
+      },
+      {
+        path: 'combineApi',
+        name: 'CombineApi',
+        component: () => import('@/views/menus1/combineApi.vue')
       }
     ]
   },

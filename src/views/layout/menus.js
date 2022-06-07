@@ -27,6 +27,10 @@ export const MENUS = [
       menuTitle: 'Vue响应数组数据',
       isOpen: false,
       path: '/menu1/bindArray'
+    }, {
+      menuTitle: '組合式API',
+      isOpen: false,
+      path: '/menu1/combineApi'
     }]
   }, {
     menuTitle: '测试CSS的属性',

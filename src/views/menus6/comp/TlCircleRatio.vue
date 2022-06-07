@@ -56,7 +56,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .tl-circle-ratio {
     display: inline-block;
     width: 100%;
