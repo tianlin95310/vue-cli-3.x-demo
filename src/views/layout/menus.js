@@ -93,6 +93,10 @@ export const MENUS = [
       menuTitle: '测试JS的事件传递',
       isOpen: false,
       path: '/menu3/testEvent'
+    }, {
+      menuTitle: 'Web前端安全与安全面试问题',
+      isOpen: false,
+      path: '/menu3/htmlSafety'
     }]
   }, {
     menuTitle: '工具的使用',

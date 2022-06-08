@@ -42,11 +42,11 @@
 //  函数表达式加一对()表示执行
   (function () {
     alert('自执行匿名函数')
-  }) ()
+  }) ();
 
   (function (window, undefined) {
-    alert('自执行匿名函数')
-  }) (window, undefined)
+    alert('带参数自执行匿名函数')
+  }) (window, undefined);
 
   // 作用域提升
   var name = "haha";
@@ -56,12 +56,12 @@
     // 当期的this是全局的window对象
     console.log(this.name)
     // 当前环境的定义的变量，因为覆盖了父环境的变量
-    let name = "xixi"
+    var name = "xixi"
   }
   changeName1()
 
   var changeName2 = function () {
-    // 作用域提升，name2不会报错，因为当前环境定义过name2
+    // 作用域提升，name2不会报错，因为当前环境定义过name2，但是会执行报错，需要用var定义才不会报错
     console.log(name2)
     console.log(name)
     let name2 = "xixi"

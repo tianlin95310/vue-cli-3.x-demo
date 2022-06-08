@@ -133,6 +133,11 @@ const routes = [
         path: 'testEvent',
         name: 'TestEvent',
         component: () => import('@/views/menus3/testEvent.vue')
+      },
+      {
+        path: 'htmlSafety',
+        name: 'HtmlSafety',
+        component: () => import('@/views/menus3/htmlSafety.vue')
       }
     ]
   },
