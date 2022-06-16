@@ -8,7 +8,7 @@
     <div style="height: 100px">
       <edit-div v-model="text2" :canEdit="false" @change="change" />
     </div>
-    <div>输入框的内容：{{ text }}</div>
+    <div style="white-space: normal;word-break: break-word;width: 100%;">输入框的内容：{{ text }}</div>
   </div>
 </template>
 <script>
