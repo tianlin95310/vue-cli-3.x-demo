@@ -135,6 +135,11 @@ const routes = [
         component: () => import('@/views/menus3/testEvent.vue')
       },
       {
+        path: 'autoCast',
+        name: 'AutoCast',
+        component: () => import('@/views/menus3/autoCast.vue')
+      },
+      {
         path: 'htmlSafety',
         name: 'HtmlSafety',
         component: () => import('@/views/menus3/htmlSafety.vue')

@@ -11,6 +11,18 @@
       <br />
       <button class="button" @click="testNull">测试空的判断</button>
       <br />
+
+      <pre>
+        基本数据类型
+        String,Number,null,NaN,
+        **typeof**
+        - `typeof`一般用来判断基本数据类型，**除了判断 null 会输出"object"，其它都是正确的**
+        - `typeof`判断引用数据类型时，**除了判断函数会输出"function",其它都是输出"object"**
+
+        **instanceof**
+        - Instanceof 可以准确的判断引用数据类型，它的原理是检测构造函数的`prototype`属性是否在某个实例对象的原型链上， 不能判断基本数据类型
+
+      </pre>
       <button class="button" @click="fun6">类型判断</button>
     </div>
   </div>
@@ -25,7 +37,7 @@
     methods: {
       /**
        * instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
-       * 可以用于判断数据类型
+       * 用于判断引用类型
        */
       fun6() {
         const a = '123'
@@ -39,17 +51,14 @@
         const c = {}
         console.log(c instanceof Object)
         console.log(typeof c === 'object')
-        console.log(typeof c)
         console.log('------------------------')
         const d = new Date()
         console.log(d instanceof Object)
         console.log(typeof d === 'object')
-        console.log(typeof d)
         console.log('------------------------')
         const e = new Date()
         console.log(e instanceof Date)
         console.log(typeof e === 'object')
-        console.log(typeof e)
         console.log('------------------------')
       },
       testNull() {

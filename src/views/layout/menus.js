@@ -94,6 +94,10 @@ export const MENUS = [
       isOpen: false,
       path: '/menu3/testEvent'
     }, {
+      menuTitle: 'JS类型转换',
+      isOpen: false,
+      path: '/menu3/autoCast'
+    }, {
       menuTitle: 'Web前端安全与安全面试问题',
       isOpen: false,
       path: '/menu3/htmlSafety'

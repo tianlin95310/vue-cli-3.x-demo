@@ -6,6 +6,7 @@
     2、父级设置overflow:hidden
     3、父级设置padding（破坏非空白的折叠条件）
     4、父级设置border -->
+
     <div class="top">
       <div class="row1">头部块</div>
       <img src="../assets/logo.png" style="width: 100px;">
