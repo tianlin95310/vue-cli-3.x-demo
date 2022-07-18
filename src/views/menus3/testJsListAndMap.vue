@@ -18,12 +18,11 @@
         **typeof**
         - `typeof`一般用来判断基本数据类型，**除了判断 null 会输出"object"，其它都是正确的**
         - `typeof`判断引用数据类型时，**除了判断函数会输出"function",其它都是输出"object"**
-
         **instanceof**
         - Instanceof 可以准确的判断引用数据类型，它的原理是检测构造函数的`prototype`属性是否在某个实例对象的原型链上， 不能判断基本数据类型
 
       </pre>
-      <button class="button" @click="fun6">类型判断</button>
+      <button class="button" @click="fun6">类型判断(type of, instance of)</button>
     </div>
   </div>
 </template>

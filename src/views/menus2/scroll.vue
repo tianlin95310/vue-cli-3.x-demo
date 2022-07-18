@@ -1,7 +1,7 @@
 <template>
   <div class="scroll-info page-container">
     <div ref="table" id="table" class="table">
-      <div class="content">
+      <div class="content" @click="show = true">
         我是可以滑动的行内容
       </div>
     </div>
@@ -9,6 +9,12 @@
     <div id="custom-scroll" class="custom-scroll">
       <div :style="{left: left + 'px'}" class="my-scroll"></div>
     </div>
+
+    <t-l-dialog v-model="show">
+      <template v-slot:content>
+        <div style="width: 100px;height: 100px;background-color: #cccccc">我是谁</div>
+      </template>
+    </t-l-dialog>
   </div>
 
 </template>
@@ -28,12 +34,18 @@
 // s2.addEventListener('scroll', function (e) {
 //   s1.scrollLeft = s2.scrollLeft
 // })
+  import TLDialog from 'comp/TLDialog'
+
   export default {
     name: 'Scroll',
     data() {
       return {
-        left: 0
+        left: 0,
+        show: false
       }
+    },
+    components: {
+      TLDialog
     },
     created() {
       console.log('scroll created')

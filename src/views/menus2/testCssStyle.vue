@@ -1,21 +1,36 @@
 <template>
   <div class="test-css-style page-container">
-    <h2>测试css的属性</h2>
-    <div class="parent">
-      <p class="test">我在父块的右下角</p>
+   <div>
+     <h2>测试css的属性</h2>
+     <div class="parent">
+       <p class="test">我在父块的右下角</p>
+     </div>
+
+     <div class="test-before">
+       line-height竖直居中
+     </div>
+
+     <div style="background: white;display: inline-block;width: 300px;height: 200px;vertical-align: middle;text-align: center">
+       <div style="background: #D42D00;width: 50%;text-align: center;margin: 0 auto;">div水平居中</div>
+     </div>
+   </div>
+
+<!--    margin 塌陷-->
+    <div style="background: gray;width: 300px;height: 200px;">
+      <div style="background: #D42D00;height: 150px;width: 100px;margin: 50px 0;">已知父高度和自身高度实现竖直居中</div>
     </div>
 
-    <div class="test-before">
-      我的div
+<!--    通过子元素display: inline-block设置BFC解决问题-->
+    <div style="background: goldenrod;width: 300px;height: 200px;display: inline-block">
+      <div style="background: #D42D00;height: 50%;width: 50%;margin: 50px 0;">已知父高度和自身高度实现竖直居中</div>
+    </div>
+<!--    ·可以为父元素定义上边框。-->
+<!--    ·可以为父元素定义上内边距-->
+<!--    ·可以为父元素添加overflow:hidden。-->
+    <div style="background: goldenrod;width: 300px;height: 200px;overflow: hidden">
+      <div style="background: #D42D00;height: 50%;width: 50%;margin: 50px 0;">已知父高度和自身高度实现竖直居中</div>
     </div>
 
-    <div style="background: white;display: inline-block;width: 300px;height: 200px;vertical-align: middle;text-align: center">
-      <div style="background: #D42D00;width: 50%;text-align: center;margin: 0 auto;">div水平居中</div>
-    </div>
-
-    <div style="background: white;display: inline-block;width: 300px;height: 200px;vertical-align: middle;text-align: center;margin-left: 1px">
-      <div style="background: #D42D00;height: 50%;width: 50%;text-align: center;margin: 50px auto;">已知父高度和自身高度实现竖直居中</div>
-    </div>
     <div>
       <div style="width: 39%;background: red;display: inline-block">我占39%</div>
       <div style="width: 70%;background: blue;display: inline-block">我占70%</div>
@@ -76,7 +91,6 @@
       position: relative;
       line-height: 120px;
       background: lightgrey;
-      vertical-align: middle;
     }
     /*::after不在dom上，不能响应事件*/
     .test-before::after {

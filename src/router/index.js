@@ -151,16 +151,6 @@ const routes = [
     component: Layout,
     children: [
       {
-        path: 'testSyncAndAsync',
-        name: 'TestSyncAndAsync',
-        component: () => import('@/views/menus4/testSyncAndAsync.vue')
-      },
-      {
-        path: 'asyncAndAwait',
-        name: 'AsyncAndAwait',
-        component: () => import('@/views/menus4/asyncAndAwait.vue')
-      },
-      {
         path: 'dateFormat',
         name: 'DateFormat',
         component: () => import('@/views/menus4/dateFormat.vue')

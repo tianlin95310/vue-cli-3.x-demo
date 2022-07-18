@@ -3,21 +3,47 @@
     <h2>关于函数的一些操作，对象属性操作是"引用"传递的</h2>
     <div>
       <button class="button" @click="change">作为新参传递</button>
-    </div>
-
-    <div>
       <button class="button" @click="addList">addList</button>
       <button class="button" @click="delList">delList</button>
+      <button class="button" @click="defArg">函数默认参数</button>
     </div>
 
     <div>
-      <button class="button" @click="defArg">函数默认参数</button>
+      <button class="button" @click="getInstance">JS单例模式 属性上直接添加闭包函数</button>
+      <button class="button" @click="getInstanceStatic">JS单例模式 添加静态方法</button>
     </div>
 
   </div>
 </template>
 
 <script>
+  function People() {
+    this.name = '张三'
+  }
+
+  People.getInstance = (function() {
+    let instance
+    return function() {
+      if (!instance) {
+        instance = new People()
+      }
+      return instance
+    }
+  })()
+
+  class User {
+    constructor(name) {
+      this.name = name
+    }
+
+    static getInstance(name) {
+      if (!User._instance) {
+        User._instance = new User(name)
+      }
+      return User._instance
+    }
+  }
+
   export default {
     data() {
       return {
@@ -26,6 +52,12 @@
       }
     },
     methods: {
+      getInstanceStatic() {
+        console.log(User.getInstance('tianlin'))
+      },
+      getInstance() {
+        console.log(People.getInstance())
+      },
       fun(arg = '123', arg2 = 'tianlin') {
         console.log(arg, arg2)
       },
@@ -61,7 +93,7 @@
 </script>
 
 <style scoped>
-  div>div {
-    margin-top: 10px;
-  }
+div > div {
+  margin-top: 10px;
+}
 </style>

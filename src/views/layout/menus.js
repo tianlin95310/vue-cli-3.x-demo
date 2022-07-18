@@ -107,14 +107,6 @@ export const MENUS = [
     isOpen: false,
     path: '/menu4',
     subMenus: [{
-      menuTitle: '同步和异步的调用',
-      isOpen: false,
-      path: '/menu4/testSyncAndAsync'
-    }, {
-      menuTitle: '测试async和await的方法',
-      isOpen: false,
-      path: '/menu4/asyncAndAwait'
-    }, {
       menuTitle: 'Promise的使用',
       isOpen: false,
       path: '/menu4/promiseUse'

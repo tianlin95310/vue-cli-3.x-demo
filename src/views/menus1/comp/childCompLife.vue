@@ -15,23 +15,29 @@
   }
   export default {
     data() {
-      return {}
+      return {
+        value: '12412'
+      }
     },
     methods: {
       testCompFun() {
         console.log('组件的this---', this)
         setTimeout(() => {
-          // 箭头函数被工具添加过辅助代码let _this = this
-          console.log('组件内的函数的this1---', this)
+          // 箭头函数能捕获上下文环境中的this
+          // 箭头函数被工具添加过辅助代码let _this = this,所以内部支持使用this
+          console.log('组件内的函数的this1---', this, this.value)
         })
         const fun2 = () => {
-          console.log('组件内的函数的this2---', this)
+          // debugger
+          console.log('组件内的函数的this2---', this, this.value)
         }
-        const fun3 = function() {
-          console.log('组件内的函数的this3---', this)
+        // 普通函数具有arguments参数，箭头函数没有，可使用自定义rest参数
+        const Fun3 = function() {
+          console.log('组件内的函数的this3---', this, arguments)
         }
         fun2()
-        fun3()
+        Fun3()
+        console.log(new Fun3())
       },
       callOuterFun() {
         outter()
