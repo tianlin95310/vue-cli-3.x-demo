@@ -74,7 +74,7 @@ export const MENUS = [
       isOpen: false,
       path: '/menu3/listOperate'
     }, {
-      menuTitle: '函数',
+      menuTitle: '函数与类',
       isOpen: false,
       path: '/menu3/func'
     }, {
@@ -82,7 +82,7 @@ export const MENUS = [
       isOpen: false,
       path: '/menu3/objectAnal'
     }, {
-      menuTitle: '数值的特殊处理',
+      menuTitle: '数值的处理',
       isOpen: false,
       path: '/menu3/particle'
     }, {
@@ -93,10 +93,6 @@ export const MENUS = [
       menuTitle: '测试JS的事件传递',
       isOpen: false,
       path: '/menu3/testEvent'
-    }, {
-      menuTitle: 'JS类型转换',
-      isOpen: false,
-      path: '/menu3/autoCast'
     }, {
       menuTitle: 'Web前端安全与安全面试问题',
       isOpen: false,
@@ -119,7 +115,7 @@ export const MENUS = [
       isOpen: false,
       path: '/menu4/stringDealwith'
     }, {
-      menuTitle: '元素的处理',
+      menuTitle: '元素的特殊处理',
       isOpen: false,
       path: '/menu4/htmlDeal'
     }]

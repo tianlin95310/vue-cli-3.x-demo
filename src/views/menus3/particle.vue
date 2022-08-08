@@ -29,6 +29,8 @@
       <button class="button" @click="var_let">var与let的区别</button>
       <button class="button" @click="newKeyWord">新的运算符...， ?., ??</button>
       <button class="button" @click="JsonFormat">测试Json字符串格式化</button>
+
+      <button class="button" @click="testeq">测试==</button>
     </div>
   </div>
 </template>
@@ -46,6 +48,15 @@ export default {
     }
   },
   methods: {
+    testeq() {
+      var a = {
+        value: 1,
+        [Symbol.toString]() {
+          return a.value++
+        }
+      }
+      console.log((a == 1 && a == 2 && a == 3))
+    },
     JsonFormat() {
       const value = {
         v1: undefined,

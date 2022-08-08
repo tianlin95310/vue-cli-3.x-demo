@@ -1,14 +1,19 @@
 <template>
   <div class="algorithm page-container">
 
-    <div>
+    <div class="scroll-bar" style="height: 200px;overflow: auto;">
       <h2>列表得到笛卡尔积（组合）</h2>
       {{ comb() }}
     </div>
 
-    <div>
+    <div class="scroll-bar" style="height: 200px;overflow: auto;">
       <h2>列表数据得到树形数据</h2>
       {{ treeData() }}
+    </div>
+
+    <div>
+      <h2>数字的装换</h2>
+      {{ NumberToText(123456789.123456)}}
     </div>
   </div>
 
@@ -21,6 +26,7 @@
   import {
     treeDataTranslate
   } from './util/TreeData'
+  import NumberToText from './util/NumberToText.js'
   export default {
     name: 'Algorithm',
     data() {
@@ -29,6 +35,7 @@
       }
     },
     methods: {
+      NumberToText: NumberToText,
       treeData() {
         let array = [{
             id: 1,
