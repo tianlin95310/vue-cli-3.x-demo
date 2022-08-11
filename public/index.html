@@ -3,10 +3,28 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+		
   </head>
+	<style>
+		@media screen and (min-width:720px) and (max-width: 1280px){
+		    body{
+		        background: white;
+		    }
+		}
+		@media screen and (min-width:1280px) and (max-width: 1376px){
+		    body{
+		        background:gainsboro;
+		    }
+		}
+		@media screen and (min-width:1376px) and (max-width: 1920px){
+		    body{
+		        background:gray;
+		    }
+		}
+	</style>
   <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>

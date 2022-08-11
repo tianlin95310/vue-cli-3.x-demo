@@ -1,17 +1,21 @@
 <template>
   <div class="page-container">
     <h2>ES6...运算符的用法</h2>
-    <div><button class="button" @click="test1">定义变量时使用</button></div>
+    <div><button class="button" @click="test1">解析数组，类似于可变数组</button></div>
 
-    <div><button class="button" @click="test2">作为形参传递</button></div>
+    <div>
+      <button class="button" @click="test2">作为形参传递，数组类型参数</button>
 
-    <div><button class="button" @click="test3">取对象key对应的值 并直接赋值给变量</button></div>
+      <button class="button" @click="testKeiban">数组传递到可变参数</button>
+    </div>
 
-    <div><button class="button" @click="test4">作为运算符</button></div>
+    <div><button class="button" @click="test3">取对象key对应的值 并直接初始化给变量</button></div>
 
-    <div><button class="button" @click="test5">单层对象的克隆</button></div>
+    <div><button class="button" @click="test4">作为数组可变参数传递，解析字符串成数组</button></div>
 
-    <div><button class="button" @click="test6">多层对象的克隆(一级可实现，多级无法实现)</button></div>
+    <div><button class="button" @click="test5">单层对象的克隆（简单对象）</button></div>
+
+    <div><button class="button" @click="test6">多层对象的克隆（复杂对象，无法克隆）</button></div>
   </div>
 </template>
 <script>
@@ -87,11 +91,13 @@
       fun1([a, b, c]) {
         console.log(a, b, c)
       },
+      testKeiban() {
+        const a = [1, 2, 3]
+        this.fun2(a, 1, 'str', [])
+      },
       test2() {
         const a = [1, 2, 3]
-        // this.fun1([1, 2])
         this.fun1(a)
-        this.fun2(a, 1, 'str', [])
       },
       test1() {
         const [a, ...b] = [1, 2, 3, 4]
@@ -103,7 +109,7 @@
 </script>
 
 <style lang="scss" scoped>
-  div>div {
+  div > div {
     margin-top: 10px;
   }
 </style>

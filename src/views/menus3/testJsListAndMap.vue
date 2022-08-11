@@ -3,7 +3,7 @@
     <h2>测试js中的数据和Map(控制台查看)</h2>
 
     <div>
-      <button class="button" @click="array_fun">数组的用法</button>
+      <button class="button" @click="array_fun">数组的基本用法</button>
       <br />
       <button class="button" @click="map_fun">Map的用法</button>
       <br />

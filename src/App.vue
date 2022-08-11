@@ -71,9 +71,6 @@
 </script>
 <style lang="scss">
   @import "assets/css/theme";
-  body {
-    background-color: white;
-  }
   * {
     padding: 0;
     margin: 0;

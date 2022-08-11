@@ -60,6 +60,10 @@ export const MENUS = [
       menuTitle: '特殊的选择器',
       path: '/menu2/selector',
       isOpen: false
+    }, {
+      menuTitle: '移动端兼容处理',
+      path: '/menu2/mobile',
+      isOpen: false
     }]
   }, {
     menuTitle: '测试JavaScript属性',

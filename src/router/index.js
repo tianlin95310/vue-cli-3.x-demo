@@ -216,6 +216,11 @@ const routes = [
     ]
   },
   {
+    path: '/menu2/mobile',
+    name: 'mobile',
+    component: () => import('@/views/menus2/mobile.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('@/views/Login.vue')

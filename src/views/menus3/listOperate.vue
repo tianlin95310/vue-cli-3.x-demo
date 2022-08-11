@@ -3,15 +3,18 @@
     <h2>集合的常见操作</h2>
     <div>
       <button class="button" @click="sort">测试数组排序</button>
+
+      <button class="button" @click="reduceQuchong">reduce方式去重</button>
     </div>
     <div>
       <button class="button" @click="splice">splice(1, 1)</button>
-    </div>
-    <div>
       <button class="button" @click="spliceNo">splice(0，0)</button>
     </div>
     <div>
       <button class="button" @click="SetArray">不重复的集合Set</button>
+    </div>
+    <div>
+      <button class="button" @click="flatApi">数组扁平化操作api</button>
     </div>
   </div>
 </template>
@@ -36,6 +39,31 @@
       return {}
     },
     methods: {
+      reduceQuchong() {
+        let array = [1, 2, 3, 4, 5, 4, 3, 2, 7, 8, 9]
+        // console.log(array.reverse())
+        // 第二个参数为pre的初始值
+        // 求和
+        let res = array.reduce((pre, current, index, array) => {
+          console.log(pre, current, index, array)
+          return pre + current
+        }, 0)
+        console.log('reduce res', res)
+
+        // 去重
+        let newArray = array.reduce((pre, current) => {
+          if (!pre.includes(current)) {
+            return pre.concat(current)
+          } else {
+            return pre
+          }
+        }, [])
+        console.log('reduce newArray', newArray)
+      },
+      flatApi() {
+        let array = [[1, 4, 7], 2, [2, 3, 8], [7], [4, ,6]]
+        console.log(array.flat())
+      },
       SetArray() {
         let set = new Set()
         set.add(12)
