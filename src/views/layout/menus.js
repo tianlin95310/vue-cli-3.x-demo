@@ -98,7 +98,7 @@ export const MENUS = [
       isOpen: false,
       path: '/menu3/testEvent'
     }, {
-      menuTitle: 'Web前端安全与安全面试问题',
+      menuTitle: 'Web前端安全与面试问题',
       isOpen: false,
       path: '/menu3/htmlSafety'
     }]
