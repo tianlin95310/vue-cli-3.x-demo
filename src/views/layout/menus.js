@@ -28,9 +28,13 @@ export const MENUS = [
       isOpen: false,
       path: '/menu1/bindArray'
     }, {
-      menuTitle: '組合式API',
+      menuTitle: '组合式API',
       isOpen: false,
       path: '/menu1/combineApi'
+    }, {
+      menuTitle: '异步组件探索',
+      isOpen: false,
+      path: '/menu1/asyncComp'
     }]
   }, {
     menuTitle: '测试CSS的属性',

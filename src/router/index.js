@@ -56,6 +56,11 @@ const routes = [
         path: 'combineApi',
         name: 'CombineApi',
         component: () => import('@/views/menus1/combineApi.vue')
+      },
+      {
+        path: 'asyncComp',
+        name: 'AsyncComp',
+        component: () => import('@/views/menus1/asyncComp')
       }
     ]
   },
