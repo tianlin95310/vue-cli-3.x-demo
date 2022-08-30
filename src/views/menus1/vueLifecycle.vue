@@ -24,6 +24,11 @@
       child,
       child3X
     },
+    watch: {
+      $route(newV, oldV) {
+        console.log('watch $route', newV, oldV)
+      }
+    },
     // filters: {
     //   testFilter(param) {
     //     return param + 'testFilter'

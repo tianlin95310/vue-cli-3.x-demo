@@ -1,17 +1,20 @@
 <template>
   <div class="page-container">
     <h2>测试js中的数据和Map(控制台查看)</h2>
-
+      <div>
+        <button class="button" @click="array_fun">数组的基本用法</button>
+      </div>
+      <div>
+        <button class="button" @click="map_fun">Map的用法</button>
+      </div>
+      <div>
+        <button class="button" @click="obj_fun">Object的用法</button>
+        <div>
+           <button class="button" @click="testNull">测试空的判断</button>
+        </div>
+      </div>
     <div>
-      <button class="button" @click="array_fun">数组的基本用法</button>
-      <br />
-      <button class="button" @click="map_fun">Map的用法</button>
-      <br />
-      <button class="button" @click="obj_fun">Object的用法</button>
-      <br />
-      <button class="button" @click="testNull">测试空的判断</button>
-      <br />
-
+      <button class="button" @click="fun6">类型判断(type of, instance of)</button>
       <pre>
         基本数据类型
         String,Number,null,NaN,
@@ -20,9 +23,13 @@
         - `typeof`判断引用数据类型时，**除了判断函数会输出"function",其它都是输出"object"**
         **instanceof**
         - Instanceof 可以准确的判断引用数据类型，它的原理是检测构造函数的`prototype`属性是否在某个实例对象的原型链上， 不能判断基本数据类型
-
       </pre>
-      <button class="button" @click="fun6">类型判断(type of, instance of)</button>
+
+    </div>
+
+    <div>
+      <h2>html内置对象</h2>
+      <span>location.origin = {{ locationOrigin() }}</span>
     </div>
   </div>
 </template>
@@ -34,6 +41,9 @@
     },
     created() {},
     methods: {
+      locationOrigin() {
+        return location.origin
+      },
       /**
        * instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
        * 用于判断引用类型

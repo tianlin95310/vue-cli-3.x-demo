@@ -2,27 +2,18 @@
   <div class="page-container">
     <div>
       <button class="button" @click="testStrOp">测试字符串split操作</button>
-    </div>
-    <div>
       <button class="button" @click="strIndex">js字符串截取</button>
+      <button class="button" @click="strReplace">字符串替换</button>
+      <button class="button" @click="testStart">判断是以某段开头</button>
+       <button class="button" @click="testReg()">去点数字前面的0</button>
+       <button class="button" @click="testTeshu">判断是否包含特殊字符</button>
     </div>
     <div>
       <button class="button" @click="jsEmptyToJson">js空串转json</button>
     </div>
-    <div>
-      <button class="button" @click="strReplace">字符串替换</button>
-    </div>
 
     <div>
-      <button class="button" @click="testStart">判断是以某段开头</button>
-    </div>
-
-    <div>
-      <button class="button" @click="testReg()">去点数字前面的0</button>
-    </div>
-
-    <div>
-      <button class="button" @click="testTeshu">判断是否包含特殊字符</button>
+      <button class="button" @click="testUrlDecode">url转义</button>
     </div>
 
     <h2>
@@ -82,7 +73,12 @@ function numberFormat(number, decimals, decPoint, thousandsSep, roundtag) {
 
 export default {
   methods: {
+   
     numberFormat: numberFormat,
+    testUrlDecode() {
+      console.log('decodeURIComponent =', encodeURIComponent('测 试&文件转义.pdf'), 'decodeURI =', encodeURI('测 试&文件转义.pdf'))
+      console.log('decodeURIComponent =', encodeURIComponent('xx.docx'), 'decodeURI =', encodeURI('xx.docx'))
+    },
     testTeshu() {
       const str = '12345&6'
       alert(str.indexOf('&') !== -1)

@@ -57,6 +57,11 @@
     <t-l-collapse title="3,JS问题">
       <template v-slot:content>
         <pre>
+          1，encodeURIComponent和encodeURI的区别
+            使用encodeURI()编码后的结果是除了空格之外的其他字符都原封不动，只有空格被替换成了%20。而encodeURIComponent()方法则会使
+            用对应的编码替换所有非字母数字字符。这也正是可以对整个URI使用encodeURI()，而只能对附加在现有URI后面的字符串使用
+            encodeURIComponent()的原因所在。一般来说,我们使用encodeURIComponent()方法的时候要比使用encodeURI()更多,因为在实践
+            中更常见的是对查询字符串参数而不是对基础URL进行编码.
           11，Map与Object的区别
             Object的key必须是简单类型，而Map的key可以为对象，所以Map不支持json而Object可以
             Map的key，Value添加时有顺序的，而Object则没有这个说法，

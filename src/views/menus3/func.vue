@@ -12,15 +12,53 @@
       <button class="button" @click="getInstance">JS单例模式 属性上直接添加闭包函数</button>
       <button class="button" @click="getInstanceStatic">JS单例模式 添加静态方法</button>
     </div>
+    <div>
+      <button class="button" @click="debounce">防抖函数的实现</button>
+      <button class="button" @click="throttle">节流函数的实现</button>
+    </div>
 
   </div>
 </template>
 
 <script>
+  /*eslint-disable*/
+  import { throttle, debounce } from 'lodash'
   function People() {
     this.name = '张三'
   }
 
+  var delay = 1000
+  var prev = Date.now() - delay
+  const throttleS = function(func, delay) {
+    return function() {
+      var context = this
+      var args = arguments
+      var now = Date.now()
+      // console.log('prev == ', prev, 'now == ', now, now - prev)
+      if (now - prev >= delay) {
+        func.apply(context, args)
+        prev = Date.now()
+      }
+    }
+  }
+
+  var timer = null
+  const debounceS = function(callback, delay, immediate) {
+    return function() {
+      const _this = this
+      const args = arguments
+      console.log('timer', timer)
+      if (timer) {
+        clearTimeout(timer)
+        timer = null
+      }
+      timer = setTimeout(function() {
+        console.log('called timer', timer)
+        callback.apply(_this, args)
+      }, delay)
+    }
+  }
+  
   People.getInstance = (function() {
     let instance
     return function() {
@@ -52,6 +90,19 @@
       }
     },
     methods: {
+      callback() {
+        console.log('callback')
+      },
+      throttle() {
+        // throttle(this.callback, 0, {
+        //   leading: 100
+        // })(123)
+        throttleS(this.callback, 1000)()
+      },
+      debounce: function() {
+        // debounce(this.callback, 1000)(111)
+        debounceS(this.callback, 1000)()
+      },
       getInstanceStatic() {
         console.log(User.getInstance('tianlin'))
       },
