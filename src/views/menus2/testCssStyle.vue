@@ -6,28 +6,33 @@
        <p class="test">我在父块的右下角</p>
      </div>
 
-     <div class="test-before">
+     <div class="test-before" @click="testBefore">
        line-height竖直居中
      </div>
 
      <div style="background: white;display: inline-block;width: 300px;height: 200px;vertical-align: middle;text-align: center">
        <div style="background: #D42D00;width: 50%;text-align: center;margin: 0 auto;">div水平居中</div>
      </div>
+
+     <div style="background: white;display: inline-block;width: 300px;height: 200px;vertical-align: middle;text-align: center">
+       <div>0.5px边框</div>
+       <div class="line-t-e line-b-e">sss</div>
+     </div>
    </div>
 
-<!--    margin 塌陷-->
+<!--    margin 塌陷导致垂直居中失效-->
     <div style="background: gray;width: 300px;height: 200px;">
       <div style="background: #D42D00;height: 150px;width: 100px;margin: 50px 0;">已知父高度和自身高度实现竖直居中</div>
     </div>
 
 <!--    通过子元素display: inline-block设置BFC解决问题-->
-    <div style="background: goldenrod;width: 300px;height: 200px;display: inline-block">
+    <div style="background: white;width: 300px;height: 200px;display: inline-block">
       <div style="background: #D42D00;height: 50%;width: 50%;margin: 50px 0;">已知父高度和自身高度实现竖直居中</div>
     </div>
 <!--    ·可以为父元素定义上边框。-->
 <!--    ·可以为父元素定义上内边距-->
 <!--    ·可以为父元素添加overflow:hidden。-->
-    <div style="background: goldenrod;width: 300px;height: 200px;overflow: hidden">
+    <div style="background: whitesmoke;width: 300px;height: 200px;overflow: hidden">
       <div style="background: #D42D00;height: 50%;width: 50%;margin: 50px 0;">已知父高度和自身高度实现竖直居中</div>
     </div>
 
@@ -59,13 +64,18 @@
 
 <script>
   export default {
-
+    methods: {
+      testBefore() {
+        alert('window testBefore')
+      }
+    }
   }
 </script>
 <style lang="scss">
   .test-css-style {
     background-color: var(--primiryColor);
-    color: white;
+    color: black;
+    background-color: goldenrod;
 
     .test-float {
       height: 80px;
@@ -92,7 +102,7 @@
       line-height: 120px;
       background: lightgrey;
     }
-    /*::after不在dom上，不能响应事件*/
+    /*::after不在dom上，不能响应事件, 但能增加元素本身的点击面积*/
     .test-before::after {
       content: '\2715';
       position: absolute;

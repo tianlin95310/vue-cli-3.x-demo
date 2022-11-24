@@ -5,6 +5,8 @@
       <button class="button" @click="sort">测试数组排序</button>
 
       <button class="button" @click="reduceQuchong">reduce方式去重</button>
+
+      <button class="button" @click="testAddListEle">push list[0]</button>
     </div>
     <div>
       <button class="button" @click="splice">splice(1, 1)</button>
@@ -39,6 +41,19 @@
       return {}
     },
     methods: {
+      testAddListEle() {
+        const o1 = {
+          str: 'o1'
+        }
+        const list = [{ str: 'o2'}, o1]
+        console.log('list', JSON.stringify(list))
+        list.push(list[1])
+        console.log('list', JSON.stringify(list))
+        o1.str = 'oo1'
+        console.log('list', JSON.stringify(list))
+        list[1].str = 'oo2'
+        console.log('list', JSON.stringify(list))
+      },
       reduceQuchong() {
         let array = [1, 2, 3, 4, 5, 4, 3, 2, 7, 8, 9]
         // console.log(array.reverse())

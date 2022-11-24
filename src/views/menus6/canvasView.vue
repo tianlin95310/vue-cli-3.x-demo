@@ -40,13 +40,13 @@
   </div>
 </template>
 <script>
-  import TlCircleRatio from './comp/TlCircleRatio'
-  import TlCircleRatioRound from './comp/TlCircleRatioRound.vue'
-  import chart from './comp/chart.vue'
+  import TlCircleRatio from './canvas/TlCircleRatio'
+  import TlCircleRatioRound from './canvas/TlCircleRatioRound.vue'
+  import chart from './canvas/chart.vue'
   import { swapEvent } from '@/utils/event.js'
   import TLDialog from '@/components/TLDialog'
-  import TLImageCut from './comp/TLImageCut'
-  import TlRoundCountDown from './comp/tl-round-count-down'
+  import TLImageCut from './canvas/TLImageCut'
+  import TlRoundCountDown from './canvas/tl-round-count-down'
   export default {
     name: 'CanvasView',
     components: {

@@ -57,7 +57,7 @@
       const maxScroll = table.scrollWidth - table.clientWidth
       console.log('mounted', originActScrollWidth, maxScroll, customScroll.clientWidth)
       table.onscroll = (event) => {
-        const scrollPercent = maxScroll / (customScroll.clientWidth / 2)
+        const scrollPercent = maxScroll / (300 - 100)
         this.left = table.scrollLeft / scrollPercent
       }
     }
@@ -70,17 +70,17 @@
   width: 100%;
   .custom-scroll {
     margin: 16px 0;
-    width: 100%;
+    width: 300px;
     background: #6f7a84;
     position: relative;
     height: 10px;
-    border-radius: 10px;
+    border-radius: 20px;
     .my-scroll {
       position: absolute;
       height: 100%;
       background: #42b983;
-      width: 50%;
-      border-radius: 10px;
+      width: 100px;
+      border-radius: 20px;
     }
   }
   .table {

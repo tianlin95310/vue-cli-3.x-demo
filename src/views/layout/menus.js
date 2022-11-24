@@ -78,7 +78,7 @@ export const MENUS = [
       isOpen: false,
       path: '/menu3/testJsListAndMap'
     }, {
-      menuTitle: '数组操作',
+      menuTitle: '数组Array操作',
       isOpen: false,
       path: '/menu3/listOperate'
     }, {

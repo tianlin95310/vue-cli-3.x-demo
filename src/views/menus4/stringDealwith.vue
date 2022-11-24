@@ -73,7 +73,7 @@ function numberFormat(number, decimals, decPoint, thousandsSep, roundtag) {
 
 export default {
   methods: {
-   
+
     numberFormat: numberFormat,
     testUrlDecode() {
       console.log('decodeURIComponent =', encodeURIComponent('测 试&文件转义.pdf'), 'decodeURI =', encodeURI('测 试&文件转义.pdf'))
@@ -96,6 +96,9 @@ export default {
 
       const str3 = ' 1/2/3/4 '
       console.log('str---' + str3.replace(/\//g, '*'))
+
+      const str4 = '2022-12-12 12:12:12'
+      console.log('str---' + str4.replace(/-/g, '/'))
     },
     jsEmptyToJson() {
       const str = ''

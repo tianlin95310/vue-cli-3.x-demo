@@ -13,10 +13,13 @@
       <button class="button" @click="getInstanceStatic">JS单例模式 添加静态方法</button>
     </div>
     <div>
-      <button class="button" @click="debounce">防抖函数的实现</button>
-      <button class="button" @click="throttle">节流函数的实现</button>
+      <button class="button" @click="debounce">防抖函数的实现（手动）</button>
+      <button class="button" @click="throttle">节流函数的实现（手动）</button>
     </div>
-
+    <div>
+      <button class="button" @click="debounceAPI">防抖函数的实现（API）</button>
+      <button class="button" @click="throttleAPI">节流函数的实现（API）</button>
+    </div>
   </div>
 </template>
 
@@ -43,7 +46,7 @@
   }
 
   var timer = null
-  const debounceS = function(callback, delay, immediate) {
+  const debounceS = function(callback, delay) {
     return function() {
       const _this = this
       const args = arguments
@@ -58,7 +61,7 @@
       }, delay)
     }
   }
-  
+
   People.getInstance = (function() {
     let instance
     return function() {
@@ -86,10 +89,26 @@
     data() {
       return {
         person: {},
-        people: []
+        people: [],
+        debounceFun: null
       }
     },
+    created() {
+      // api需要用这种function的写法，得到一个函数体，调用的时候都是调用这个函数体对象，保证了是同一个对象
+      // 就能进行debounce内部的逻辑判断
+      this.debounceFun = debounce(() => {
+        console.log('debounceAPI')
+      }, 2000)
+    },
     methods: {
+      throttleAPI() {},
+      debounceAPI() {
+        this.debounceFun()
+        // 这样写的话其实每一次都是调用一个新的函数,并不是调用的同一个函数,所以防抖失效
+        // debounce(() => {
+        //   console.log('debounceAPI')
+        // }, 2000)()
+      },
       callback() {
         console.log('callback')
       },

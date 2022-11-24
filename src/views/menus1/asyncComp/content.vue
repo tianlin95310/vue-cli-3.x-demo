@@ -1,27 +1,29 @@
 <template>
-  <div>content</div>
+  <div class="content">
+    Async Components
+  </div>
 </template>
 
 <script>
-  import { onMounted } from 'vue'
   export default {
-    setup() {
-      console.log('content setup')
+    async setup() {
       const loadData = () => {
         return new Promise(resolve => {
           setTimeout(() => {
             resolve(111)
-          }, 3000)
+          }, 2000)
         })
       }
-      onMounted(async() => {
-        await loadData()
-        console.log('content onMounted')
-      })
-      loadData()
+      await loadData()
+      console.log('content setup')
     }
   }
 </script>
 
 <style>
+  .content {
+    width: 300px;
+    height: 300px;
+    line-height: 300px;
+  }
 </style>
