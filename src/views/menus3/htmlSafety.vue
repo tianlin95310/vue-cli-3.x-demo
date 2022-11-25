@@ -39,7 +39,7 @@
     name: 'HtmlSafety',
     data() {
       return {
-        comps: ['a1Safe', 'a2Css', 'a3JS', 'a4Vue', 'a5Compatible', 'a6Plugin', 'a7SoftEng'],
+        comps: ['a1Safe', 'a2Css', 'a3JS', 'a4Vue', 'a5Compatible', 'a6Plugin', 'a7SoftEng', 'a8ConfigEx'],
         html: '<form id="test"></form><button form="test" class="button" formaction="javascript:alert(document.getElementById(\'p\').innerHTML = document.cookie)">用户注入的脚本</button>'
       }
     },
