@@ -1,11 +1,13 @@
 <template>
   <!-- 写在这里会顶替RouterView的内容,让页面结构失去RouterView -->
-  <Suspense>
-    <Content></Content>
-    <template #fallback>
-      <div style="height: 300px;line-height: 300px;">Loading...</div>
-    </template>
-  </Suspense>
+ <div>
+   <Suspense>
+     <Content></Content>
+     <template #fallback>
+       <div style="height: 300px;line-height: 300px;">Loading...</div>
+     </template>
+   </Suspense>
+ </div>
 </template>
 <script>
   /*eslint-disable*/

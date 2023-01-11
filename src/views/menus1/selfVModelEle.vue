@@ -12,7 +12,7 @@
   </div>
 </template>
 <script>
-  import EditDiv from './comp/editDiv.vue'
+  import EditDiv from '@/components/EditDiv'
   export default {
     components: {
       EditDiv

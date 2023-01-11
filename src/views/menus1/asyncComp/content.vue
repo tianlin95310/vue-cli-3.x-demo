@@ -22,8 +22,6 @@
 
 <style>
   .content {
-    width: 300px;
-    height: 300px;
     line-height: 300px;
   }
 </style>

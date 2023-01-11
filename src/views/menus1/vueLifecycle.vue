@@ -10,6 +10,7 @@
 <script>
   import child from './comp/childCompLife.vue'
   import child3X from './comp/childCompLife3.x.vue'
+  import mixinOverride from '@/mixins/mixinOverride.js'
 
   /**
    * 组件的加载采用递归的模式
@@ -17,9 +18,11 @@
   export default {
     data() {
       return {
-        v1: 123
+        v1: 123,
+        str: 'parent value'
       }
     },
+    mixins: [mixinOverride],
     components: {
       child,
       child3X
@@ -29,16 +32,17 @@
         console.log('watch $route', newV, oldV)
       }
     },
-    // filters: {
-    //   testFilter(param) {
-    //     return param + 'testFilter'
-    //   }
-    // },
+    methods: {
+      funA() {
+        console.log('fun A called: parent funA', 'str =', this.str)
+      }
+    },
     beforeCreate: function() {
-      console.log('parent beforeCreate', this.v1)
+      console.log('parent beforeCreate', 'v1 =', this.v1)
     },
     created() {
-      console.log('parent created', this.v1)
+      console.log('parent created', 'v1 =', this.v1, 'str =', this.str)
+      this.funA()
     },
     beforeMount() {
       console.log('parent beforeMount')
@@ -76,7 +80,6 @@
       console.log('parent errorCaptured')
       return false
     }
-
   }
 </script>
 

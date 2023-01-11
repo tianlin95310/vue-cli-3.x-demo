@@ -25,12 +25,12 @@
     console.log('组件全局函数的this---', this)
   }
   export default {
-    setup() {
+    setup(prop, context) {
       onBeforeMount(() => {
-        console.log('child3.x onBeforeMount', this)
+        console.log('child3.x onBeforeMount', prop, context)
       })
       onMounted(() => {
-        console.log('child3.x onMounted', this)
+        console.log('child3.x onMounted')
       })
       onBeforeUpdate(() => {
         console.log('child3.x onBeforeUpdate')

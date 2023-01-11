@@ -21,6 +21,11 @@
           location ~ ^/(WEB_INF)/ {
             deny all;
           }
+        2，Vi编辑模式
+          i,a 等进入到开始编辑的insert模式
+          dd 删除光标行
+          Esc进入命令行模式
+          :是命令前缀，w是保存，q是退出，！表示强制
       </pre>
     </template>
   </t-l-collapse>

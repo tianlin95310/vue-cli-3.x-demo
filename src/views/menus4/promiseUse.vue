@@ -25,6 +25,8 @@
     <button class="button" @click="PromiseAny" title="任意一个成功resolve">Promise.any</button>
 
     <button class="button" @click="PromiseRace" title="任意一个先走完取哪个值">Promise.race</button>
+
+    <button class="button" @click="NoReturnPromise" title="无返回Promise">无返回Promise</button>
   </div>
 </template>
 <script>
@@ -34,6 +36,28 @@
       }
     },
     methods: {
+      async aNoReturnPromise() {
+        const res = new Promise(function(resolve, reject) {
+          setTimeout(() => {
+            resolve('aNoReturnPromise')
+          }, 1000)
+        })
+        return res
+        // if not return res, the function will return underfined in sync thread
+      },
+      async NoReturnPromise() {
+        this.aNoReturnPromise().then(res => {
+          console.log('NoReturnPromise', res)
+        })
+        // await 非promise对象,就是主线程操作,await有没有没有差别
+        const aw1 = await 1000
+        console.log('aw', aw1)
+        await this.aNoReturnPromise().then(res => {
+          console.log('NoReturnPromise', res)
+        })
+        const aw2 = await 2000
+        console.log('aw2', aw2)
+      },
       PromiseRace() {
         Promise.race([this.promiseFun1(), this.promiseFun2()]).then(res => {
           console.log('PromiseRace res', res)

@@ -55,7 +55,7 @@
       时间加一年： {{ timeOffset('year', 1, new Date()).format('yyyy-MM-dd HH:mm:ss') }}
     </div>
     <div>
-      时间减一年： {{ timeOffset('year', -2, new Date()).format('yyyy-MM-dd HH:mm:ss') }}
+      时间减二年： {{ timeOffset('year', -2, new Date()).format('yyyy-MM-dd HH:mm:ss') }}
     </div>
     <div>
       时间加二月： {{ timeOffset('month', 2, new Date()).format('yyyy-MM-dd HH:mm:ss') }}

@@ -18,7 +18,8 @@ module.exports = {
     // 参数名前空格的问题
     'space-before-function-paren': [2, 'never'],
     // 多余的空格问题
-    'no-trailing-spaces': 1
+    'no-trailing-spaces': 1,
+    'no-unused-vars': ['off']
   },
   overrides:[
     	{
