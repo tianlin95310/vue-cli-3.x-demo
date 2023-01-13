@@ -11,7 +11,7 @@
     </div>
     <router-view v-slot="{ Component}" class="route-content scroll-bar" >
       <transition name="fade-transform" mode="out-in">
-        <keep-alive :include="['CanvasView', 'HtmlView']">
+        <keep-alive :include="['CanvasView', 'HtmlView', 'HtmlSafety']">
           <component :is="Component" />
         </keep-alive>
       </transition>

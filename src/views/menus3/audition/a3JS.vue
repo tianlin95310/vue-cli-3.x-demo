@@ -21,7 +21,7 @@
         6，普通函数和箭头函数的区别
           普通函数的this指向对象本省，可以作为构造函数，箭头函数都是匿名函数，不能作为构造函数
         7，Promise的静态方法
-          见标签Promise的使用
+          见标签<router-link class="highlight link-inline" to="/menu4/promiseUse">[4] 工具的使用-Promise的使用</router-link>
         9，宏任务和微任务以及Promise
           setTimeout,setInter属于宏任务，Promise的构造阶段属于主线程同步快，then的处理属于微任务
           主线程同步代码 > 微任务 > 宏任务

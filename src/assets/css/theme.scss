@@ -47,7 +47,7 @@ input {
 	border: 1px solid #48a167;
 }
 
-a {
+.download-a {
   font-size: 1.2rem;
   display: block;
   height: 32px;
@@ -121,4 +121,39 @@ pre {
 .line-b-e:before {
 	background-color: #EEE;
 	bottom: 0;
+}
+
+.ib-vm {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.flex-ver-center {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.flex-ver-center-wrap {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.flex-hor-center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.link-inline {
+	display: inline-block;
+	font-size: 14px;
 }

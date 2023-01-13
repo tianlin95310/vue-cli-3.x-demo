@@ -1,25 +1,50 @@
 <template>
   <div class="canvas-view page-container" @mousemove="onMouseMove">
+    <input v-model="inputValue" style="vertical-align: middle" placeholder="测试keep Alive"/>
    <div>
-     <div style="display: inline-block;width: 240px;vertical-align: middle">
+     <div style="display: inline-block;width: 300px;vertical-align: middle">
        <div>点的屏幕坐标：{{ eventPo.mx }}, {{eventPo.my }}</div>
        <div>相对应右侧内容块的坐标：{{ eventPo.mx - leftWidth }}, {{eventPo.my - 40}}</div>
-       <input v-model="inputValue" style="vertical-align: middle" placeholder="测试keep Alive"/>
      </div>
-     <div style="width: 100px;height: 100px;display: inline-block;vertical-align: middle">
+     <div class="ib-vm" style="width: 100px;height: 100px;" title="普通的原型百分比">
        <tl-circle-ratio :percent="percent" />
      </div>
-     <div style="width: 100px;height: 100px;display: inline-block;vertical-align: middle">
+     <div class="ib-vm" style="width: 100px;height: 100px;" title="渐变色的原型百分比">
        <tl-circle-ratio-round :percent="percent" />
      </div>
      <button class="button" @click="showDialog">图片裁剪</button>
-     <div style="display: inline-block;width: 200px;height: 200px;vertical-align: middle;background: #D42D00">
+
+     <div class="ib-vm" style="width: 200px;height: 200px;background: #D42D00">
        <tl-round-count-down :progress="progress" />
      </div>
    </div>
-    <div style="height: 320px;display: flex;flex-direction: column;justify-content: center;align-items: center">
+
+   <div>
+     <div class="ib-vm" style="width: 150px;height: 300px;">
+       <CylinderProgress :percent="percent2" :cylinderHeight="cylinderHeight" :width="150" :height="300"></CylinderProgress>
+     </div>
+
+     <div class="ib-vm">
+       <div>
+         <button class="button" @click="cylinderHeight += 1">倾斜度加一点</button>
+         倾斜度：{{ cylinderHeight }}
+         <button class="button" @click="cylinderHeight -= 1">倾斜度减一点</button>
+       </div>
+      <div>
+        <button class="button" @click="percent2 += 0.1">加一点</button>
+        进度：{{ percent2.toFixed(1) }}
+        <button class="button" @click="percent2 -= 0.1">减一点</button>
+      </div>
+     </div>
+     <div class="ib-vm" style="width: 150px;height: 300px;">
+       <CylinderProgress :percent="percent" :cylinderHeight="cylinderHeight" :width="150" :height="300"></CylinderProgress>
+     </div>
+   </div>
+
+    <div class="flex-center" style="height: 320px;">
       <chart style="width: 480px;height: 270px;"></chart>
     </div>
+
     <t-l-dialog v-model="visible">
       <template v-slot:content>
         <div class="dialog-content">
@@ -30,7 +55,7 @@
             <div class="img-div">
               <img :src="currentImg" :style="styleObj" class="img">
             </div>
-            <div class="img-cut">
+            <div class="img-cut" style="width: 300px;height: 300px;">
               <t-l-image-cut style="z-index: 210" />
             </div>
           </div>
@@ -47,6 +72,7 @@
   import TLDialog from '@/components/TLDialog'
   import TLImageCut from './canvas/TLImageCut'
   import TlRoundCountDown from './canvas/tl-round-count-down'
+  import CylinderProgress from './canvas/CylinderProgress.vue'
   export default {
     name: 'CanvasView',
     components: {
@@ -55,7 +81,8 @@
       chart,
       TLDialog,
       TLImageCut,
-      TlRoundCountDown
+      TlRoundCountDown,
+      CylinderProgress
     },
     data() {
       return {
@@ -67,10 +94,12 @@
         visible: false,
         currentImg: null,
         styleObj: {
-          height: '500px',
+          height: '300px',
           width: 'auto'
         },
-        progress: 60
+        progress: 60,
+        percent2: 0.5,
+        cylinderHeight: 30
       }
     },
     created() {
@@ -78,7 +107,7 @@
     },
     mounted() {
       console.log('canvasView mounted', this.$el)
-      this.leftWidth = 18 * document.documentElement.clientWidth / 100
+      this.leftWidth = Math.floor(18 * document.documentElement.clientWidth / 100)
     },
     activated() {
       console.log('canvasView activated---', this.$el)
@@ -93,7 +122,7 @@
               clearInterval(timer)
             }
           }
-        }, 10)
+        }, 50)
       }
       const timer2 = setInterval(() => {
         this.progress--
@@ -120,11 +149,11 @@
           if (this.naturalWidth > this.naturalHeight) {
             _this.styleObj = {
               height: 'auto',
-              width: '500px'
+              width: '300px'
             }
           } else {
             _this.styleObj = {
-              height: '500px',
+              height: '300px',
               width: 'auto'
             }
           }
@@ -156,7 +185,7 @@
     position: relative;
     .dialog-content {
       .img-content {
-        height: 500px;
+        height: 300px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -174,11 +203,8 @@
         }
         .img-cut {
           z-index: 210;
-          position: absolute;
-          width: 100%;
-          top: 0;
-          left: 0;
           text-align: center;
+          margin: 0 auto;
         }
       }
     }

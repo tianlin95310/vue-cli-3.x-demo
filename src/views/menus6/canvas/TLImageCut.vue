@@ -10,7 +10,7 @@
     name: 'TLImageCut',
     data() {
       return {
-        size: 500,
+        size: 300,
         canvas: null,
         radius: 100,
         sx: 0,
@@ -78,8 +78,8 @@
 <style lang="scss" scoped>
 .tl-image-cut {
   display: inline-block;
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   canvas {
     width: 100%;
     height: 100%;
