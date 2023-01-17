@@ -18,7 +18,7 @@
     },
     data() {
       return {
-        padding: 60.0,
+        padding: 60,
         canvasW: 960,
         canvasH: 540,
         canvas: undefined,
@@ -38,9 +38,10 @@
     },
     methods: {
       onMouseMove(event) {
-        event = swapEvent(event, document.getElementById('tl-chart'))
-        // console.log(event.offsetX * 2, event.offsetY * 2)
-        this.positionX = event.offsetX * 2
+        // event = swapEvent(event, document.getElementById('tl-chart'))
+        console.log(event, event.offsetX, event.offsetY)
+        // 样式尺寸乘以画布密度等于实际在画布上的像素位置
+        this.positionX = event.offsetX * (960 / 320)
       },
       onDraw() {
         let canvas = this.canvas

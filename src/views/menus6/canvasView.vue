@@ -1,11 +1,11 @@
 <template>
   <div class="canvas-view page-container" @mousemove="onMouseMove">
-    <input v-model="inputValue" style="vertical-align: middle" placeholder="测试keep Alive"/>
+    <div>
+      <div>点的屏幕坐标：{{ eventPo.mx }}, {{eventPo.my }}</div>
+      <div>相对应右侧内容块的坐标：{{ eventPo.mx - leftWidth }}, {{eventPo.my - 40}}</div>
+    </div>
+
    <div>
-     <div style="display: inline-block;width: 300px;vertical-align: middle">
-       <div>点的屏幕坐标：{{ eventPo.mx }}, {{eventPo.my }}</div>
-       <div>相对应右侧内容块的坐标：{{ eventPo.mx - leftWidth }}, {{eventPo.my - 40}}</div>
-     </div>
      <div class="ib-vm" style="width: 100px;height: 100px;" title="普通的原型百分比">
        <tl-circle-ratio :percent="percent" />
      </div>
@@ -17,9 +17,7 @@
      <div class="ib-vm" style="width: 200px;height: 200px;background: #D42D00">
        <tl-round-count-down :progress="progress" />
      </div>
-   </div>
 
-   <div>
      <div class="ib-vm" style="width: 150px;height: 300px;">
        <CylinderProgress :percent="percent2" :cylinderHeight="cylinderHeight" :width="150" :height="300"></CylinderProgress>
      </div>
@@ -36,14 +34,18 @@
         <button class="button" @click="percent2 -= 0.1">减一点</button>
       </div>
      </div>
+
      <div class="ib-vm" style="width: 150px;height: 300px;">
        <CylinderProgress :percent="percent" :cylinderHeight="cylinderHeight" :width="150" :height="300"></CylinderProgress>
      </div>
-   </div>
+     <div class="ib-vm" style="width: 200px;height: 200px;">
+       <TLWaveView :percent="percent" :width="200" :height="200" bgColor="gainsboro"></TLWaveView>
+     </div>
 
-    <div class="flex-center" style="height: 320px;">
-      <chart style="width: 480px;height: 270px;"></chart>
-    </div>
+     <div class="ib-vm">
+       <chart style="width: 320px;height: 180px;"></chart>
+     </div>
+   </div>
 
     <t-l-dialog v-model="visible">
       <template v-slot:content>
@@ -65,14 +67,15 @@
   </div>
 </template>
 <script>
+  import { swapEvent } from '@/utils/event.js'
   import TlCircleRatio from './canvas/TlCircleRatio'
   import TlCircleRatioRound from './canvas/TlCircleRatioRound.vue'
   import chart from './canvas/chart.vue'
-  import { swapEvent } from '@/utils/event.js'
   import TLDialog from '@/components/TLDialog'
   import TLImageCut from './canvas/TLImageCut'
   import TlRoundCountDown from './canvas/tl-round-count-down'
   import CylinderProgress from './canvas/CylinderProgress.vue'
+  import TLWaveView from './canvas/TLWaveView.vue'
   export default {
     name: 'CanvasView',
     components: {
@@ -82,15 +85,15 @@
       TLDialog,
       TLImageCut,
       TlRoundCountDown,
-      CylinderProgress
+      CylinderProgress,
+      TLWaveView
     },
     data() {
       return {
-        percent: 0.0,
         eventPo: {},
         leftWidth: 0,
-        inputValue: '',
         isDone: false,
+        isDone2: false,
         visible: false,
         currentImg: null,
         styleObj: {
@@ -98,6 +101,7 @@
           width: 'auto'
         },
         progress: 60,
+        percent: 0.0,
         percent2: 0.5,
         cylinderHeight: 30
       }
@@ -112,26 +116,29 @@
     activated() {
       console.log('canvasView activated---', this.$el)
       if (!this.isDone) {
+        this.isDone = true
         const timer = setInterval(() => {
           // console.log('setInterval', this.percent)
           this.percent += 0.01
           this.percent = parseFloat(this.percent.toFixed(2))
           if (this.percent >= 1) {
-            this.isDone = true
             if (timer) {
               clearInterval(timer)
             }
           }
         }, 50)
       }
-      const timer2 = setInterval(() => {
-        this.progress--
-        if (this.progress <= 0) {
-          if (timer2) {
-            clearInterval(timer2)
+      if (!this.isDone2) {
+        this.isDone2 = true
+        const timer2 = setInterval(() => {
+          this.progress--
+          if (this.progress <= 0) {
+            if (timer2) {
+              clearInterval(timer2)
+            }
           }
-        }
-      }, 1000)
+        }, 1000)
+      }
     },
     methods: {
       onFileChange(event) {

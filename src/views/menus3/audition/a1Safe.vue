@@ -1,4 +1,8 @@
 <template>
+  <!--    脚本注入安全，对用户输入的内容进行渲染的控件需要特别注意，输入的内容需要进行脚本转义-->
+  <!--  javascript:alert(#command#)-->
+  <!--  可以注入在浏览器输入框-->
+  <!--  https://www.jb51.net/article/92639.htm-->
   <t-l-collapse title="1,安全性问题">
     <template v-slot:content>
       <pre>
@@ -11,6 +15,11 @@
             不被第三方网站访问到用户的cookie
             设置白名单，不被第三方网站请求
             请求校验
+          <div class="safe-test">
+            <div v-html="html" style="width: 200px;height: 100px;background: #42b983" title="通过注入脚本读取隐私信息"></div>
+            <p id="p"></p>
+            <div><span>输入的脚本内容：</span><input v-model="html" style="width: 88%;font-size: 11px;"></div>
+          </div>
         2，HTTPS和http协议的区别？
           HTTPS通过SSL实现了传输层加密，能防止被中间人篡改数据传输，但是HTTPS的性能要求更高。
           三次握手的作用
@@ -57,9 +66,21 @@
     name: 'a1Safe',
     components: {
       TLCollapse
+    },
+    data() {
+      return {
+        html: '<form id="test"></form><button form="test" class="button" formaction="javascript:alert(document.getElementById(\'p\').innerHTML = document.cookie)">用户注入的脚本</button>'
+      }
     }
   }
 </script>
 
 <style>
+  .safe-test {
+    background: yellow;
+    white-space: nowrap;
+  }
+  button {
+    margin: 16px;
+  }
 </style>

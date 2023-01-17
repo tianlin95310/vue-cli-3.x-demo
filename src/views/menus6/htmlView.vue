@@ -2,12 +2,12 @@
   <div class="page-container html-view">
     <tl-rating :score="score" size="1.8em" @update="update" />
     <tl-index-view :items="items" class="index" />
-    <div style="display: inline-block;width: 400px;">
+    <div style="display: inline-block;width: 45%;">
       <TagSelect name="v1" v-model="v1" :items="['AAA', 'BBB', 'CCC', 'DDD']"></TagSelect>
     </div>
 
-    <div style="display: inline-block;width: 400px;">
-      <TagSelect name="v2" v-model="v2" :items="['AAA', 'BBB', 'CCC', 'DDD']" type="radio"></TagSelect>
+    <div style="display: inline-block;width: 45%;">
+      <TagSelect name="v2" v-model="v2" :colCount="4" :items="['AAA', 'BBB', 'CCC', 'DDD']" type="radio"></TagSelect>
     </div>
 
     <div style="display: inline-block;width: 400px;">
