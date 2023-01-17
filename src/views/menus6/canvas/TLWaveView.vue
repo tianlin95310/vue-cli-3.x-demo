@@ -24,7 +24,7 @@
        */
       waveAmplitude: {
         type: Number,
-        default: 40
+        default: 30
       },
       waveHeight: {
         type: Number,
