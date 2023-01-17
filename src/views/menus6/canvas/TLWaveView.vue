@@ -11,10 +11,6 @@
   export default {
     name: 'TLWaveView',
     props: {
-      percent: {
-        type: Number,
-        default: 0
-      },
       width: {
         type: Number,
         default: 200
@@ -55,9 +51,6 @@
       }
     },
     watch: {
-      percent() {
-        this.onDraw(this.canvas)
-      },
       waveAmplitude() {
         this.onDraw(this.canvas)
       }

@@ -24,9 +24,9 @@
 
      <div class="ib-vm">
        <div>
-         <button class="button" @click="cylinderHeight += 1">倾斜度加一点</button>
+         <button class="button" @click="cylinderHeight += 1">加一点</button>
          倾斜度：{{ cylinderHeight }}
-         <button class="button" @click="cylinderHeight -= 1">倾斜度减一点</button>
+         <button class="button" @click="cylinderHeight -= 1">减一点</button>
        </div>
       <div>
         <button class="button" @click="percent2 += 0.1">加一点</button>
@@ -39,7 +39,20 @@
        <CylinderProgress :percent="percent" :cylinderHeight="cylinderHeight" :width="150" :height="300"></CylinderProgress>
      </div>
      <div class="ib-vm" style="width: 200px;height: 200px;">
-       <TLWaveView :percent="percent" :width="200" :height="200" bgColor="gainsboro"></TLWaveView>
+       <TLWaveView :waveAmplitude="waveAmplitude" :waveHeight="waveHeight" :width="200" :height="200" bgColor="gainsboro"></TLWaveView>
+     </div>
+
+     <div class="ib-vm">
+       <div>
+         <button class="button" @click="waveAmplitude += 5">加一点</button>
+         振幅：{{ waveAmplitude }}
+         <button class="button" @click="waveAmplitude -= 5">减一点</button>
+       </div>
+      <div>
+        <button class="button" @click="waveHeight += 5">加一点</button>
+        高度：{{ waveHeight }}
+        <button class="button" @click="waveHeight -= 5">减一点</button>
+      </div>
      </div>
 
      <div class="ib-vm">
@@ -103,7 +116,9 @@
         progress: 60,
         percent: 0.0,
         percent2: 0.5,
-        cylinderHeight: 30
+        cylinderHeight: 30,
+        waveAmplitude: 30,
+        waveHeight: 120
       }
     },
     created() {
