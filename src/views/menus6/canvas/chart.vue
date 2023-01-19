@@ -117,7 +117,7 @@
 
           canvas.textBaseline = 'bottom'
           if (this.positionX > left && this.positionX < right) {
-            canvas.fillStyle = 'rgba(222, 222, 222, 0.2)'
+            canvas.fillStyle = 'rgba(0, 222, 222, 0.2)'
             canvas.fillRect(left - this.itemWidth / 2, 0, right + this.itemWidth - left, bottom)
             canvas.fillStyle = gnt1
           } else {

@@ -1,6 +1,6 @@
 <template>
   <div ref="container" class="tl-wave-view">
-    <canvas ref="canvas" class="canvas" :width="width" :height="height" />
+    <canvas ref="canvas" class="canvas" :width="width" :height="height" :style="styleObj" />
   </div>
 </template>
 <script>
@@ -11,6 +11,12 @@
   export default {
     name: 'TLWaveView',
     props: {
+      styleObj: {
+        type: Object,
+        default() {
+          return null
+        }
+      },
       width: {
         type: Number,
         default: 200
@@ -70,7 +76,6 @@
         canvas.closePath()
         canvas.stroke()
         canvas.fill()
-
         this.setShape(canvas)
       },
       setShape(canvas) {

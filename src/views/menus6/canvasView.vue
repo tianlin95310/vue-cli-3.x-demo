@@ -39,7 +39,14 @@
        <CylinderProgress :percent="percent" :cylinderHeight="cylinderHeight" :width="150" :height="300"></CylinderProgress>
      </div>
      <div class="ib-vm" style="width: 200px;height: 200px;">
-       <TLWaveView :waveAmplitude="waveAmplitude" :waveHeight="waveHeight" :width="200" :height="200" bgColor="gainsboro"></TLWaveView>
+       <TLWaveView
+         :waveAmplitude="waveAmplitude"
+         :waveHeight="waveHeight"
+         :width="200"
+         :height="200"
+         :styleObj="{border: '1px solid #fff3b0c7', borderRadius: '200px'}"
+         bgColor="gainsboro"
+       ></TLWaveView>
      </div>
 
      <div class="ib-vm">
