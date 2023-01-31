@@ -28,7 +28,7 @@
     </div>
 
     <div>
-      <h2>html内置对象</h2>
+      <h2>html内置对象以及属性</h2>
       <span>location.origin = {{ locationOrigin() }}</span>
     </div>
   </div>
@@ -36,10 +36,6 @@
 
 <script>
   export default {
-    data() {
-      return {}
-    },
-    created() {},
     methods: {
       locationOrigin() {
         return location.origin
@@ -54,20 +50,24 @@
         console.log('typeof a === \'string\'', typeof a === 'string')
         console.log('------------------------')
         const b = String('123')
-        console.log(b instanceof String)
+        console.log('b', b instanceof String)
         console.log(typeof b === 'string')
         console.log('------------------------')
         const c = {}
-        console.log(c instanceof Object)
+        console.log('c', c instanceof Object)
         console.log(typeof c === 'object')
         console.log('------------------------')
-        const d = new Date()
-        console.log(d instanceof Object)
-        console.log(typeof d === 'object')
+        const d = Symbol('sum')
+        console.log('d', d instanceof Object)
+        console.log(typeof d, typeof d === 'object')
         console.log('------------------------')
         const e = new Date()
-        console.log(e instanceof Date)
+        console.log('e', e instanceof Date)
         console.log(typeof e === 'object')
+        console.log('------------------------')
+        const f = null
+        console.log(f instanceof Object)
+        console.log(typeof f, typeof f === 'object')
         console.log('------------------------')
       },
       testNull() {

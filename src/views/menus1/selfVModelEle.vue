@@ -19,7 +19,7 @@
     },
     data() {
       return {
-        text: 'tianlin',
+        text: '',
         text2: 'you can\'t edit me',
         canEdit: true
       }

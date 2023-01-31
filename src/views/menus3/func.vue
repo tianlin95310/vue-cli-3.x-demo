@@ -10,7 +10,11 @@
 
     <div>
       <button class="button" @click="getInstance">JS单例模式 属性上直接添加闭包函数</button>
-      <button class="button" @click="getInstanceStatic">JS单例模式 添加静态方法</button>
+      <button class="button" @click="getInstanceStatic">JS单例模式 class添加静态方法</button>
+    </div>
+
+    <div>
+      <button class="button" @click="JSInterface">JS interface</button>
     </div>
     <div>
       <button class="button" @click="debounce">防抖函数的实现（手动）</button>
@@ -26,64 +30,10 @@
 <script>
   /*eslint-disable*/
   import { throttle, debounce } from 'lodash'
-  function People() {
-    this.name = '张三'
-  }
-
-  var delay = 1000
-  var prev = Date.now() - delay
-  const throttleS = function(func, delay) {
-    return function() {
-      var context = this
-      var args = arguments
-      var now = Date.now()
-      // console.log('prev == ', prev, 'now == ', now, now - prev)
-      if (now - prev >= delay) {
-        func.apply(context, args)
-        prev = Date.now()
-      }
-    }
-  }
-
-  var timer = null
-  const debounceS = function(callback, delay) {
-    return function() {
-      const _this = this
-      const args = arguments
-      console.log('timer', timer)
-      if (timer) {
-        clearTimeout(timer)
-        timer = null
-      }
-      timer = setTimeout(function() {
-        console.log('called timer', timer)
-        callback.apply(_this, args)
-      }, delay)
-    }
-  }
-
-  People.getInstance = (function() {
-    let instance
-    return function() {
-      if (!instance) {
-        instance = new People()
-      }
-      return instance
-    }
-  })()
-
-  class User {
-    constructor(name) {
-      this.name = name
-    }
-
-    static getInstance(name) {
-      if (!User._instance) {
-        User._instance = new User(name)
-      }
-      return User._instance
-    }
-  }
+  import { debounceS, throttleS } from './utils'
+  // import './utils/classSingleInstance.js'
+  import { People, User } from './utils/classSingleInstance.js'
+  import { ABC } from './utils/jsInterface.js'
 
   export default {
     data() {
@@ -101,6 +51,9 @@
       }, 2000)
     },
     methods: {
+      JSInterface() {
+        console.log('sss', new ABC(123))
+      },
       throttleAPI() {},
       debounceAPI() {
         this.debounceFun()
