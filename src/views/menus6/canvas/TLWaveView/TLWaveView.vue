@@ -36,6 +36,10 @@
         type: Number,
         default: 120
       },
+      waveColor: {
+        type: String,
+        default: 'rgba(0, 0, 255, 200)'
+      },
       bgColor: {
         type: String,
         default: 'white'
@@ -63,7 +67,8 @@
     },
     methods: {
       onDraw(canvas) {
-        canvas.fillStyle = 'rgba(0, 0, 255, 200)'
+        canvas.fillStyle = this.waveColor
+        canvas.strokeStyle = 'transparent'
         canvas.clearRect(0, 0, this.width, this.height)
         canvas.beginPath()
         canvas.moveTo(this.mLeft1.x, this.mLeft1.y)
@@ -93,7 +98,7 @@
       initCanvas() {
         const canvas = this.$refs.canvas
         // 通过api获取元素的style
-        console.log('container style', window.getComputedStyle(this.$refs.container))
+        // console.log('container style', window.getComputedStyle(this.$refs.container))
         canvas.width = this.width
         canvas.height = this.height
         const context = canvas.getContext('2d')
@@ -196,14 +201,14 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  .tl-wave-view {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    .canvas {
-      width: 100%;
-      height: 100%;
-    }
-  }
+<style scoped>
+.tl-wave-view {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.tl-wave-view .canvas {
+  width: 100%;
+  height: 100%;
+}
 </style>

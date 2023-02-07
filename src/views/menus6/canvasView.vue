@@ -40,12 +40,13 @@
      </div>
      <div class="ib-vm" style="width: 200px;height: 200px;">
        <TLWaveView
-         :waveAmplitude="waveAmplitude"
-         :waveHeight="waveHeight"
-         :width="200"
-         :height="200"
-         :styleObj="{border: '1px solid #fff3b0c7', borderRadius: '200px'}"
-         bgColor="gainsboro"
+        :waveAmplitude="waveAmplitude"
+        :waveHeight="waveHeight"
+        :width="200"
+        :height="200"
+        :styleObj="{border: '1px solid gainsboro', borderRadius: '200px'}"
+        bgColor="white"
+        waveColor="rgba(255, 0, 0, 255)"
        ></TLWaveView>
      </div>
 
@@ -63,7 +64,7 @@
      </div>
 
      <div class="ib-vm">
-       <chart style="width: 320px;height: 180px;"></chart>
+       <TLChart style="width: 320px;height: 180px;" />
      </div>
    </div>
 
@@ -90,18 +91,18 @@
   import { swapEvent } from '@/utils/event.js'
   import TlCircleRatio from './canvas/TlCircleRatio'
   import TlCircleRatioRound from './canvas/TlCircleRatioRound.vue'
-  import chart from './canvas/chart.vue'
+  import TLChart from './canvas/TLChart.vue'
   import TLDialog from '@/components/TLDialog'
   import TLImageCut from './canvas/TLImageCut'
-  import TlRoundCountDown from './canvas/tl-round-count-down'
+  import TlRoundCountDown from './canvas/TlRoundCountDown.vue'
   import CylinderProgress from './canvas/CylinderProgress.vue'
-  import TLWaveView from './canvas/TLWaveView.vue'
+  import TLWaveView from './canvas/TLWaveView'
   export default {
     name: 'CanvasView',
     components: {
       TlCircleRatio,
       TlCircleRatioRound,
-      chart,
+      TLChart,
       TLDialog,
       TLImageCut,
       TlRoundCountDown,
@@ -125,7 +126,7 @@
         percent2: 0.5,
         cylinderHeight: 30,
         waveAmplitude: 30,
-        waveHeight: 120
+        waveHeight: 100
       }
     },
     created() {

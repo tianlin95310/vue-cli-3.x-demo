@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve --open",
     "sit": "vue-cli-service serve --mode sit",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+		"waveview": "vue-cli-service build --target lib ./src/views/menus6/canvas/TLWaveView/index.js --name vue-waveview --dest vue-waveview"
   },
   "dependencies": {
     "core-js": "^3.6.5",
