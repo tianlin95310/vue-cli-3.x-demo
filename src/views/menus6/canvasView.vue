@@ -38,15 +38,17 @@
      <div class="ib-vm" style="width: 150px;height: 300px;">
        <CylinderProgress :percent="percent" :cylinderHeight="cylinderHeight" :width="150" :height="300"></CylinderProgress>
      </div>
-     <div class="ib-vm" style="width: 200px;height: 200px;">
+
+     <div class="ib-vm">
        <TLWaveView
         :waveAmplitude="waveAmplitude"
         :waveHeight="waveHeight"
         :width="200"
         :height="200"
-        :styleObj="{border: '1px solid gainsboro', borderRadius: '200px'}"
-        bgColor="white"
-        waveColor="rgba(255, 0, 0, 255)"
+        bgColor="gainsboro"
+        :isCycle="true"
+        :styleObj="{border: '1px solid white', borderRadius: '50%'}"
+        waveColor="rgba(0, 255, 255, 255)"
        ></TLWaveView>
      </div>
 

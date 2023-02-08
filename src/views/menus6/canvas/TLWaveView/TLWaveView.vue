@@ -1,5 +1,5 @@
 <template>
-  <div ref="container" class="tl-wave-view">
+  <div ref="container" :style="{width: width + 'px', height: height + 'px'}" class="tl-wave-view">
     <canvas ref="canvas" class="canvas" :width="width" :height="height" :style="styleObj" />
   </div>
 </template>
@@ -43,6 +43,10 @@
       bgColor: {
         type: String,
         default: 'white'
+      },
+      isCycle: {
+        type: Boolean,
+        default: true
       }
     },
     data() {
@@ -81,9 +85,11 @@
         canvas.closePath()
         canvas.stroke()
         canvas.fill()
-        this.setShape(canvas)
+        if (this.isCycle && this.width === this.height) {
+          this.setCycleShape(canvas)
+        }
       },
-      setShape(canvas) {
+      setCycleShape(canvas) {
         canvas.fillStyle = this.bgColor
         canvas.beginPath()
         canvas.moveTo(0, 0)
@@ -203,7 +209,6 @@
 
 <style scoped>
 .tl-wave-view {
-  display: inline-block;
   width: 100%;
   height: 100%;
 }
