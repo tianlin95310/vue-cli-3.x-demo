@@ -11,8 +11,8 @@ export default {
   mounted() {
     this.getEL().addEventListener('scroll', this.onScrollElScroll)
   },
-  beforeDestroy() {
-    this.getEL().addEventListener('scroll', this.onScrollElScroll)
+  beforeUnmount() {
+    this.getEL().removeEventListener('scroll', this.onScrollElScroll)
   },
   methods: {
     onScrollElScroll(e) {

@@ -71,7 +71,7 @@
     },
     // 实例销毁之前调用。在这一步，实例仍然完全可用。
     beforeUnmount() {
-      console.log('parent beforeDestroy')
+      console.log('parent beforeUnmount')
     },
     unmounted() {
       console.log('parent destroyed')

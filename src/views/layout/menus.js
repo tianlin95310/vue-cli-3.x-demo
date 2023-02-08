@@ -86,7 +86,7 @@ export const MENUS = [
       isOpen: false,
       path: '/menu3/func'
     }, {
-      menuTitle: '解构操作符',
+      menuTitle: '特殊运算法',
       isOpen: false,
       path: '/menu3/objectAnal'
     }, {

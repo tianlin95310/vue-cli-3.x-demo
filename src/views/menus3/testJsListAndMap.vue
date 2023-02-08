@@ -9,10 +9,13 @@
       </div>
       <div>
         <button class="button" @click="obj_fun">Object的用法</button>
-        <div>
-           <button class="button" @click="testNull">测试空的判断</button>
-        </div>
+        <button class="button" @click="testeq">==操作符</button>
+
       </div>
+      <div>
+         <button class="button" @click="testNull">测试空的判断</button>
+      </div>
+
     <div>
       <button class="button" @click="fun6">类型判断(type of, instance of)</button>
       <pre>
@@ -35,6 +38,7 @@
 </template>
 
 <script>
+  /*eslint-disable*/
   export default {
     methods: {
       locationOrigin() {
@@ -144,6 +148,18 @@
         map.forEach((k, v) => {
           console.log(k + ' = ' + v)
         })
+      },
+      testeq() {
+        var a = {
+          value: 1,
+          // [Symbol.toString]() {
+          //   return a.value++
+          // },
+          toString() {
+            return a.value++
+          }
+        }
+        console.log((a == 1 && a == 2 && a == 3))
       },
       obj_fun() {
         // 对于数组

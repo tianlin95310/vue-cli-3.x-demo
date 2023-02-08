@@ -20,18 +20,23 @@
             <p id="p"></p>
             <div><span>输入的脚本内容：</span><input v-model="html" style="width: 88%;font-size: 11px;"></div>
           </div>
+
         2，HTTPS和http协议的区别？
           HTTPS通过SSL实现了传输层加密，能防止被中间人篡改数据传输，但是HTTPS的性能要求更高。
           三次握手的作用
           1，S端可以确认收到报文
           2，C端可以收到S端的报文，并能确认S端能收到自己的报文
           3，S端确认C端可以收到自己的报文
+
         3，开源框架的LICENSE安全性问题？
           MIT协议
           GPL协议
+          ISC协议
+
         4，cookie和session的区别？
           cookie存储在浏览器客户端，不安全，考虑到可以使用session，session存储在服务器，但是
           量大时会影响服务器性能，cookie的大小限制在4k
+
         5，常见错误码？
           100 客户端应继续其请求
           200 请求成功
@@ -50,6 +55,7 @@
           502 网关错误
           503 暂时无法访问
           504 网关超时
+
         6，http缓存策略
           协商缓存：浏览器发出请求，有缓存且没有过期直接读取，没有缓存时查看Etag，有的话向服务器询问If-none-match，没
           有的话查看Last-modified,如果是的话向服务器咨询If-modified-since，服务器决定是返回200还是304，Last-modified否

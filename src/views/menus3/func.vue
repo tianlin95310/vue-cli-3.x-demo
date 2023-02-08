@@ -3,9 +3,8 @@
     <h2>关于函数的一些操作，对象属性操作是"引用"传递的</h2>
     <div>
       <button class="button" @click="change">作为新参传递</button>
-      <button class="button" @click="addList">addList</button>
-      <button class="button" @click="delList">delList</button>
       <button class="button" @click="defArg">函数默认参数</button>
+      <button class="button" @click="defineAClass">函数作为类的实现体</button>
     </div>
 
     <div>
@@ -38,8 +37,6 @@
   export default {
     data() {
       return {
-        person: {},
-        people: [],
         debounceFun: null
       }
     },
@@ -84,29 +81,23 @@
       fun(arg = '123', arg2 = 'tianlin') {
         console.log(arg, arg2)
       },
+      defineAClass() {
+        function AClass(a, b) {
+          this.a = a
+          this.b = b
+        }
+        let aclass = new AClass('12', 'bb')
+        console.log('aclass', aclass)
+      },
       defArg() {
         this.fun()
         this.fun('QQ')
         this.fun('QQ', 'wechat')
       },
-      delList() {
-        const index = Math.ceil(Math.random() * this.people.length) - 1
-        this.people.splice(index, 1)
-        console.log(index)
-        console.log(JSON.stringify(this.people))
-      },
-      addList() {
-        this.add(this.people)
-        console.log(JSON.stringify(this.people))
-      },
-      add(people) {
-        people.push({
-          name: Math.ceil(Math.random() * 9999)
-        })
-      },
       change() {
-        this.changePerson(this.person)
-        console.log(this.person)
+        let person = {}
+        this.changePerson(person)
+        console.log(person)
       },
       changePerson(person) {
         person.name = 'haha' + Math.random()

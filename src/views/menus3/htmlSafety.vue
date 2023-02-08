@@ -9,11 +9,6 @@
   import TLCollapse from '@/components/TLCollapse.vue'
   import comps from './audition'
   import keepScroll from '@/mixins/keepScroll.js'
-  window.onload = function() {
-    document.getElementById('button').onclick = function() {
-      console.log('button')
-    }
-  }
   export default {
     name: 'HtmlSafety',
     data() {

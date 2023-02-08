@@ -25,9 +25,8 @@ import 'vue-waveview/vue-waveview.css'
 	<!-- styleObj: 样式变量，通常可添加圆边框，不需边框可不加 -->
 	<!-- bgColor: 内部背景，出现组件默认背景(white)与父容器不一致时，可设置bgColor和父容器的背景颜色一致即可 -->
 ```
+### 示例图1
+![动图1](static/动图1.png)
 
->示例图1：
-![动图1](static/动图 (1).png)
-
->示例图2：
-![动图2](static/动图 (2).png)
+### 示例图2
+![动图2](static/动图2.png)
