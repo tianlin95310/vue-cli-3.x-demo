@@ -7,12 +7,12 @@
     "sit": "vue-cli-service serve --mode sit",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-		"waveview": "vue-cli-service build --target lib ./src/views/menus6/canvas/TLWaveView/index.js --name vue-waveview --dest vue-waveview"
+    "waveview": "vue-cli-service build --target lib ./src/views/menus6/canvas/TLWaveView/index.js --name vue-waveview --dest vue-waveview"
   },
   "dependencies": {
     "core-js": "^3.6.5",
     "js-cookie": "^2.2.1",
-    "vue": "^3.0.0",
+    "vue": "^3.2.47",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },

@@ -31,13 +31,13 @@ import 'vue-waveview/vue-waveview.css'
 
 ### 示例图1
 ###### 圆形化会出现背景色，可设置bgColor颜色进行调节
-![动图1](static/p1.png)
+![动图1](./static/p1.jpg)
 
 ### 示例图2
-![动图2](static/p2.png)
+![动图2](./static/p2.png)
 
 ### 示例图3
-![动图2](static/p3.png)
+![动图2](./static/p3.png)
 
 ### 示例图4
-![动图2](static/p4.png)
+![动图2](./static/p4.png)
