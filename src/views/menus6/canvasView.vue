@@ -18,8 +18,13 @@
        <tl-round-count-down :progress="progress" />
      </div>
 
-     <div class="ib-vm" style="width: 150px;height: 300px;">
-       <CylinderProgress :percent="percent2" :cylinderHeight="cylinderHeight" :width="150" :height="300"></CylinderProgress>
+     <div class="ib-vm">
+       <CylinderProgress
+       :percent="percent2"
+       :cylinderHeight="cylinderHeight"
+       :width="150"
+       :height="300">
+       </CylinderProgress>
      </div>
 
      <div class="ib-vm">
@@ -35,8 +40,16 @@
       </div>
      </div>
 
-     <div class="ib-vm" style="width: 150px;height: 300px;">
-       <CylinderProgress :percent="percent" :cylinderHeight="cylinderHeight" :width="150" :height="300"></CylinderProgress>
+     <div class="ib-vm">
+       <CylinderProgress
+        :percent="percent"
+        :cylinderHeight="100 / 6"
+        :invisableDashed="true"
+        containerColor="gold"
+        progressColor="rgba(156, 156, 0, 0.5)"
+        :width="100"
+        :height="200">
+        </CylinderProgress>
      </div>
 
      <div class="ib-vm">
@@ -97,7 +110,7 @@
   import TLDialog from '@/components/TLDialog'
   import TLImageCut from './canvas/TLImageCut'
   import TlRoundCountDown from './canvas/TlRoundCountDown.vue'
-  import CylinderProgress from './canvas/CylinderProgress.vue'
+  import CylinderProgress from './canvas/CylinderProgress'
   import TLWaveView from './canvas/TLWaveView'
   export default {
     name: 'CanvasView',
