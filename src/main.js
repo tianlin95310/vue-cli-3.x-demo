@@ -6,6 +6,8 @@ import { getToken } from '@/cookies/Cookies.js'
 
 import directives from './directives/index.js'
 
+import selfComps from '@/components'
+
 const whiteList = ['/login', '/login2']
 
 router.beforeEach((to, from, next) => {
@@ -26,4 +28,9 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-createApp(App).use(store).use(router).use(directives).mount('#app')
+createApp(App)
+  .use(store)
+  .use(router)
+  .use(directives)
+  .use(selfComps)
+  .mount('#app')

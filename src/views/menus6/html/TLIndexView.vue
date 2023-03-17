@@ -3,7 +3,6 @@
     <div v-for="(item, index) in items" :key="index" @click="onIndexClick(item)" :style="{
            color: vColor,
            height: (100 / items.length) + '%',
-           lineHeight: '200%'
          }" class="index-item">
       {{item}}
     </div>
@@ -25,7 +24,7 @@
     data() {
       return {
         items: [
-          'A', 'B', 'C', 'D', 'E', 'F', 'G',
+          '#', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
           'H', 'I', 'J', 'K', 'L', 'M', 'N',
           'O', 'P', 'Q', 'R', 'W', 'T',
           'U', 'V', 'W', 'X', 'Y', 'Z'
@@ -53,6 +52,9 @@
       text-align: center;
       text-decoration: solid;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .index-item:hover {

@@ -65,8 +65,11 @@ input {
 	@include scrollBar(transparent, grey);
 }
 
-// 清除右侧的浮动，浮动的元素会移动至下行
 .clearfix {
+	clear: both;
+}
+// 清除右侧的浮动，浮动的元素会移动至下行
+.clearfix-after {
 	&:after {
 		visibility: hidden;
 		display: block;
@@ -92,7 +95,6 @@ pre {
 	line-height: 1.35;
 	overflow: auto;
 	font-size: 14px;
-	
 }
 
 .highlight {
@@ -153,7 +155,3 @@ pre {
 	justify-content: center;
 }
 
-.link-inline {
-	display: inline-block;
-	font-size: 14px;
-}

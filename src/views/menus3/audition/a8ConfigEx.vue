@@ -4,23 +4,30 @@
       <pre>
         1，nginx配置
           root distDir;
+          1，主页搜寻
           location / {
             index index.html;
             try_files $uri /index.html;
           }
-          1，添加header
+          2，添加header
           location = /index.html {
             add_header X-Frame-Options DENY;
             add_header Cache-Control "no-cache, no-store";
           }
-          2，添加资源缓存配置(资源扩展名匹配)
+          3，添加资源缓存配置(资源扩展名匹配)
           location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|apk|tar.gz|ico|woff|svg|map|)$ {
             expires 30d;
           }
-          3，禁止访问
+          4，禁止访问
           location ~ ^/(WEB_INF)/ {
             deny all;
           }
+          5，配置代理
+          location /api {
+            rewrite ^/api/(.*)$ /$1 break;
+            proxy_pass http://host:port
+          }
+
         2，Vi编辑模式
           i,a 等进入到开始编辑的insert模式
           dd 删除光标行

@@ -3,6 +3,7 @@
  <div>
    <Suspense>
      <Content></Content>
+
      <template #fallback>
        <div style="height: 300px;line-height: 300px;">Loading...</div>
      </template>

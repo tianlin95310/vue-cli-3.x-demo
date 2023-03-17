@@ -9,7 +9,7 @@
       </div>
       <ul class="nav scroll-bar-menus">
         <li v-for="(menu, index) in menus" :key="index" class="menu-item">
-          <div class="menu-item-title" @click="show(menu)">
+          <div class="menu-item-title" @click="show(menu)" :title="menu.menuTitle">
             <span :class="[menu.isOpen ? 'menu-selected' : '']">[{{index + 1}}] {{ menu.menuTitle }}</span>
             <span :class="['fa', menu.isOpen ? 'fa-open' : 'fa-close']">﹀</span>
           </div>
@@ -17,7 +17,8 @@
           <ul class="sub-menu-ul">
             <li v-for="(subMenu, index) in menu.subMenus" :key="index"
               :class="['menu-item-common', menu.isOpen ? 'sub-menu-item-open' : 'sub-menu-item-close', subMenu.isOpen ? 'menu-selected' : '']"
-              @click="onNavClick(subMenu)">
+              @click="onNavClick(subMenu)"
+              :title="subMenu.menuTitle">
               {{ subMenu.menuTitle }}
             </li>
           </ul>

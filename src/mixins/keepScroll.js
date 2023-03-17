@@ -8,6 +8,13 @@ export default {
       scrollTop: 0
     }
   },
+  activated() {
+    console.log('activated')
+    this.getEL().scrollTop = this.scrollTop
+  },
+  deactivated() {
+    console.log('deactivated')
+  },
   mounted() {
     this.getEL().addEventListener('scroll', this.onScrollElScroll)
   },

@@ -3,6 +3,7 @@
    <div>
      <h2>测试css的属性</h2>
      <div class="parent">
+       <span style="visibility: hidden;" @click="testBefore">我的visibility</span>
        <p class="test">我在父块的右下角</p>
      </div>
 
@@ -21,18 +22,18 @@
    </div>
 
 <!--    margin 塌陷导致垂直居中失效-->
-    <div style="background: gray;width: 300px;height: 200px;">
-      <div style="background: #D42D00;height: 150px;width: 100px;margin: 50px 0;">已知父高度和自身高度实现竖直居中</div>
+    <div style="background: gray;width: 200px;height: 200px;">
+      <div style="background: #D42D00;height: 50%;width: 50%;margin: 50px 0;">已知父高度和自身高度实现竖直居中</div>
     </div>
 
 <!--    通过子元素display: inline-block设置BFC解决问题-->
-    <div style="background: white;width: 300px;height: 200px;display: inline-block">
+    <div style="background: white;width: 200px;height: 200px;display: inline-block">
       <div style="background: #D42D00;height: 50%;width: 50%;margin: 50px 0;">已知父高度和自身高度实现竖直居中</div>
     </div>
 <!--    ·可以为父元素定义上边框。-->
 <!--    ·可以为父元素定义上内边距-->
-<!--    ·可以为父元素添加overflow:hidden。-->
-    <div style="background: whitesmoke;width: 300px;height: 200px;overflow: hidden">
+<!--    ·可以为父元素添加overflow:hidden, auto等，不能为visable。-->
+    <div style="background: whitesmoke;width: 200px;height: 200px;overflow: hidden">
       <div style="background: #D42D00;height: 50%;width: 50%;margin: 50px 0;">已知父高度和自身高度实现竖直居中</div>
     </div>
 
@@ -47,16 +48,32 @@
       <div style="width: 50%;background: red;display: inline-block;font-size: 12px">我占50%</div>
       <div style="width: 50%;background: blue;display: inline-block;font-size: 12px">我占50%</div>
     </div>
-    <div class="test-float">
-      <span class="left">111</span>
-      <span class="left">222</span>
-      <span>111</span>
-      <span>测试元素的浮动属性</span>
-      <div>333</div>
-      <div class="clearfix">666</div>
-      <span class="right-not-line-l">555</span>
-      <div class="clearfix-before">666</div>
-      <span class="right">777</span>
+
+    <div style="border: 1px solid;height: 100px;position: static;left: 100px;">我是static元素</div>
+
+    <div style="border: 1px solid;height: 100px;position: relative;left: 100px;">我是relative元素</div>
+
+    <div style="border: 1px solid;height: 100px;position: absolute;left: 100px;">我是absolute元素</div>
+
+    <div id="float1" class="test-float" style="overflow: hidden;">
+      <div style="float: left;">没有overflow: hidden(BFC)的话float1的高度为0，无法支持起来</div>
+      <img src="../../assets/bg.jpg" style="float: right;height: 160px;">
+    </div>
+
+    <div id="float2" class="test-float">
+      <div style="float: left;">没有使用div clearfix的话float2的高度为0，无法支持起来</div>
+      <img src="../../assets/bg.jpg" style="float: right;height: 160px;">
+      <div class="clearfix" />
+    </div>
+
+    <div id="float3" class="test-float clearfix-after">
+      <div style="float: left;">没有使用clearfix-after的话float3的高度为0，无法支持起来</div>
+      <img src="../../assets/bg.jpg" style="float: right;height: 160px;">
+    </div>
+
+    <div id="float4" class="test-float clearfix-before">
+      <div style="float: left;">clearfix-before的话float4的高度为0，无法支持起来</div>
+      <img src="../../assets/bg.jpg" style="float: right;height: 160px;">
     </div>
 
   </div>
@@ -75,21 +92,28 @@
   .test-css-style {
     background-color: var(--primiryColor);
     color: black;
-    background-color: goldenrod;
+    background-color: gainsboro;
+    position: relative;
+    left: -16px;
+    // relative元素可为自身设置相对位置
 
     .test-float {
-      height: 80px;
-      background: #D42D00;
+      border: 1px solid;
+      margin-top: 10px;
+
+      .overflow {
+        overflow: hidden;
+      }
+
+      div {
+        background: #D42D00;
+        margin-top: 10px;
+      }
       .left {
         float: left;
         color: black;
       }
-      .right-not-line-l {
-        float: right;
-        color: black;
-      }
       .right {
-        line-height: 40px;
         float: right;
         color: black;
       }

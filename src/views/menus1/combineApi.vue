@@ -1,55 +1,79 @@
 <template>
   <div class="combine-api page-container">
-    <h1>{{ title }}</h1>
-    <div v-for="(item, index) in listData" :key="index">{{ item.key }}</div>
-    <div @click="d1++">
-      d1 = {{ d1 }}
-    </div>
-    <div @click="d2++">
-      d2 = {{ d2 }}
-    </div>
-    <div @click="d22++">
-      d22 = {{ d22 }}
-    </div>
-    <div>
-      d3 = <span @click="d3.d31++">{{ d3.d31 }}</span>──<span @click="d3.d32++">{{ d3.d32 }}</span>──<span @click="d3.d33+='a'">{{ d3.d33 }}</span>
-    </div>
-    <div @click="d4++">
-      d4 = {{ d4 }}
-    </div>
-    <div>
-      d5 = <span @click="d5.d31.value++">{{ d5.d31 }}</span>──<span @click="d5.d32++">{{ d5.d32 }}</span>──<span @click="d5.d33+='a'">{{ d5.d33 }}</span>
-    </div>
-    <div>
-      ...d5 = <span @click="d31++">{{ d31 }}</span>──<span @click="d32++">{{ d32 }}</span>──<span @click="d33+='a'">{{ d33 }}</span>
-    </div>
-    <div>
-      d6 = <span @click="d6.d61.d611++">{{ d6.d61.d611 }}</span>──<span @click="d6.d62++">{{ d6.d62 }}</span>
-    </div>
-    <div>
-      props = {{ prop1 }} {{ prop2 }}
-    </div>
-    
-    <button class="button" @click="callChildFun">Change Comp</button>
 
-    <CombineComp ref="combineComp" :d3="d3" :d31="d31" :d32="d32" :d33="d33" @parFun="parFun"></CombineComp>
+    <div class="flex-ver-center-wrap" style="align-items: flex-start;">
+      <div style="flex: 1;">
+        <h1>{{ title }}</h1>
+        <div v-for="(item, index) in listData" :key="index">{{ item.key }}</div>
+        <div @click="d1++">
+          d1 = {{ d1 }}
+        </div>
+        <div @click="d2++">
+          d2 = {{ d2 }}
+        </div>
+        <div @click="d22++">
+          d22 = {{ d22 }}
+        </div>
+        <div>
+          d3 = <span @click="d3.d31++">{{ d3.d31 }}</span>──<span @click="d3.d32++">{{ d3.d32 }}</span>──<span
+            @click="d3.d33+='a'">{{ d3.d33 }}</span>
+        </div>
+        <div @click="d4++">
+          d4 = {{ d4 }}
+        </div>
+        <div>
+          d5 = <span @click="d5.d31.value++">{{ d5.d31 }}</span>──<span @click="d5.d32++">{{ d5.d32 }}</span>──<span
+            @click="d5.d33+='a'">{{ d5.d33 }}</span>
+        </div>
+        <div>
+          ...d5 = <span @click="d31++">{{ d31 }}</span>──<span @click="d32++">{{ d32 }}</span>──<span
+            @click="d33+='a'">{{ d33 }}</span>
+        </div>
+        <div>
+          d6 = <span @click="d6.d61.d611++">{{ d6.d61.d611 }}</span>──<span @click="d6.d62++">{{ d6.d62 }}</span>
+        </div>
+        <div>
+          props = {{ prop1 }} {{ prop2 }}
+        </div>
+      </div>
+
+      <div style="flex: 1">
+        <button class="button" @click="callChildFun">Change Comp</button>
+
+        <CombineComp ref="combineComp" :d3="d3" :d31="d31" :d32="d32" :d33="d33" @parFun="parFun"></CombineComp>
+
+        <CombineCompSetup></CombineCompSetup>
+      </div>
+    </div>
   </div>
 </template>
 <script>
   /*eslint-disable*/
   import {
-    onBeforeMount, onMounted,
-    ref, reactive,
-    toRefs, toRef,
-    isReactive, isReadonly, isRef, isProxy, isRuntimeOnly,
-    shallowReactive } from 'vue'
-  import { getListData } from '@/http/api'
+    onBeforeMount,
+    onMounted,
+    ref,
+    reactive,
+    toRefs,
+    toRef,
+    isReactive,
+    isReadonly,
+    isRef,
+    isProxy,
+    isRuntimeOnly,
+    shallowReactive
+  } from 'vue'
+  import {
+    getListData
+  } from '@/http/api'
 
   import CombineComp from './comp/combineComp.vue'
+  import CombineCompSetup from './comp/combineComp_setup.vue'
   export default {
     name: 'CombineApi',
     components: {
-      CombineComp
+      CombineComp,
+      CombineCompSetup
     },
     props: {
       prop1: {
@@ -58,12 +82,15 @@
       },
       prop2: {
         type: Object,
-        default() {
+        default () {
           return {}
         }
       }
     },
-    setup(props, { emit, expose }) {
+    setup(props, {
+      emit,
+      expose
+    }) {
       // vue3 ref的使用方式
       const combineComp = ref(null)
       const d1 = 111
@@ -90,21 +117,33 @@
         },
         d62: 100
       })
-      console.log('d1 isReactive =', isReactive(d1), 'isReadonly =', isReadonly(d1), 'isRef =', isRef(d1), 'isProxy =', isProxy(d1))
-      console.log('d2 isReactive =', isReactive(d2), 'isReadonly =', isReadonly(d2), 'isRef =', isRef(d2), 'isProxy =', isProxy(d2))
-      console.log('d22 isReactive =', isReactive(d22), 'isReadonly =', isReadonly(d22), 'isRef =', isRef(d22), 'isProxy =', isProxy(d22))
+      console.log('d1 isReactive =', isReactive(d1), 'isReadonly =', isReadonly(d1), 'isRef =', isRef(d1), 'isProxy =',
+        isProxy(d1))
+      console.log('d2 isReactive =', isReactive(d2), 'isReadonly =', isReadonly(d2), 'isRef =', isRef(d2), 'isProxy =',
+        isProxy(d2))
+      console.log('d22 isReactive =', isReactive(d22), 'isReadonly =', isReadonly(d22), 'isRef =', isRef(d22),
+        'isProxy =', isProxy(d22))
 
-      console.log('d3 isReactive =', isReactive(d3), 'isReadonly =', isReadonly(d3), 'isRef =', isRef(d3), 'isProxy =', isProxy(d3))
-      console.log('d31 isReactive =', isReactive(d3.d31), 'isReadonly =', isReadonly(d3.d31), 'isRef =', isRef(d3.d31), 'isProxy =', isProxy(d3.d31))
-      console.log('d32 isReactive =', isReactive(d3.d32), 'isReadonly =', isReadonly(d3.d32), 'isRef =', isRef(d3.d32), 'isProxy =', isProxy(d3.d32))
+      console.log('d3 isReactive =', isReactive(d3), 'isReadonly =', isReadonly(d3), 'isRef =', isRef(d3), 'isProxy =',
+        isProxy(d3))
+      console.log('d31 isReactive =', isReactive(d3.d31), 'isReadonly =', isReadonly(d3.d31), 'isRef =', isRef(d3.d31),
+        'isProxy =', isProxy(d3.d31))
+      console.log('d32 isReactive =', isReactive(d3.d32), 'isReadonly =', isReadonly(d3.d32), 'isRef =', isRef(d3.d32),
+        'isProxy =', isProxy(d3.d32))
 
-      console.log('d4 isReactive =', isReactive(d4), 'isReadonly =', isReadonly(d4), 'isRef =', isRef(d4), 'isProxy =', isProxy(d4))
-      console.log('d5 isReactive =', isReactive(d5), 'isReadonly =', isReadonly(d5), 'isRef =', isRef(d5), 'isProxy =', isProxy(d5))
-      console.log('d51 isReactive =', isReactive(d5.d31), 'isReadonly =', isReadonly(d5.d31), 'isRef =', isRef(d5.d31), 'isProxy =', isProxy(d5.d31))
-      console.log('d52 isReactive =', isReactive(d5.d32), 'isReadonly =', isReadonly(d5.d32), 'isRef =', isRef(d5.d32), 'isProxy =', isProxy(d5.d32))
+      console.log('d4 isReactive =', isReactive(d4), 'isReadonly =', isReadonly(d4), 'isRef =', isRef(d4), 'isProxy =',
+        isProxy(d4))
+      console.log('d5 isReactive =', isReactive(d5), 'isReadonly =', isReadonly(d5), 'isRef =', isRef(d5), 'isProxy =',
+        isProxy(d5))
+      console.log('d51 isReactive =', isReactive(d5.d31), 'isReadonly =', isReadonly(d5.d31), 'isRef =', isRef(d5.d31),
+        'isProxy =', isProxy(d5.d31))
+      console.log('d52 isReactive =', isReactive(d5.d32), 'isReadonly =', isReadonly(d5.d32), 'isRef =', isRef(d5.d32),
+        'isProxy =', isProxy(d5.d32))
 
-      console.log('props isReactive =', isReactive(props), 'isReadonly =', isReadonly(props), 'isRef =', isRef(props), 'isProxy =', isProxy(props))
-      console.log('prop1 isReactive =', isReactive(props.prop1), 'isReadonly =', isReadonly(props.prop1), 'isRef =', isRef(props.prop1), 'isProxy =', isProxy(props.prop1))
+      console.log('props isReactive =', isReactive(props), 'isReadonly =', isReadonly(props), 'isRef =', isRef(props),
+        'isProxy =', isProxy(props))
+      console.log('prop1 isReactive =', isReactive(props.prop1), 'isReadonly =', isReadonly(props.prop1), 'isRef =',
+        isRef(props.prop1), 'isProxy =', isProxy(props.prop1))
       const parFun = () => {
         console.log('parFun called')
         d3.d31++
@@ -126,20 +165,25 @@
       onMounted(() => {
         // this.listData = [{ key: 100 }, { key: 200 }]
         console.log('combineApi onMounted')
-        state.listData = [{ key: 'onMounted' }]
+        state.listData = [{
+          key: 'onMounted'
+        }]
       })
       onBeforeMount(() => {
         console.log('combineApi onBeforeMount')
-        state.listData = [{ key: 'onBeforeMount' }]
+        state.listData = [{
+          key: 'onBeforeMount'
+        }]
       })
       return {
         ...toRefs(state),
         d1,
-        d2, d22,
+        d2,
+        d22,
         d3,
         d4,
         d5,
-        ...d5,// 结构对象不会失去响应性，每个单独对象保留响应性
+        ...d5, // 结构对象不会失去响应性，每个单独对象保留响应性
         d6
       }
     }
@@ -147,12 +191,13 @@
 </script>
 
 <style lang="scss" scoped>
-.combine-api {
-  font-size: 1.2em;
-  line-height: 1.5;
-  // scoped会影响子组件的span样式
-   span {
-     cursor: pointer;
-   }
-}
+  .combine-api {
+    font-size: 1.2em;
+    line-height: 1.5;
+
+    // scoped会影响子组件的span样式
+    span {
+      cursor: pointer;
+    }
+  }
 </style>
