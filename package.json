@@ -8,13 +8,15 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "waveview": "vue-cli-service build --target lib ./src/views/menus6/canvas/TLWaveView/index.js --name vue-waveview --dest vue-waveview",
-		"cylinder": "vue-cli-service build --target lib ./src/views/menus6/canvas/CylinderProgress/index.js --name vue-cylinder-progress --dest vue-cylinder-progress"
+    "cylinder": "vue-cli-service build --target lib ./src/views/menus6/canvas/CylinderProgress/index.js --name vue-cylinder-progress --dest vue-cylinder-progress"
   },
   "dependencies": {
     "core-js": "^3.6.5",
     "js-cookie": "^2.2.1",
     "vue": "^3.2.47",
+    "vue-cylinder-progress": "^1.0.0",
     "vue-router": "^4.0.0-0",
+    "vue-waveview": "^1.1.0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {

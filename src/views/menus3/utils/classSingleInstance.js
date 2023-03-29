@@ -15,6 +15,7 @@ People.getInstance = (function() {
 class User {
   constructor(name) {
     this.name = name
+    return '123'
   }
 
   static getInstance(name) {

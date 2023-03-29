@@ -155,7 +155,7 @@ export const MENUS = [
     subMenus: [{
       menuTitle: 'html的重新组合',
       isOpen: false,
-      path: '/menu6/htmlView'
+      path: '/menu6/htmlView?v1=11'
     }, {
       menuTitle: 'Canvas绘制',
       isOpen: false,

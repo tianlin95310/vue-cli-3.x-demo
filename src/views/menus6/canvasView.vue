@@ -110,8 +110,15 @@
   import TLDialog from '@/components/TLDialog'
   import TLImageCut from './canvas/TLImageCut'
   import TlRoundCountDown from './canvas/TlRoundCountDown.vue'
-  import CylinderProgress from './canvas/CylinderProgress'
-  import TLWaveView from './canvas/TLWaveView'
+
+  // import CylinderProgress from './canvas/CylinderProgress'
+  // import TLWaveView from './canvas/TLWaveView'
+  import TLWaveView from 'vue-waveview'
+  import 'vue-waveview/vue-waveview.css'
+
+  import CylinderProgress from 'vue-cylinder-progress'
+  import 'vue-cylinder-progress/vue-cylinder-progress.css'
+
   export default {
     name: 'CanvasView',
     components: {
@@ -140,7 +147,7 @@
         percent: 0.0,
         percent2: 0.5,
         cylinderHeight: 30,
-        waveAmplitude: 30,
+        waveAmplitude: 10,
         waveHeight: 100
       }
     },

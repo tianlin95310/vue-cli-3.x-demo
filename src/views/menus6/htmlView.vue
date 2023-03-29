@@ -58,6 +58,12 @@
     created() {
       console.log('htmlView---', 'created')
     },
+    activated() {
+      console.log('this.$route.query', this.$route.query)
+      console.log('this.$route.query.v1', this.$route.query.v1)
+      console.log('this.$route.query.v2', this.$route.query.v2)
+      console.log('this.$route.query.v2 == undefined', this.$route.query.v2 === undefined)
+    },
     methods: {
       update(v) {
         this.score = v

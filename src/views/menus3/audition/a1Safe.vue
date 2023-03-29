@@ -61,6 +61,7 @@
           有的话查看Last-modified,如果是的话向服务器咨询If-modified-since，服务器决定是返回200还是304，Last-modified否
           的话请求Web服务器获取资源。
           强缓存：根据cache-control和Expire控制
+          Get请求适合做缓存，post接口不适合做缓存
      </pre>
     </template>
   </t-l-collapse>

@@ -4,7 +4,15 @@
     <div>
       <button class="button" @click="change">作为新参传递</button>
       <button class="button" @click="defArg">函数默认参数</button>
+    </div>
+
+    <div>
       <button class="button" @click="defineAClass">函数作为类的实现体</button>
+    </div>
+
+    <div>
+      <button class="button" @click="ex5Extends">ES5继承（原型与原型链）</button>
+      <button class="button" @click="ex6Extends">ES6继承</button>
     </div>
 
     <div>
@@ -48,6 +56,58 @@
       }, 2000)
     },
     methods: {
+      ex5Extends() {
+        // 原型链继承
+        function Humen(name) {
+          this.name = name
+        }
+
+        function Men() {}
+        Men.prototype = new Humen()
+        Men.prototype.constructor = Men
+
+        let aMen = new Men('张三')
+        let aMen_proto = Object.getPrototypeOf(aMen)  // MEN
+        let aMen_proto_proto = Object.getPrototypeOf(aMen_proto)  // HUMEN
+        let aMen_proto_proto_proto = Object.getPrototypeOf(aMen_proto_proto) // OBJECT
+        let aMen_proto_proto_proto_proto = Object.getPrototypeOf(aMen_proto_proto_proto)
+
+        console.log(aMen_proto, aMen_proto_proto, aMen_proto_proto_proto, aMen_proto_proto_proto_proto)
+
+        let o_proto = Object.getPrototypeOf({})
+        let o_proto_proto = Object.getPrototypeOf(o_proto)
+        console.log(o_proto, o_proto_proto, Object.getPrototypeOf(Object.prototype))
+        console.log(aMen)
+        console.log(Men.prototype, aMen_proto === Men.prototype)
+        console.log(aMen instanceof Men)
+        console.log(aMen instanceof Humen)
+      },
+      ex6Extends() {
+        class Humen {
+          constructor(name) {
+            this.name = name
+          }
+          say() {
+            console.log(`my name is ${this.name}`)
+          }
+        }
+        Humen.prototype.dress = function(cloth) {
+          console.log(`i dress ${cloth}`)
+        }
+
+        class Men extends Humen {
+        }
+        let aMen = new Men('张三')
+        // 构造继承
+        aMen.say()
+        // 原型继承
+        aMen.dress('西装')
+        console.log(aMen)
+        console.log(aMen.prototype)
+        console.log(Men.prototype)
+        console.log(aMen instanceof Men)
+        console.log(aMen instanceof Humen)
+      },
       JSInterface() {
         console.log('sss', new ABC(123))
       },
@@ -88,6 +148,22 @@
         }
         let aclass = new AClass('12', 'bb')
         console.log('aclass', aclass)
+        console.log('aclass instanceof', aclass instanceof AClass)
+        console.log('aclass prototype', aclass.prototype)
+        console.log('aclass toString = ', aclass.toString())
+        console.log('aclass getPrototypeOf = ', Object.getPrototypeOf(aclass))
+
+        console.log('AClass prototype = ', AClass.prototype)
+        console.log('AClass toString = ', AClass.toString())
+        console.log('AClass getPrototypeOf = ', Object.getPrototypeOf(AClass))
+        console.log('AClass constructor = ', AClass.constructor)
+        console.log('AClass constructor = ', AClass.constructor()())
+
+        console.log('User prototype = ', User.prototype)
+        console.log('User toString = ', User.toString())
+        console.log('User getPrototypeOf = ', Object.getPrototypeOf(User))
+        console.log('User constructor = ', User.constructor)
+        console.log('User constructor = ', User.constructor())
       },
       defArg() {
         this.fun()
