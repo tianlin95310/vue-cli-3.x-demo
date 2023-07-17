@@ -170,5 +170,14 @@ export const MENUS = [
       isOpen: false,
       path: '/menu7/Algorithm'
     }]
+  }, {
+    menuTitle: '第三方api调用',
+    isOpen: false,
+    path: '/menu8',
+    subMenus: [{
+      menuTitle: '百度云',
+      isOpen: false,
+      path: '/menu8/thirdApi'
+    }]
   }
 ]

@@ -1,5 +1,5 @@
 <template>
-  <a target="_blank" :href="href">{{ title }}</a>
+  <a class="this-a" target="_blank" :href="href">{{ title }}</a>
 </template>
 
 <script>
@@ -19,4 +19,8 @@
 </script>
 
 <style>
+  .this-a {
+    display: inline-block;
+    margin-right: 8px;
+  }
 </style>

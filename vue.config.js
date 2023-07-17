@@ -15,5 +15,17 @@ module.exports = {
         comp: resolve('src/components')
       }
     }
+  },
+  devServer: {
+    port: 9527,
+    proxy: {
+      '/bpi': {
+        target: 'https://aip.baidubce.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/bpi': ''
+        }
+      }
+    }
   }
 }

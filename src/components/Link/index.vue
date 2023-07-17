@@ -22,5 +22,6 @@
 .link-inline {
   display: inline-block;
   font-size: 14px;
+  margin-right: 8px;
 }
 </style>

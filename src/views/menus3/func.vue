@@ -13,6 +13,10 @@
     <div>
       <button class="button" @click="ex5Extends">ES5继承（原型与原型链）</button>
       <button class="button" @click="ex6Extends">ES6继承</button>
+      <button class="button" @click="objectProto">Object原型</button>
+      <button class="button" @click="objectProtoConst">对象的原型与原型对象</button>
+      <button class="button" @click="funProto">函数的原型</button>
+      <button class="button" @click="FunctionUse">Function的含义</button>
     </div>
 
     <div>
@@ -53,9 +57,46 @@
       // 就能进行debounce内部的逻辑判断
       this.debounceFun = debounce(() => {
         console.log('debounceAPI')
-      }, 2000)
+      }, 1000)
     },
     methods: {
+      FunctionUse() {
+        console.log(Function)
+      },
+      funProto() {
+        console.log(Date)
+        // 函数对象求原型对象是一个函数
+        console.log(Object.getPrototypeOf(Date))
+        console.log(Date.__proto__)
+        // 函数的原型对象包含constructor和原型对象的原型对象的引用
+        console.log(Date.prototype)
+        // 函数的原型对象的原型对象是Object的原型对象
+        console.log(Date.prototype.__proto__)
+        let Afun = () => {}
+        // debugger
+        console.log(new Afun())
+        console.log(Afun.prototype)
+      },
+      objectProtoConst() {
+        let date = new Date()
+        console.log(date)
+        // getPrototypeOf与__proto__等价，部分浏览器无__proto__
+        console.log('Object.getPrototypeOf(date) === date.__proto__', Object.getPrototypeOf(date) === date.__proto__)
+        console.log('date.__proto__ === Date.prototype', date.__proto__ === Date.prototype)
+        // 对象的原型对象的原型对象等于父类构造函数的原型对象
+        console.log('date.__proto__.__proto__ === Object.prototype', date.__proto__.__proto__ === Object.prototype)
+        // 对象的构造函数是对象的原型对象的构造函数
+        console.log('date.constructor === Date.prototype.constructor', date.constructor === Date.prototype.constructor)
+        console.log('date.__proto__.constructor === date.constructor', date.__proto__.constructor === date.constructor)
+        console.log('普通对象有__proto__原型对象', date.__proto__)
+        console.log('普通对象无prototype，只有函数对象才有', date.prototype)
+      },
+      objectProto() {
+        let obj = {}
+        let o_proto = Object.getPrototypeOf(obj)
+        let o_proto_proto = Object.getPrototypeOf(o_proto)
+        console.log(obj, o_proto, o_proto_proto)
+      },
       ex5Extends() {
         // 原型链继承
         function Humen(name) {
@@ -73,11 +114,8 @@
         let aMen_proto_proto_proto_proto = Object.getPrototypeOf(aMen_proto_proto_proto)
 
         console.log(aMen_proto, aMen_proto_proto, aMen_proto_proto_proto, aMen_proto_proto_proto_proto)
-
-        let o_proto = Object.getPrototypeOf({})
-        let o_proto_proto = Object.getPrototypeOf(o_proto)
-        console.log(o_proto, o_proto_proto, Object.getPrototypeOf(Object.prototype))
-        console.log(aMen)
+        // aMen对象的构造函数就是Men
+        console.log(aMen.constructor, aMen.constructor === Men, aMen.constructor === Humen)
         console.log(Men.prototype, aMen_proto === Men.prototype)
         console.log(aMen instanceof Men)
         console.log(aMen instanceof Humen)
@@ -130,6 +168,7 @@
       },
       debounce: function() {
         // debounce(this.callback, 1000)(111)
+        // 事件太短节流无效
         debounceS(this.callback, 1000)()
       },
       getInstanceStatic() {

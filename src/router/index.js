@@ -239,6 +239,17 @@ const routes = [
     path: '/pukegame1',
     name: 'PukeGame',
     component: () => import('@/views/menus5/pukegame1.vue')
+  },
+  {
+    path: '/menu8',
+    component: Layout,
+    children: [
+      {
+        path: 'thirdApi',
+        name: 'thirdApi',
+        component: () => import('@/views/menus8/thirdApi.vue')
+      }
+    ]
   }
   // {
   //   path: '/about',

@@ -14,7 +14,7 @@
           概述:每次触发事件时都会判断是否等待执行的延时函数。
           区别:降低回调执行频率,节省计算资源。
           函数防抖一定时间连续触发的事件,只在最后执行一次,而函数节流一段时间内只执行一次。
-          <router-link class="highlight link-inline" to="/menu3/func">查看代码实现</router-link>
+          <Link title="查看代码实现" to="/menu3/func" />
 
         3，重排与重绘，CSS哪些属性会引起重排
           .1 介绍
@@ -55,6 +55,9 @@
 
         7，属性选择器和伪类选择器优先级？
           两者优先级相同
+          
+        8，Z-index生效条件
+        <ALink to="https://blog.csdn.net/qq_39643546/article/details/124729278" title="Z-index"></ALink>
 
      </pre>
     </template>

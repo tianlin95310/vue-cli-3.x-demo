@@ -11,6 +11,7 @@
     "cylinder": "vue-cli-service build --target lib ./src/views/menus6/canvas/CylinderProgress/index.js --name vue-cylinder-progress --dest vue-cylinder-progress"
   },
   "dependencies": {
+    "axios": "^1.4.0",
     "core-js": "^3.6.5",
     "js-cookie": "^2.2.1",
     "vue": "^3.2.47",

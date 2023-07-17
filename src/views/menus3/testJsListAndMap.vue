@@ -2,7 +2,7 @@
   <div class="page-container">
     <h2>测试js中的数据和Map(控制台查看)</h2>
       <div>
-        <button class="button" @click="array_fun">数组的基本用法</button>
+        <button class="button" @click="array_fun">Array基本用法</button>
       </div>
       <div>
         <button class="button" @click="map_fun">Map的用法</button>
@@ -10,7 +10,6 @@
       <div>
         <button class="button" @click="obj_fun">Object的用法</button>
         <button class="button" @click="testeq">==操作符</button>
-
       </div>
       <div>
          <button class="button" @click="testNull">测试空的判断</button>
@@ -32,7 +31,10 @@
 
     <div>
       <h2>html内置对象以及属性</h2>
-      <span>location.origin = {{ locationOrigin() }}</span>
+      <div>location.origin = {{ locationOrigin() }}</div>
+      <div>location.port = {{ location.port }}</div>
+      <div>location.href = {{ location.href }}</div>
+      <div>location.hash = {{ location.hash }}</div>
     </div>
   </div>
 </template>
@@ -40,6 +42,9 @@
 <script>
   /*eslint-disable*/
   export default {
+    computed: {
+      location: () => location
+    },
     methods: {
       locationOrigin() {
         return location.origin

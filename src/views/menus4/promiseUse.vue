@@ -10,21 +10,23 @@
     </div>
 
     <div>
-      <button class="button" @click="funa">测试同步回调</button>
+      <button class="button" @click="funa">测试同步的回调</button>
       <button class="button" @click="testTimeout">测试setTimeout</button>
     </div>
 
-    <button class="button" @click="defaultPromise">默认的promise</button>
+    <button class="button" @click="defaultPromise">Promise的基本用法</button>
 
     <button class="button" @click="useWithAwait">Promise与async和await的结合使用</button>
 
-    <button class="button" @click="testSetTimeOut" title="Promise构造阶段是同步的话，那么pending和then都会先比setTimeout执行，哪怕是0">setTimeout（0）与Promise同步构造的情况</button>
+    <button class="button" @click="testSetTimeOut" title="">各代码块执行顺序</button>
 
-    <button class="button" @click="PromiseAll" title="有一个发生错误那么就会走reject状态">Promise.all</button>
+    <div>
+      <button class="button" @click="PromiseAll" title="有一个发生错误那么就会走reject状态">Promise.all</button>
 
-    <button class="button" @click="PromiseAny" title="任意一个成功resolve">Promise.any</button>
+      <button class="button" @click="PromiseAny" title="任意一个成功resolve">Promise.any</button>
 
-    <button class="button" @click="PromiseRace" title="任意一个先走完取哪个值">Promise.race</button>
+      <button class="button" @click="PromiseRace" title="任意一个先走完取哪个值">Promise.race</button>
+    </div>
 
     <button class="button" @click="NoReturnPromise" title="无返回Promise">无返回Promise</button>
   </div>
@@ -88,6 +90,10 @@
         })
       },
       testSetTimeOut() {
+        console.log('testSetTimeOut start')
+        process.nextTick(() => {
+          console.log('process $nextTick 3')
+        })
         new Promise(function(resolve, reject) {
           console.log('Promise1 pending')
           resolve('Promise1 resolve')
@@ -105,9 +111,19 @@
         Promise.resolve(123).then(res => {
           console.log('Promise3 then', res)
         })
+        console.log(process.env)
+        // process(() => {
+        //   console.log('process fun')
+        // })
+        process.nextTick(() => {
+          console.log('process $nextTick 1')
+        })
         setTimeout(() => {
           console.log('setTimeout handler')
         }, 0)
+        process.nextTick(() => {
+          console.log('process $nextTick 2')
+        })
         console.log('testSetTimeOut end')
       },
 
@@ -119,6 +135,7 @@
           }, 1000)
         })
       },
+      // async will return a promise
       async useWithAwait() {
         const v1 = await this.step1()
         console.log(v1)
