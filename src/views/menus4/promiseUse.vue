@@ -20,6 +20,12 @@
 
     <button class="button" @click="testSetTimeOut" title="">各代码块执行顺序</button>
 
+    <button class="button" @click="generator" title="">generator用法</button>
+
+    <button class="button" @click="readgenerator" title="">readgenerator</button>
+
+    <button class="button" @click="awaitFor" title="">js await For</button>
+
     <div>
       <button class="button" @click="PromiseAll" title="有一个发生错误那么就会走reject状态">Promise.all</button>
 
@@ -37,7 +43,79 @@
       return {
       }
     },
+    created() {
+      this.awaitFor()
+    },
     methods: {
+      async awaitFor() {
+        const iterator = this.getgenerator3()
+        let item
+        do {
+          item = iterator.next()
+          if (item.value) {
+            if (item.value instanceof Promise) {
+              await item.value.then(console.log)
+            } else {
+              console.log(item.value)
+            }
+          }
+          // console.log('item', item)
+        } while (item && !item.done)
+      },
+      readIt() {
+        const iterator = this.getgenerator3()
+        let item
+        do {
+          item = iterator.next()
+          if (item.value) {
+            if (item.value instanceof Promise) {
+              item.value.then(console.log)
+            } else {
+              console.log(item.value)
+            }
+          }
+          // console.log('item', item)
+        } while (item && !item.done)
+      },
+      async getgenerator0(delay) {
+        return new Promise(function(resolve, reject) {
+          setTimeout(() => {
+            resolve(1000)
+          }, delay)
+        })
+      },
+      async getgenerator1() {
+        return 111
+      },
+      async * getgenerator2() {
+        yield 222
+        yield this.getgenerator1()
+      },
+      * getgenerator3() {
+        yield 333
+        yield this.getgenerator1()
+        yield this.getgenerator1()
+        yield this.getgenerator0(1000)
+        yield 444
+      },
+      generator() {
+        const promise1 = this.getgenerator1()
+        console.log(promise1.then(res => {
+          console.log('promise1 then', res)
+        }))
+        const asyncgenerator2 = this.getgenerator2()
+        console.log(asyncgenerator2.next().then(res => {
+          console.log('asyncgenerator2 next1', res)
+        }))
+        console.log(asyncgenerator2.next().then(res => {
+          console.log('asyncgenerator2 next2', res)
+        }))
+        const generator3 = this.getgenerator3()
+        console.log(generator3.next())
+        console.log(generator3.next())
+        console.log(generator3.next())
+        console.log('promise1', promise1, 'asyncgenerator2', asyncgenerator2, 'generator3', generator3)
+      },
       async aNoReturnPromise() {
         const res = new Promise(function(resolve, reject) {
           setTimeout(() => {
@@ -51,7 +129,7 @@
         this.aNoReturnPromise().then(res => {
           console.log('NoReturnPromise', res)
         })
-        // await 非promise对象,就是主线程操作,await有没有没有差别
+        // await 非promise对象,await有没有没有差别
         const aw1 = await 1000
         console.log('aw', aw1)
         await this.aNoReturnPromise().then(res => {
@@ -112,15 +190,18 @@
           console.log('Promise3 then', res)
         })
         console.log(process.env)
-        // process(() => {
-        //   console.log('process fun')
-        // })
+        setTimeout(() => {
+          console.log('setTimeout handler 0 a')
+        }, 0)
         process.nextTick(() => {
           console.log('process $nextTick 1')
         })
         setTimeout(() => {
-          console.log('setTimeout handler')
+          console.log('setTimeout handler 0 b')
         }, 0)
+        setTimeout(() => {
+          console.log('setTimeout handler 10')
+        }, 10)
         process.nextTick(() => {
           console.log('process $nextTick 2')
         })

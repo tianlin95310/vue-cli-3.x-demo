@@ -17,6 +17,7 @@
     <div>
       <button class="button" @click="test6">多层对象的克隆（复杂对象，无法克隆）</button>
       <button class="button" @click="test5">单层对象的克隆（简单对象）</button>
+      <button class="button" @click="deepclone">深克隆的实现</button>
     </div>
 
     <div>
@@ -24,11 +25,31 @@
     </div>
     <div>
        <button class="button" @click="var_let">var与let的区别</button>
+
+       <button class="button" @click="var_let_value">数值延迟问题</button>
     </div>
   </div>
 </template>
 <script>
   /*eslint-disable*/
+  function deepClone(obj) {
+    let newObj
+    if (typeof obj !== 'object') {
+      return
+    }
+    if (obj instanceof Array) {
+      // newObj = [...obj]
+      newObj = []
+    } else {
+      newObj = {}
+    }
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        newObj[key] = typeof obj !== 'object' ? deepClone(obj[key]) : obj[key]
+      }
+    }
+    return newObj
+  }
   export default {
     data() {
       return {
@@ -36,6 +57,47 @@
       }
     },
     methods: {
+      deepclone() {
+        // let a = [1,2,3,4]
+        // let b = deepClone(a)
+        // a.push(5)
+        // console.log(a, b)
+
+        let a = {
+          a: 1,
+          b: {
+            c: 1,
+            d: 2
+          }
+        }
+        let b = deepClone(a)
+        a['e'] = '100'
+        console.log(a, b)
+      },
+      var_let_value() {
+        for (let i = 0; i <= 5; i++) {
+          document.addEventListener('click', () => {
+            console.log(i)
+          })
+        }
+        // var会有变量提升，不是局部变量
+        for (var i = 0; i <= 5; i++) {
+          document.addEventListener('click', () => {
+            console.log(i)
+          })
+        }
+        for (var i = 0; i <= 5; i++) {
+          document.addEventListener('click', () => {
+            console.log(i)
+          })
+        }
+        var a;
+        var a;
+        // var可重复定义，let相同作用区域内，不能重复定义
+        let b;
+        // let b;
+        console.log('a', a)
+      },
       var_let() {
         {
           var a = 10

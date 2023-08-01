@@ -9,7 +9,8 @@
       </div>
       <div>
         <button class="button" @click="obj_fun">Object的用法</button>
-        <button class="button" @click="testeq">==操作符</button>
+        <button class="button" @click="testeqcommon">常见的==比较</button>
+        <button class="button" @click="testeq">==操作符特殊应用</button>
       </div>
       <div>
          <button class="button" @click="testNull">测试空的判断</button>
@@ -35,6 +36,8 @@
       <div>location.port = {{ location.port }}</div>
       <div>location.href = {{ location.href }}</div>
       <div>location.hash = {{ location.hash }}</div>
+      <div>location.search = {{ location.search }}</div>
+      <div>location.hostname = {{ location.hostname }}</div>
     </div>
   </div>
 </template>
@@ -153,6 +156,13 @@
         map.forEach((k, v) => {
           console.log(k + ' = ' + v)
         })
+      },
+      testeqcommon() {
+        console.log('\' \' == 0', ' ' == 0)
+        console.log('\' \' == \'\'', ' ' == '')
+        console.log('undefined == null', undefined == null)
+        console.log('undefined === null', undefined === null)
+        // == 两边有字符串是会转为字符串，有数字是非转为数字，有object时，则会调用内部的toPrimitive在进行比较
       },
       testeq() {
         var a = {

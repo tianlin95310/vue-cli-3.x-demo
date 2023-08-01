@@ -33,6 +33,9 @@
           dd 删除光标行
           Esc进入命令行模式
           :是命令前缀，w是保存，q是退出，！表示强制
+          
+        3，通过http参数实现代理的设置
+          服务端设置 Access-Control-Allow-Origin 即可，前端无须设置，若要带cookie 请求，前后端都需要设置。
       </pre>
     </template>
   </t-l-collapse>

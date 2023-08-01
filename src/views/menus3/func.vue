@@ -11,7 +11,9 @@
     </div>
 
     <div>
-      <button class="button" @click="ex5Extends">ES5继承（原型与原型链）</button>
+      <button class="button" @click="ex5Extends">ES5继承（原型链）</button>
+      <button class="button" @click="callExtends">构造继承</button>
+
       <button class="button" @click="ex6Extends">ES6继承</button>
       <button class="button" @click="objectProto">Object原型</button>
       <button class="button" @click="objectProtoConst">对象的原型与原型对象</button>
@@ -35,6 +37,11 @@
       <button class="button" @click="debounceAPI">防抖函数的实现（API）</button>
       <button class="button" @click="throttleAPI">节流函数的实现（API）</button>
     </div>
+    <div>
+      <button class="button" @click="bindcallapply">bindcallapply的区别</button>
+      <button class="button" @click="bindcallapplyuse">bindcallapply的细节</button>
+      <button class="button" @click="arrowFun">箭头函数</button>
+    </div>
   </div>
 </template>
 
@@ -49,19 +56,71 @@
   export default {
     data() {
       return {
-        debounceFun: null
+        debounceFun: null,
+        throttleFun: null,
+        debounceSelf: null,
+        throttleSelf: null
       }
     },
     created() {
       // api需要用这种function的写法，得到一个函数体，调用的时候都是调用这个函数体对象，保证了是同一个对象
       // 就能进行debounce内部的逻辑判断
-      this.debounceFun = debounce(() => {
-        console.log('debounceAPI')
-      }, 1000)
+      this.debounceFun = debounce(this.callback, 500)
+      // trailing不为false的话则会再末尾又执行一次
+      this.throttleFun = throttle(this.callback, 2000, {
+        trailing: false
+      })
+      this.debounceSelf = debounceS(this.callback, 500)
+      this.throttleSelf = throttleS(this.callback, 2000)
     },
     methods: {
+      arrowFun() {
+        let a = () => {
+          this.a = 100
+          console.log(arguments)
+          console.log(this)
+          debugger
+        }
+        a.call()
+      },
+      fun100() {
+        console.log('fun100')
+        console.log(arguments)
+        console.log(this)
+        console.log('new.target', new.target)
+      },
+      bindcallapplyuse() {
+        // 直接调用new.target为空
+        this.fun100()
+        // new调用则是函数自身
+        new this.fun100()
+      },
+      bindcallapply() {
+        // this.fun100.call(11, 'aa', 'aaa')
+        // this.fun100.bind(22, 'bb', 'bbb')
+        // this.fun100.bind(22, 'bb', 'ccc')()
+        // this.fun100.apply(33)
+
+        let obj1 = {
+          v: 100,
+          fun: function() {
+            console.log('fun100')
+            console.log(arguments)
+            console.log(this.v)
+            console.log(this)
+          }
+        }
+        let obj2 = {
+          v: 10
+        }
+        obj1.fun.call(obj2, 100, 200)
+        obj1.fun.apply(obj2, [100])
+        obj1.fun.apply(this)
+      },
       FunctionUse() {
         console.log(Function)
+        console.log(Function.prototype)
+        console.log(Function.__proto__)
       },
       funProto() {
         console.log(Date)
@@ -96,6 +155,19 @@
         let o_proto = Object.getPrototypeOf(obj)
         let o_proto_proto = Object.getPrototypeOf(o_proto)
         console.log(obj, o_proto, o_proto_proto)
+      },
+      callExtends() {
+        function Animals(classfiy) {
+          this.classfiy = classfiy
+        }
+        function Humen(name) {
+          Animals.call(this, '人类')
+          this.name = name
+        }
+        const men = new Humen('张三')
+        console.log(men)
+        console.log(men instanceof Humen)
+        console.log(men instanceof Animals)
       },
       ex5Extends() {
         // 原型链继承
@@ -136,9 +208,7 @@
         class Men extends Humen {
         }
         let aMen = new Men('张三')
-        // 构造继承
         aMen.say()
-        // 原型继承
         aMen.dress('西装')
         console.log(aMen)
         console.log(aMen.prototype)
@@ -149,9 +219,11 @@
       JSInterface() {
         console.log('sss', new ABC(123))
       },
-      throttleAPI() {},
+      throttleAPI() {
+        return this.throttleFun()
+      },
       debounceAPI() {
-        this.debounceFun()
+        return this.debounceFun()
         // 这样写的话其实每一次都是调用一个新的函数,并不是调用的同一个函数,所以防抖失效
         // debounce(() => {
         //   console.log('debounceAPI')
@@ -161,15 +233,10 @@
         console.log('callback')
       },
       throttle() {
-        // throttle(this.callback, 0, {
-        //   leading: 100
-        // })(123)
-        throttleS(this.callback, 1000)()
+        return this.throttleSelf()
       },
-      debounce: function() {
-        // debounce(this.callback, 1000)(111)
-        // 事件太短节流无效
-        debounceS(this.callback, 1000)()
+      debounce() {
+        return this.debounceSelf()
       },
       getInstanceStatic() {
         console.log(User.getInstance('tianlin'))

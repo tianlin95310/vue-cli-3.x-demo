@@ -3,7 +3,7 @@
     <template v-slot:content>
       <pre>
         1，IFrame的缺点
-          加载会阻塞主线程onload时间，影响页面加载速度，切不利于<span class="highlight">SEO</span>
+          加载会阻塞主线程onload事件，影响页面加载速度，并且不利于<span class="highlight">SEO</span>
 
         2，防抖和节流本质是不一样的。防抖是将多次执行变为最后一次执行，节流是将多次执行变成每隔一段时间执行。
           .1 防抖(debounce):
@@ -13,7 +13,7 @@
           高频事件触发,每次触发事件时设置一个延迟调用方法，并且取消之前的延时调用方法。
           概述:每次触发事件时都会判断是否等待执行的延时函数。
           区别:降低回调执行频率,节省计算资源。
-          函数防抖一定时间连续触发的事件,只在最后执行一次,而函数节流一段时间内只执行一次。
+          函数防抖一定时间连续触发的事件, 只在最后触发时执行一次, 而函数节流一段时间内只执行一次。
           <Link title="查看代码实现" to="/menu3/func" />
 
         3，重排与重绘，CSS哪些属性会引起重排
@@ -34,7 +34,7 @@
           transform 属性不会重排与重绘
         .4 具体实现
           transform代替top等位移
-          使用visiable代替display： none
+          使用visiable（不刷新布局）代替display： none
           避免使用table布局
           
           尽可能在dom树的末端改变class
@@ -55,9 +55,25 @@
 
         7，属性选择器和伪类选择器优先级？
           两者优先级相同
+          内联 > id > class > 属性 = 伪类
           
         8，Z-index生效条件
-        <ALink to="https://blog.csdn.net/qq_39643546/article/details/124729278" title="Z-index"></ALink>
+          1，position 为relative, fixed, abslolute才会生效
+          2，会继承父亲的z-index
+          3，不设置时并不是默认为0，而是不处于堆叠上下文中
+          <ALink to="https://blog.csdn.net/qq_39643546/article/details/124729278" title="Z-index"></ALink>
+
+        9，em单位
+          html根元素的em单位是会以浏览器的字体大小为基准的
+
+        10，百分比布局的特性
+          width 和 height 相对于父元素的 width 和 height，而 margin、padding 不管垂直还是水平方向都相对比父元素的宽度、
+          border-radius 则是相对于元素自身等等，造成我们使用百分比单位容易使布局问题变得复杂。
+
+        11，mask属性
+          类似于ps的蒙版
+
+        12，relative布局也是可以使用位置属性的
 
      </pre>
     </template>

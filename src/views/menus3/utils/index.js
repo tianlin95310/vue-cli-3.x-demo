@@ -1,7 +1,5 @@
-// 自实现节流函数
-var delay = 1000
-var prev = Date.now() - delay
 const throttleS = function(func, delay) {
+  var prev = Date.now() - delay
   return function() {
     var context = this
     var args = arguments
@@ -15,8 +13,8 @@ const throttleS = function(func, delay) {
 }
 
 // 自实现防抖函数
-var timer = null
 const debounceS = function(callback, delay) {
+  var timer = null
   return function() {
     const _this = this
     const args = arguments

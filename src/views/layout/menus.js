@@ -76,7 +76,7 @@ export const MENUS = [
     subMenus: [{
       menuTitle: 'js对象的属性',
       isOpen: false,
-      path: '/menu3/testJsListAndMap'
+      path: '/menu3/testJsListAndMap?v1=123#456'
     }, {
       menuTitle: '数组Array操作',
       isOpen: false,

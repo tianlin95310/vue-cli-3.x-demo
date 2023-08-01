@@ -72,7 +72,7 @@
     </div>
 
     <div id="float4" class="test-float clearfix-before">
-      <div style="float: left;">clearfix-before的话float4的高度为0，无法支持起来</div>
+      <div style="float: left;">只使用clearfix-before的话float4的高度为0，无法支持起来</div>
       <img src="../../assets/bg.jpg" style="float: right;height: 160px;">
     </div>
 

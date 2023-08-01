@@ -10,8 +10,13 @@
 
         2，call，apply，bind的区别和用法
           都能改变this的，函数里的this是哪个对象由调用时传的参数决定，不传的话就是调用者自身
+          apply：调用一个对象的一个方法，用另一个对象替换当前对象。例如：B.apply(A, arguments);即 A 对象应用 B 对象的方法。
+          call：调用一个对象的一个方法，用另一个对象替换当前对象。例如：B.call(A, args1,args2);即 A 对象调用 B 对象的方法。
+          bind 除了返回是函数以外，它的参数和 call 一样。
+          构造函数里面也可以这样使用，用于条用构造函数
+
           1、改变 this 的指向
-          2、借用别的对象的方法，
+          2、借用别的对象的方法，保存副本
           3、调用函数，因为 apply，call 方法会使函数立即执行
 
         3，?.和??的功能
@@ -28,27 +33,29 @@
           Object.freeze(obj)可以冻结对象的，防止对象的值被修改如果是大数据量的数据，对于纯展示的大量数据，可以提高效率
           Object.entries() 产生迭代器，方便遍历
           Object.keys() 产生迭代器，方便遍历
-          getPrototypeOf() 获取一个对象的原型对象
           var A = Object.create(A.prototype);
 
         6，普通函数和箭头函数的区别
-          普通函数的this指向对象本省，可以作为构造函数，箭头函数都是匿名函数，不能作为构造函数
+          普通函数的this指向对象本省，可以作为构造函数，箭头函数都是匿名函数，无this对象，不能作为构造函数
 
         7，Promise的静态方法
           见标签<Link to="/menu4/promiseUse" title="Promise的使用" />
+          <ALink href="https://blog.csdn.net/qq_39370934/article/details/115574212" title="js 迭代器用法"></ALink>
 
         8，js 闭包的理解
           就是函数内部定义函数，会使得外部函数的变量的作用域提升，会占用堆栈内存
 
         9，宏任务和微任务以及Promise,以及process.nextTick()
-          setTimeout,setInter属于宏任务，Promise的构造阶段属于主线程同步快，then的处理属于微任务
-          主线程同步代码 > 微任务 > process.nextTick() > 宏任务
+          setTimeout,setInter属于宏任务，本身会立即执行，但是传入的fun会在微任务之后执行，
+          Promise的构造阶段属于主线程同步快，then的处理属于微任务
+          process.nextTick()属于宏任务，本身会立即执行，但是callback和setTimeout（0）的效果一致，按同步顺序执行
+          主线程同步代码（宏任务） > 无延时的微任务 > process.nextTick() == setTimeout(0)的callback > 有延时的宏任务的callback
 
         10，js的继承
           1，原型链继承：无法实现多继承
-          2，构造继承：只继承父类的属性和方法，没有继承原型的属性和方法
-          3，组合继承：生成了两次父类构造函数，生成了两次实例
-          4，寄生组合继承：通过寄生方式，砍掉父类的实例属性，相当于减少了一次实例化
+          2，构造继承：通过call复用父类的构造方法，只继承父类的属性和方法，没有继承原型的属性和方法，可以实现多继承
+          3，组合继承：可以继承父类的属性，也可以继承原型的属性，调用了两次父类构造函数，生成了两次实例
+          4，寄生组合继承：通过寄生方式，砍掉父类的实例属性，相当于减少了一次属性和方法的实例化
 
           <Link to="/menu3/func" title="继承实例" /><ALink href="https://blog.csdn.net/ABCFF12333/article/details/118066338" title="继承参考文档" />
 
@@ -72,9 +79,11 @@
           for（let I in obj）该方法依次访问一个对象及其原型链中所有可枚举的类型
           object.keys:返回一个数组，包括所有可枚举的属性名称
           object.getOwnPropertyNames:返回一个数组包含不可枚举的属性
+          getPrototypeOf() 获取一个对象的原型对象
 
         14，Symbol类的使用
-          Symbol用作来解决Object字符串作为可能出现重复而覆盖的问题，Symbol可以作为Object的key
+          Symbol用作来解决Object字符串作为可能出现重复而覆盖的问题，Symbol可以作为Object的key，通过Object.getOwnPropertySymbols可以获取到对应的symbol，Reflect.ownKeys
+          也能获取到
 
         15，js单例模式的实现
           1，使用闭包直接添加方法属性
@@ -82,6 +91,9 @@
           详见函数界面
 
         16，TS里的一些东西
+
+        17，js多线程
+          web worker，通过postMessage通知，dart里有类似的isolate
 
      </pre>
     </template>
