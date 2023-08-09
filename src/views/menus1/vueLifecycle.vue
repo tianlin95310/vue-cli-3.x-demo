@@ -4,6 +4,14 @@
     <!-- <h3 style="margin: 16px 0;">{{ 1 | testFilter('111') }}</h3> -->
     <child/>
     <child3-x></child3-x>
+
+    <div>
+      <div>
+        <button class="button" @click="show = !show">v-if与v-show</button>
+      </div>
+      <button class="button" v-if="show" title="v-if会直接删除，会不停的进行创建">v-if</button>
+      <button class="button" v-show="show" title="v-show只是改变元素的display属性，不会删除">v-show</button>
+    </div>
   </div>
 </template>
 
@@ -19,7 +27,8 @@
     data() {
       return {
         v1: 123,
-        str: 'parent value'
+        str: 'parent value',
+        show: false
       }
     },
     mixins: [mixinOverride],

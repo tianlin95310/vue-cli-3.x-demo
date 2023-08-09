@@ -24,7 +24,7 @@
           表达式的值等于右边的值
 
         4，Map与Object的区别
-          Object的key必须是简单类型，而Map的key可以为对象，所以Map不支持json而Object可以
+          Object的key必须是简单类型和Symbol，而Map的key可以为对象，所以Map不支持json而Object可以
           Map的key，Value添加时有顺序的，而Object则没有这个说法，
           属性删除较密集的时候使用Map，delete Object属性的效率低
           属性多Map的性能更好，特别是key未知的情况下，Map又方便的遍历迭代器API
@@ -88,7 +88,7 @@
         15，js单例模式的实现
           1，使用闭包直接添加方法属性
           2，使用class添加静态方法
-          详见函数界面
+          <Link to="menu3/func" title="详见函数界面"></Link>
 
         16，TS里的一些东西
 

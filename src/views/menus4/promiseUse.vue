@@ -22,7 +22,7 @@
 
     <button class="button" @click="generator" title="">generator用法</button>
 
-    <button class="button" @click="readgenerator" title="">readgenerator</button>
+    <button class="button" @click="generatorToArray" title="">generatorToArray</button>
 
     <button class="button" @click="awaitFor" title="">js await For</button>
 
@@ -32,12 +32,19 @@
       <button class="button" @click="PromiseAny" title="任意一个成功resolve">Promise.any</button>
 
       <button class="button" @click="PromiseRace" title="任意一个先走完取哪个值">Promise.race</button>
+
+      <button class="button" @click="awaitAErrorPromise" title="任意一个先走完取哪个值">await Promise Error</button>
     </div>
 
-    <button class="button" @click="NoReturnPromise" title="无返回Promise">无返回Promise</button>
+    <div>
+      <button class="button" @click="NoReturnPromise" title="无返回Promise">无返回Promise</button>
+      <button class="button" @click="selfPromise">自定义Promise</button>
+    </div>
+    
   </div>
 </template>
 <script>
+  import { generatorToArray } from './utils/extentions.js'
   export default {
     data() {
       return {
@@ -47,6 +54,9 @@
       this.awaitFor()
     },
     methods: {
+      selfPromise() {
+        
+      },
       async awaitFor() {
         const iterator = this.getgenerator3()
         let item
@@ -62,20 +72,9 @@
           // console.log('item', item)
         } while (item && !item.done)
       },
-      readIt() {
-        const iterator = this.getgenerator3()
-        let item
-        do {
-          item = iterator.next()
-          if (item.value) {
-            if (item.value instanceof Promise) {
-              item.value.then(console.log)
-            } else {
-              console.log(item.value)
-            }
-          }
-          // console.log('item', item)
-        } while (item && !item.done)
+      generatorToArray() {
+        const items = generatorToArray(this.getgenerator3())
+        console.log('generatorToArray items', items)
       },
       async getgenerator0(delay) {
         return new Promise(function(resolve, reject) {
@@ -129,14 +128,24 @@
         this.aNoReturnPromise().then(res => {
           console.log('NoReturnPromise', res)
         })
-        // await 非promise对象,await有没有没有差别
-        const aw1 = await 1000
-        console.log('aw', aw1)
+        // await 非promise对象没有意义，
+        const aw1 = (await 1000)
+        console.log('aw1', aw1)
         await this.aNoReturnPromise().then(res => {
           console.log('NoReturnPromise', res)
         })
         const aw2 = await 2000
         console.log('aw2', aw2)
+      },
+      async awaitAErrorPromise() {
+        try {
+          const res = await this.promiseFun2()
+          console.log('res', res)
+        } catch (e) {
+          console.log('e', e)
+        }
+        const res = await this.promiseFun2()
+        console.log('res', res)
       },
       PromiseRace() {
         Promise.race([this.promiseFun1(), this.promiseFun2()]).then(res => {

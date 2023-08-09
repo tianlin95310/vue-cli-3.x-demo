@@ -7,7 +7,7 @@
       <div class="logo" @click="$router.push('/dashboard');$refs.content.collapse()">
         <div>{{ tip1 }}</div>
       </div>
-      <ul class="nav scroll-bar-menus">
+      <ul class="nav-con scroll-bar-menus">
         <li v-for="(menu, index) in menus" :key="index" class="menu-item">
           <div class="menu-item-title" @click="show(menu)" :title="menu.menuTitle">
             <span :class="[menu.isOpen ? 'menu-selected' : '']">[{{index + 1}}] {{ menu.menuTitle }}</span>
@@ -199,7 +199,7 @@
         border-bottom: 1px solid grey;
         cursor: pointer;
       }
-      .nav {
+      .nav-con {
         overflow-y: auto;
         overflow-x: hidden;
         height: calc(100% - 40px);

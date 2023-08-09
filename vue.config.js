@@ -7,6 +7,7 @@ function resolve(dir) {
 const name = 'Vue Cli 3.x'
 
 module.exports = {
+  publicPath: '/app3/',
   configureWebpack: {
     name: name,
     resolve: {

@@ -78,6 +78,11 @@
 
         8，常见网络请求
           get请求的参数限制通常由浏览器决定
+
+        9，Hash与History路由
+          Hash路由不会算在请求里面，属于纯浏览器端的逻辑，对服务端无任何影响
+          history利用了H5 history Interface中新增的pushState()和replaceState()方法。（需要特定浏览器支持）这两个方法应用于浏览器的历史记录栈，
+          在当前已有的back、forward、go的基础上，它们提供了对历史记录进行修改的功能。只是当它们执行修改时，虽然改变了当前的Url，但是浏览器不会立即向后端发送请求。
      </pre>
     </template>
   </t-l-collapse>

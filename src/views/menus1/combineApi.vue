@@ -117,33 +117,21 @@
         },
         d62: 100
       })
-      console.log('d1 isReactive =', isReactive(d1), 'isReadonly =', isReadonly(d1), 'isRef =', isRef(d1), 'isProxy =',
-        isProxy(d1))
-      console.log('d2 isReactive =', isReactive(d2), 'isReadonly =', isReadonly(d2), 'isRef =', isRef(d2), 'isProxy =',
-        isProxy(d2))
-      console.log('d22 isReactive =', isReactive(d22), 'isReadonly =', isReadonly(d22), 'isRef =', isRef(d22),
-        'isProxy =', isProxy(d22))
+      console.log('d1 isReactive =', isReactive(d1), 'isReadonly =', isReadonly(d1), 'isRef =', isRef(d1), 'isProxy =', isProxy(d1))
+      console.log('d2 isReactive =', isReactive(d2), 'isReadonly =', isReadonly(d2), 'isRef =', isRef(d2), 'isProxy =', isProxy(d2))
+      console.log('d22 isReactive =', isReactive(d22), 'isReadonly =', isReadonly(d22), 'isRef =', isRef(d22), 'isProxy =', isProxy(d22))
 
-      console.log('d3 isReactive =', isReactive(d3), 'isReadonly =', isReadonly(d3), 'isRef =', isRef(d3), 'isProxy =',
-        isProxy(d3))
-      console.log('d31 isReactive =', isReactive(d3.d31), 'isReadonly =', isReadonly(d3.d31), 'isRef =', isRef(d3.d31),
-        'isProxy =', isProxy(d3.d31))
-      console.log('d32 isReactive =', isReactive(d3.d32), 'isReadonly =', isReadonly(d3.d32), 'isRef =', isRef(d3.d32),
-        'isProxy =', isProxy(d3.d32))
+      console.log('d3 isReactive =', isReactive(d3), 'isReadonly =', isReadonly(d3), 'isRef =', isRef(d3), 'isProxy =', isProxy(d3))
+      console.log('d31 isReactive =', isReactive(d3.d31), 'isReadonly =', isReadonly(d3.d31), 'isRef =', isRef(d3.d31), 'isProxy =', isProxy(d3.d31))
+      console.log('d32 isReactive =', isReactive(d3.d32), 'isReadonly =', isReadonly(d3.d32), 'isRef =', isRef(d3.d32), 'isProxy =', isProxy(d3.d32))
 
-      console.log('d4 isReactive =', isReactive(d4), 'isReadonly =', isReadonly(d4), 'isRef =', isRef(d4), 'isProxy =',
-        isProxy(d4))
-      console.log('d5 isReactive =', isReactive(d5), 'isReadonly =', isReadonly(d5), 'isRef =', isRef(d5), 'isProxy =',
-        isProxy(d5))
-      console.log('d51 isReactive =', isReactive(d5.d31), 'isReadonly =', isReadonly(d5.d31), 'isRef =', isRef(d5.d31),
-        'isProxy =', isProxy(d5.d31))
-      console.log('d52 isReactive =', isReactive(d5.d32), 'isReadonly =', isReadonly(d5.d32), 'isRef =', isRef(d5.d32),
-        'isProxy =', isProxy(d5.d32))
+      console.log('d4 isReactive =', isReactive(d4), 'isReadonly =', isReadonly(d4), 'isRef =', isRef(d4), 'isProxy =', isProxy(d4))
+      console.log('d5 isReactive =', isReactive(d5), 'isReadonly =', isReadonly(d5), 'isRef =', isRef(d5), 'isProxy =', isProxy(d5))
+      console.log('d51 isReactive =', isReactive(d5.d31), 'isReadonly =', isReadonly(d5.d31), 'isRef =', isRef(d5.d31), 'isProxy =', isProxy(d5.d31))
+      console.log('d52 isReactive =', isReactive(d5.d32), 'isReadonly =', isReadonly(d5.d32), 'isRef =', isRef(d5.d32), 'isProxy =', isProxy(d5.d32))
 
-      console.log('props isReactive =', isReactive(props), 'isReadonly =', isReadonly(props), 'isRef =', isRef(props),
-        'isProxy =', isProxy(props))
-      console.log('prop1 isReactive =', isReactive(props.prop1), 'isReadonly =', isReadonly(props.prop1), 'isRef =',
-        isRef(props.prop1), 'isProxy =', isProxy(props.prop1))
+      console.log('props isReactive =', isReactive(props), 'isReadonly =', isReadonly(props), 'isRef =', isRef(props), 'isProxy =', isProxy(props))
+      console.log('prop1 isReactive =', isReactive(props.prop1), 'isReadonly =', isReadonly(props.prop1), 'isRef =', isRef(props.prop1), 'isProxy =', isProxy(props.prop1))
       const parFun = () => {
         console.log('parFun called')
         d3.d31++

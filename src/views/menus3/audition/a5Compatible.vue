@@ -13,6 +13,8 @@
             记录滚动距离，手动让他回单
           .3，ios滚动添加下fixed失效的问题
             采用类似于Android原生的布局方式，滚动控件自己滚动，不随body滚动
+          .4，dpi适配
+            -webkit-min-device-pixel-ratio: 3
 
         4，移动端列表太长如何优化
           动态展示可显示区域的内容，不可见区域的内容不展示
@@ -23,12 +25,15 @@
         6，css兼容，添加属性解决
           上下拉动滚动条时卡顿、慢：
           body {
-            -webkit-overflow-scrolling:
-            touch;overflow-scrolling: touch;
+            -webkit-overflow-scrolling:touch;
+            overflow-scrolling: touch;
           }
           默认阴影：
           -webkit-appearance: none;
           出现半透明灰色遮罩 ：
+          -webkit-tap-higtlight-color: transparent;
+          长按闪退：
+          -webkit-touch-callout: none
 
         7，移动端点击事件延迟300ms的问题
           1，禁用移动端的缩放功能
@@ -39,17 +44,18 @@
           需要给body/html增加touchstart事件
 
         9，1px解决方案
-          用 transfrom： scale（）缩小 dpr 倍数
+          用 transfrom： scale（）缩小为元素 dpr 倍数
           在 meta 标签中设定 scale 缩小dpr倍数
 
         10，伪类使用顺序
           link-visited-hover-active
 
         11，前端优化
-          减少请求量，做缓存，js/css优化，懒加载，资源压缩合并，按需加载，分包，服务端渲染
-        
+          加载方面，减少http请求量，做缓存，懒加载，资源压缩合并，Gzip资源请求，按需加载，分包，服务端渲染SSR
+          js/css方面，使用transform代替定位，频繁更新dom的操作脱离文档流，避免内联样式和css表达式，
+          css方面，避免使用空的src，防抖，减少重排重绘，减少位置,大小尺寸,相对定位等属性的操作
         12，前端性能
-          通过performance对象
+          通过performance对象可以获取
 
       </pre>
     </template>

@@ -7,6 +7,10 @@
     </button>
 
     <transition name="fade" mode="out-in">
+      <h3 v-show="show == true">{{ value }}</h3>
+    </transition>
+
+    <transition name="fade" mode="out-in">
       <h3 v-if="show == true">{{ value }}</h3>
     </transition>
   </div>

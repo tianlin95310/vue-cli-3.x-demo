@@ -12,6 +12,10 @@
       <button class="button" @click="begin">开始动画</button>
     </div>
 
+    <div>
+      <button class="button" @click="requestAnimationFrame">requestAnimationFrame</button>
+    </div>
+
     <ul class="anims scroll-bar">
       <li v-for="(item, index) in anims" :key="index" @click="testAnim(index)">
         [{{index + 1}}] {{ item }}
@@ -88,6 +92,17 @@
       }
     },
     methods: {
+      requestAnimationFrame() {
+        requestAnimationFrame(() => {
+          console.log('requestAnimationFrame')
+        })
+        this.$nextTick(() => {
+          console.log('nextTick')
+        })
+        setTimeout(() => {
+          console.log('setTimeout')
+        }, 0)
+      },
       testAnim(index) {
         this.index = index
         const ca = `${this.anims[this.index]} 1s both`

@@ -2,14 +2,15 @@
   <div class="page-container">
     <h2>测试js中的数据和Map(控制台查看)</h2>
       <div>
-        <button class="button" @click="array_fun">Array基本用法</button>
+        <button class="btn btn-primary" @click="array_fun">Array基本用法</button>
       </div>
       <div>
-        <button class="button" @click="map_fun">Map的用法</button>
+        <button class="btn btn-info" @click="map_fun">Map的用法</button>
+        <button class="btn btn-info" @click="map_fun">Map的用法</button>
       </div>
       <div>
-        <button class="button" @click="obj_fun">Object的用法</button>
-        <button class="button" @click="testeqcommon">常见的==比较</button>
+        <button class="btn btn-danger" @click="obj_fun">Object的用法</button>
+        <button class="btn btn-warning" @click="testeqcommon">常见的==比较</button>
         <button class="button" @click="testeq">==操作符特殊应用</button>
       </div>
       <div>
