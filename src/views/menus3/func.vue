@@ -11,12 +11,15 @@
     </div>
 
     <div>
-      <button class="button" @click="ex5Extends">ES5继承（原型链）</button>
-      <button class="button" @click="callExtends">构造继承</button>
-
+      <button class="button" @click="ex5Extends">ES5继承（原型链继承）</button>
+      <button class="button" @click="callExtends">ES5继承（构造继承）</button>
+      <button class="button" @click="combineExtends">ES5继承（组合寄生继承）</button>
       <button class="button" @click="ex6Extends">ES6继承</button>
-      <button class="button" @click="objectProto">Object原型</button>
-      <button class="button" @click="objectProtoConst">对象的原型与原型对象</button>
+    </div>
+
+    <div>
+      <button class="button" @click="objectProto">Object的原型</button>
+      <button class="button" @click="objectProtoConst">对象的原型对象</button>
       <button class="button" @click="funProto">函数的原型</button>
       <button class="button" @click="FunctionUse">Function的含义</button>
     </div>
@@ -27,13 +30,8 @@
     </div>
 
     <div>
-      <button class="button" @click="JSInterface">JS interface</button>
-    </div>
-    <div>
       <button class="button" @click="debounce">防抖函数的实现（手动）</button>
       <button class="button" @click="throttle">节流函数的实现（手动）</button>
-    </div>
-    <div>
       <button class="button" @click="debounceAPI">防抖函数的实现（API）</button>
       <button class="button" @click="throttleAPI">节流函数的实现（API）</button>
     </div>
@@ -51,7 +49,6 @@
   import { debounceS, throttleS } from './utils'
   // import './utils/classSingleInstance.js'
   import { People, User } from './utils/classSingleInstance.js'
-  import { ABC } from './utils/jsInterface.js'
 
   export default {
     data() {
@@ -121,17 +118,25 @@
         console.log(Function)
         console.log(Function.prototype)
         console.log(Function.__proto__)
+
+        console.log(Object)
+        console.log(Object.prototype)
+        console.log(Object.__proto__)
+
+        console.log(Function instanceof Object)
+        console.log(Object instanceof Function)
       },
       funProto() {
         console.log(Date)
         // 函数对象求原型对象是一个函数
-        console.log(Object.getPrototypeOf(Date))
-        console.log(Date.__proto__)
+        console.log(Object.getPrototypeOf(Date), Date.__proto__)
         // 函数的原型对象包含constructor和原型对象的原型对象的引用
         console.log(Date.prototype)
         // 函数的原型对象的原型对象是Object的原型对象
         console.log(Date.prototype.__proto__)
-        let Afun = () => {}
+        let Afun = () => {
+          this.age = 10
+        }
         // debugger
         console.log(new Afun())
         console.log(Afun.prototype)
@@ -141,13 +146,14 @@
         console.log(date)
         // getPrototypeOf与__proto__等价，部分浏览器无__proto__
         console.log('Object.getPrototypeOf(date) === date.__proto__', Object.getPrototypeOf(date) === date.__proto__)
+        // 对象的原型就是构造函数的原型
         console.log('date.__proto__ === Date.prototype', date.__proto__ === Date.prototype)
         // 对象的原型对象的原型对象等于父类构造函数的原型对象
         console.log('date.__proto__.__proto__ === Object.prototype', date.__proto__.__proto__ === Object.prototype)
-        // 对象的构造函数是对象的原型对象的构造函数
+        // 对象的原型对象的构造函数是对象的构造函数
         console.log('date.constructor === Date.prototype.constructor', date.constructor === Date.prototype.constructor)
-        console.log('date.__proto__.constructor === date.constructor', date.__proto__.constructor === date.constructor)
         console.log('普通对象有__proto__原型对象', date.__proto__)
+        // 普通对象没有prototype属性
         console.log('普通对象无prototype，只有函数对象才有', date.prototype)
       },
       objectProto() {
@@ -156,7 +162,29 @@
         let o_proto_proto = Object.getPrototypeOf(o_proto)
         console.log(obj, o_proto, o_proto_proto)
       },
+      combineExtends() {
+        function Father(age) {
+          this.age = age
+        } 
+        let Empty = function() {}
+        function proxy(photo) {
+          Empty.prototype = photo
+          let empty = new Empty()
+          empty.constructor = Son
+          return empty
+        }
+        function Son(age) {
+          Father.call(this, age)
+        }
+        Son.prototype = proxy(Father.prototype)
+
+        let son = new Son(12)
+        console.log(son, son.constructor)
+        console.log(son instanceof Son, son instanceof Empty, son instanceof Father)
+        console.log(son.__proto__)
+      },
       callExtends() {
+        // 构造继承
         function Animals(classfiy) {
           this.classfiy = classfiy
         }
@@ -165,17 +193,18 @@
           this.name = name
         }
         const men = new Humen('张三')
-        console.log(men)
-        console.log(men instanceof Humen)
-        console.log(men instanceof Animals)
+
+        console.log(men, men.constructor)
+        console.log(men.__proto__, Humen.prototype, Animals.prototype)
+        console.log(men instanceof Humen, men instanceof Animals)
       },
       ex5Extends() {
         // 原型链继承
         function Humen(name) {
           this.name = name
         }
-
         function Men() {}
+        
         Men.prototype = new Humen()
         Men.prototype.constructor = Men
 
@@ -185,14 +214,15 @@
         let aMen_proto_proto_proto = Object.getPrototypeOf(aMen_proto_proto) // OBJECT
         let aMen_proto_proto_proto_proto = Object.getPrototypeOf(aMen_proto_proto_proto)
 
-        console.log(aMen_proto, aMen_proto_proto, aMen_proto_proto_proto, aMen_proto_proto_proto_proto)
+        // console.log(aMen_proto, aMen_proto_proto, aMen_proto_proto_proto, aMen_proto_proto_proto_proto)
         // aMen对象的构造函数就是Men
-        console.log(aMen.constructor, aMen.constructor === Men, aMen.constructor === Humen)
-        console.log(Men.prototype, aMen_proto === Men.prototype)
-        console.log(aMen instanceof Men)
-        console.log(aMen instanceof Humen)
+        // console.log(aMen.constructor, aMen.constructor === Men, aMen.constructor === Humen)
+        console.log(aMen, aMen.constructor)
+        console.log(aMen.__proto__, Men.prototype, Humen.prototype)
+        console.log(aMen instanceof Men, aMen instanceof Humen)
       },
       ex6Extends() {
+        // ES6的继承本质上时原型链继承
         class Humen {
           constructor(name) {
             this.name = name
@@ -210,14 +240,10 @@
         let aMen = new Men('张三')
         aMen.say()
         aMen.dress('西装')
-        console.log(aMen)
-        console.log(aMen.prototype)
-        console.log(Men.prototype)
-        console.log(aMen instanceof Men)
-        console.log(aMen instanceof Humen)
-      },
-      JSInterface() {
-        console.log('sss', new ABC(123))
+        // 普通对象没有prototype属性
+        console.log(aMen, aMen.constructor)
+        console.log(aMen.__proto__, Men.prototype, Humen.prototype)
+        console.log(aMen instanceof Men, aMen instanceof Humen)
       },
       throttleAPI() {
         return this.throttleFun()

@@ -6,7 +6,6 @@
       </div>
       <div>
         <button class="btn btn-info" @click="map_fun">Map的用法</button>
-        <button class="btn btn-info" @click="map_fun">Map的用法</button>
       </div>
       <div>
         <button class="btn btn-danger" @click="obj_fun">Object的用法</button>
@@ -21,7 +20,15 @@
       <button class="button" @click="fun6">类型判断(type of, instance of)</button>
       <pre>
         基本数据类型
-        String,Number,null,NaN,
+        string, number, Nan, undefined, null, inf
+        基本类型包装类
+        String， Number，Boolean,
+        
+        String('1') === toString('1')
+
+        new String('1') != new String('1')
+        new String('1') !== new String('1')
+
         **typeof**
         - `typeof`一般用来判断基本数据类型，**除了判断 null 会输出"object"，其它都是正确的**
         - `typeof`判断引用数据类型时，**除了判断函数会输出"function",其它都是输出"object"**

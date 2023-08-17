@@ -5,13 +5,13 @@
 
     <a class="download-a" :href="href1" download="logo.png">下载assets文件下图片</a>
 
-    <pre>
+    <div class="todo">
       <h4>待研究问题</h4>
       <h5>1，服务端渲染-SSR和SSG</h5>
       <h5>2，ts的使用，代码测试</h5>
       <h5>3，react和react的状态管理</h5>
       <h5><ALink href="https://blog.csdn.net/m0_54854484/article/details/125009694" title="4，数据结构和算法"></ALink></h5>
-    </pre>
+    </div>
   </div>
 </template>
 <script>
@@ -27,3 +27,12 @@
     }
   }
 </script>
+<style lang="scss" scoped>
+.dashboard {
+  .todo {
+    background-color: antiquewhite;
+    text-align: center;
+    padding: 16px;
+  }
+}
+</style>

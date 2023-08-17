@@ -8,6 +8,7 @@ const name = 'Vue Cli 3.x'
 
 module.exports = {
   publicPath: '/app3/',
+  productionSourceMap: false,
   configureWebpack: {
     name: name,
     resolve: {
