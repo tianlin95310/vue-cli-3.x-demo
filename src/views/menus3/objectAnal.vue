@@ -26,7 +26,7 @@
     <div>
        <button class="button" @click="var_let">var与let的区别</button>
 
-       <button class="button" @click="var_let_value">数值延迟问题</button>
+       <button class="button" @click="var_let_value">var和闭包</button>
     </div>
   </div>
 </template>
@@ -80,7 +80,7 @@
             console.log(i)
           })
         }
-        // var会有变量提升，不是局部变量
+        // var会有变量提升，不是局部变量，会提升为函数变量
         for (var i = 0; i <= 5; i++) {
           document.addEventListener('click', () => {
             console.log(i)
@@ -100,7 +100,7 @@
       },
       var_let() {
         {
-          var a = 10
+          var a = 10  // 代码块内var变量可以提升
           let b = 20
         }
         console.log(a)
@@ -112,7 +112,7 @@
           console.log(d)
         }
         test()
-        console.log(c)  // c is not defined
+        console.log(c)  // c is not defined，var在相同函数内能进行变量提升，超出函数则不行，但是编译阶段不报错
         console.log(d)
       },
       newKeyWord() {
@@ -125,6 +125,7 @@
         console.log(b?.key)
         const c = undefined
         console.log(c?.key)
+        console.log(c.key)
       },
       test6() {
         const map1 = {

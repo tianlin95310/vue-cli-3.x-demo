@@ -24,7 +24,7 @@
           表达式的值等于右边的值
 
         4，Map与Object的区别
-          Object的key必须是简单类型和Symbol，而Map的key可以为对象，所以Map不支持json而Object可以
+          Object的key必须是简单类型和Symbol，而Map的key可以为对象，所以Map不支持json序列化而Object可以
           Map的key，Value添加时有顺序的，而Object则没有这个说法，
           属性删除较密集的时候使用Map，delete Object属性的效率低
           属性多Map的性能更好，特别是key未知的情况下，Map又方便的遍历迭代器API
@@ -95,6 +95,17 @@
         17，js多线程
           web worker，通过postMessage通知，dart里有类似的isolate
 
+        18，object与Object的区别
+          object和Object两者之间的主要区别在于，object是一种原始数据类型，而Object则是JavaScript中的一个内置对象。此外，我们还可以通过以下几个方面来区分这两者之间的区别：
+          object不能调用任何方法，而Object可以调用所有Object.prototype中定义的方法。
+          object不能使用new关键字来创建新的实例，而Object可以使用new关键字来创建新的对象。
+          object通常是通过字面量形式创建的，而Object通常是通过构造函数来创建的。
+          object在JavaScript中表示任何非基本类型数据，包括Function和Array等，而Object是所有对象的基础，
+          是因为其他所有的内置对象都是从Object中继承而来的，因此可以通过Object来操作和处理其他内置对象的方法和属性。
+
+        19，function和Function的区别
+
+        20，基本数据类型与包装类
      </pre>
     </template>
   </t-l-collapse>

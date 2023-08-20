@@ -21,7 +21,7 @@
       <button class="button" @click="objectProto">Object的原型</button>
       <button class="button" @click="objectProtoConst">对象的原型对象</button>
       <button class="button" @click="funProto">函数的原型</button>
-      <button class="button" @click="FunctionUse">Function的含义</button>
+      <button class="button" @click="FunctionUse">Function与function</button>
     </div>
 
     <div>
@@ -120,11 +120,40 @@
         console.log(Function.__proto__)
 
         console.log(Object)
-        console.log(Object.prototype)
-        console.log(Object.__proto__)
+        console.log('Object.prototype', Object.prototype)
+        console.log('Object.__proto__', Object.__proto__)
+
+        let obj = {}
+        console.log(obj)
+        console.log('obj.__proto__', obj.__proto__)
 
         console.log(Function instanceof Object)
         console.log(Object instanceof Function)
+        // Function.a = '123';
+
+        let funa = new Function();
+        let funb = function() {
+          this.name = 'hello'
+        }
+        let fund = new function(){
+          this.name = 'hello'
+        };
+        let func = new (function(){
+          this.name = 'hello'
+        });
+        let fune = new function(){
+          this.name = 'hello'
+        }();
+        let funf = new function E(){
+          this.name = 'hello'
+        };
+        let objg = new funb();
+
+        (function() {
+          console.log('匿名自执行函数')
+        })();
+        console.log('funa,funb,func,fund,fune,funf = ', typeof funa, typeof funb, typeof func, typeof fund, typeof fune, typeof funf, typeof objg)
+        console.log('funa,funb,func,fund,fune,funf = ', typeof funa, funb(), func, fund, fune, funf, objg)
       },
       funProto() {
         console.log(Date)
@@ -137,7 +166,7 @@
         let Afun = () => {
           this.age = 10
         }
-        // debugger
+        debugger
         console.log(new Afun())
         console.log(Afun.prototype)
       },

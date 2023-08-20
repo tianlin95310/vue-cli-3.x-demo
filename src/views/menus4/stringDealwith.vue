@@ -10,27 +10,21 @@
     </div>
     <div>
       <button class="button" @click="jsEmptyToJson">js空串转json</button>
-    </div>
-
-    <div>
       <button class="button" @click="testUrlDecode">url转义</button>
     </div>
 
-    <h2>
+    <h5>
       千分位展示数据 123 = {{ numberFormat(123, 2, '.', ',') }}
-    </h2>
-
-    <h2>
+    </h5>
+    <h5>
       千分位展示数据 123.45 = {{ numberFormat(123.45, 2, '.', ',') }}
-    </h2>
-
-    <h2>
+    </h5>
+    <h5>
       千分位展示数据 1123.45 = {{ numberFormat(1123.45, 2, '.', ',') }}
-    </h2>
-
-    <h2>
+    </h5>
+    <h5>
       千分位展示数据 112133.4567 = {{ numberFormat(112133.4567, 2, '.', ',') }}
-    </h2>
+    </h5>
   </div>
 </template>
 <script>

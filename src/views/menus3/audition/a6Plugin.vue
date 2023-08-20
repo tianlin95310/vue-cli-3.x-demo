@@ -75,10 +75,10 @@
           <ALink href="https://blog.csdn.net/webot123456/article/details/115251630" title="jquery的常见用法"></ALink>
 
         9，关于CommonJS，AMD，CMD，UMD，ES6 Module模块
-          CommonJS是js模块化的规范，Node.js的默认实现，通过export.defaultsh和require操作，偏向于服务器端，采用同步加载
+          CommonJS是js模块化的规范，Node.js的默认实现，通过export.default和require操作，偏向于服务器端，采用同步加载
           AMD和CMD和ES Module偏向客户端，require.js实现了AMD规范，sea.js实现了CMD规范，AMD是加载依赖推崇前置加载，提前加载所需模块，CMD则是懒加载，需要的时候才加载
           UMD是通用模块，判断是否支持define函数还是支持exports，区分开AMD/CMD以及common.js 
-          ES6 Module，ES旨在推出一个解决模块化的通用规范，导出的是值的引用，可以值加载某个值，而不是整个模块加载，成为编译时加载，而Common.js导出的是值的拷贝，运行时加载
+          ES6 Module，ES旨在推出一个解决模块化的通用规范，导出的是值的引用，可以只加载某个值，而不是整个模块加载，称为编译时加载，而Common.js导出的是值的拷贝，运行时加载
           <ALink href="https://zhuanlan.zhihu.com/p/467991875" title="模块化参考"></ALink>
       </pre>
     </template>
