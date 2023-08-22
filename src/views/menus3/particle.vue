@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container particle">
+  <div class="page-container particle row">
     <h2>js的特殊点,无整除运算</h2>
     <pre>
       在js中 1/2 = {{ 1 / 2 }}

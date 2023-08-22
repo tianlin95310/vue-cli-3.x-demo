@@ -28,13 +28,15 @@
       </button>
 
       <pre>
-        基本数据类型
-        string,number,bool,Nan,undefined,null,Infinity
+        原始值数据类型
+        undefined,null,string,number,bool,object,Symbol,BigInt
+        特殊数字
+        +-Infinity,+-0,Nan
         基本类型包装类
-        String,Number,Boolean,
+        Undefined,Null,String,Number,Boolean,Object,Symbol,BigInt
 
         **typeof**
-        - `typeof`一般用来判断基本数据类型，**除了判断 null 会输出"object"，其它都是正确的**
+        - `typeof`一般用来判断原始值数据类型，**除了判断 null 会输出"object"，其它都是正确的**
         - `typeof`判断引用数据类型时，**除了判断函数会输出"function",其它都是输出"object"**
         **instanceof**
         - Instanceof 可以准确的判断引用数据类型，它的原理是检测构造函数的`prototype`属性是否在某个实例对象的原型链上， 不能判断基本数据类型
@@ -187,7 +189,7 @@ export default {
       console.log("' ' == ''", " " == "");
       console.log("undefined == null", undefined == null);
       console.log("undefined === null", undefined === null);
-      // == 两边有字符串是会转为字符串，有数字是会转为数字，有object时，则会调用内部的toPrimitive在进行比较
+      // == 两边有字符串是会强转为字符串，有数字是会强转为数字，有object时，则会调用内部的toPrimitive再进行比较
     },
     testeq() {
       var a = {
@@ -214,6 +216,8 @@ export default {
       obj[obj] = "obj为key";
       // 输出所有的key
       console.log(obj.id + ", " + obj[NaN] + ", " + obj[obj]);
+      console.log(Object.getOwnPropertyDescriptors(obj))
+      console.log(Object.getOwnPropertyNames(obj))
     }
   }
 };

@@ -29,11 +29,20 @@
           属性删除较密集的时候使用Map，delete Object属性的效率低
           属性多Map的性能更好，特别是key未知的情况下，Map又方便的遍历迭代器API
 
-        5，Object的静态方法
-          Object.freeze(obj)可以冻结对象的，防止对象的值被修改如果是大数据量的数据，对于纯展示的大量数据，可以提高效率
-          Object.entries() 产生迭代器，方便遍历
-          Object.keys() 产生迭代器，方便遍历
-          var A = Object.create(A.prototype);
+        5，Object的用法
+          1，Object.freeze(obj)可以冻结对象的，防止对象的值被修改如果是大数据量的数据，对于纯展示的大量数据，可以提高效率
+          2，Object. entries(),keys(),values() 产生迭代器，方便遍历
+          3，var A = Object.create(A.prototype);可以产生以null或者指定的原型为原型对象，可以防止对象被原型级别的篡改
+          4，Object.assign(),用给定对象的可枚举属性生成新对象
+          5，Object.defineProperty，vue2是借助这个实现的
+          6，Object.is（），与==，===的逻辑是不同的，Object.is(Nan, Nan)返回true
+          7，Object.preventExtensions()，防止对象的任何扩展
+          8，Object.hasOwn()判断某对象是否有自己特有的属性
+              原型链方法
+              hasOwnProperty()
+              toString()
+              valueOf()
+
 
         6，普通函数和箭头函数的区别
           普通函数的this指向对象本省，可以作为构造函数，箭头函数都是匿名函数，无this对象，不能作为构造函数
@@ -82,8 +91,9 @@
           getPrototypeOf() 获取一个对象的原型对象
 
         14，Symbol类的使用
-          Symbol用作来解决Object字符串作为可能出现重复而覆盖的问题，Symbol可以作为Object的key，通过Object.getOwnPropertySymbols可以获取到对应的symbol，Reflect.ownKeys
-          也能获取到
+          Symbol用作来解决Object字符串作为可能出现重复而覆盖的问题，Symbol可以作为Object的key，通过Object.getOwnPropertySymbols可以获取到对应的symbol，
+          Reflect.ownKeys也能获取到，
+          Date 和 Symbol 对象是唯一重写 [@@toPrimitive]() 方法的对象。
 
         15，js单例模式的实现
           1，使用闭包直接添加方法属性
@@ -95,7 +105,7 @@
         17，js多线程
           web worker，通过postMessage通知，dart里有类似的isolate
 
-        18，object与Object的区别
+        18，object与Object的区别，基本数据类型与包装类的区别
           object和Object两者之间的主要区别在于，object是一种原始数据类型，而Object则是JavaScript中的一个内置对象。此外，我们还可以通过以下几个方面来区分这两者之间的区别：
           object不能调用任何方法，而Object可以调用所有Object.prototype中定义的方法。
           object不能使用new关键字来创建新的实例，而Object可以使用new关键字来创建新的对象。
@@ -104,8 +114,7 @@
           是因为其他所有的内置对象都是从Object中继承而来的，因此可以通过Object来操作和处理其他内置对象的方法和属性。
 
         19，function和Function的区别
-
-        20，基本数据类型与包装类
+        <Link to="/menus/func" title="function与Function"></Link>
      </pre>
     </template>
   </t-l-collapse>
