@@ -10,9 +10,9 @@
       <div ref="scroll" :style="{left: left + 'px'}" class="my-scroll"></div>
     </div>
 
-    <t-l-dialog v-model="show">
+    <t-l-dialog v-model="show" tableTitle="a fixed Table">
       <template v-slot:content>
-        <div style="width: 100px;height: 100px;background-color: #cccccc">我是谁</div>
+        <div style="height: 100px;background-color: #cccccc">我是谁</div>
       </template>
     </t-l-dialog>
   </div>
@@ -20,7 +20,6 @@
 </template>
 
 <script>
-
 // let s1 = this.$refs.scrollTop.wrap
 // let s2 = this.$refs.multipleTable.bodyWrapper
 // let c1 = this.$refs.scrollContent

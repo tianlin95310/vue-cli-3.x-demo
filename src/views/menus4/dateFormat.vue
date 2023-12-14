@@ -64,7 +64,13 @@
       时间减一月： {{ timeOffset('month', -1, new Date()).format('yyyy-MM-dd HH:mm:ss') }}
     </div>
     <div>
-      时间加1天： {{ timeOffset('day', 1, new Date()).format('yyyy-MM-dd HH:mm:ss') + timeOffset('day', 1, new Date()).nowFewWeeks()}}
+      时间加100天： {{ timeOffset('day', 100, new Date('2023/07/11')).format('yyyy-MM-dd')}}
+    </div>
+    <div>
+      时间加100天： {{ timeOffset('day', 100, new Date()).format('yyyy-MM-dd')}}
+    </div>
+    <div>
+      明天是： {{ timeOffset('day', 1, new Date()).nowFewWeeks()}}
     </div>
     <div>
       时间加4天： {{ timeOffset('month', 4, new Date()).format('yyyy-MM-dd HH:mm:ss') + timeOffset('day', 4, new Date()).nowFewWeeks() }}

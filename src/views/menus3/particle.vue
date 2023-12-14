@@ -1,11 +1,15 @@
 <template>
   <div class="page-container particle row">
-    <h2>js的特殊点,无整除运算</h2>
     <pre>
       在js中 1/2 = {{ 1 / 2 }}
       在js中 2/4 = {{ 2 / 4 }}
       在js中 3/4 = {{ 3 / 4 }}
       在js中 4/4 = {{ 4 / 4 }}
+      取余数1 % 3 = {{ 1 % 3 }}
+      取余数2 % 3 = {{ 2 % 3 }}
+      取余数3 % 3 = {{ 3 % 3 }}
+      取余数4 % 3 = {{ 4 % 3 }}
+      取余数5 % 3 = {{ 5 % 3 }}
     </pre>
     <pre>
       undefined + 1 = {{ undefined + 1 }}
@@ -18,6 +22,8 @@
       +0 == -0 = {{ +0 == -0 }}
       +0 === -0 = {{ +0 === -0 }}
 
+      +'123' {{ +'123' }}
+
       '1' == 1 = {{ '1' == 1 }}
       ' ' == '' = {{ ' ' == '' }}
       ' ' == 0 = {{ ' ' == 0 }}
@@ -26,6 +32,7 @@
       false == 0 = {{ false == 0 }}
      </pre>
     <pre>
+      <span>||与()</span>
       <span>||运算 undefined || 1 - undefined || 2 = {{ undefined || 1 - undefined || 2 }}</span>
       <span>||运算 (undefined || 1) - (undefined || 2) = {{ (undefined || 1) - (undefined || 2) }}</span>
       </pre>
@@ -44,17 +51,12 @@
       Infinity == Infinity = {{ Infinity == Infinity }}
       Infinity === Infinity = {{ Infinity === Infinity }}
      </pre>
-    <pre>
-      取余数1 % 3 = {{ 1 % 3 }}
-      取余数2 % 3 = {{ 2 % 3 }}
-      取余数3 % 3 = {{ 3 % 3 }}
-      取余数4 % 3 = {{ 4 % 3 }}
-      取余数5 % 3 = {{ 5 % 3 }}
-    </pre>
+    
     <div>
       <span class="tag" style="margin-left: 16px;" @click="random">{{number}}</span>
+      <button class="button" @click="JsonFormat">测试Json字符串格式化</button>
+      <button class="button" @click="trycatch">测试catch里返回数据</button>
     </div>
-    <button class="button" @click="JsonFormat">测试Json字符串格式化</button>
   </div>
 </template>
 <script>
@@ -71,6 +73,18 @@ export default {
     }
   },
   methods: {
+    async testtrycatchretrun() {
+      try {
+        throw Error(123)
+        return [1, 2, 3]
+      } catch (err) {
+        return ['a', 'b', 'c']
+      }
+    },
+    async trycatch() {
+      const res = await this.testtrycatchretrun()
+      console.log('res', res)
+    },
     JsonFormat() {
       const value = {
         v1: undefined,

@@ -43,7 +43,6 @@
               toString()
               valueOf()
 
-
         6，普通函数和箭头函数的区别
           普通函数的this指向对象本省，可以作为构造函数，箭头函数都是匿名函数，无this对象，不能作为构造函数
 
@@ -83,6 +82,8 @@
           事件捕获阶段
           事件命中阶段
           事件冒泡阶段
+          添加事件的3中方式：
+          addEventListener,onclick绑定，onclick赋值
 
         13，获取js的属性
           for（let I in obj）该方法依次访问一个对象及其原型链中所有可枚举的类型
@@ -115,6 +116,7 @@
 
         19，function和Function的区别
         <Link to="/menus/func" title="function与Function"></Link>
+
      </pre>
     </template>
   </t-l-collapse>

@@ -14,21 +14,49 @@
       <input v-focus />
     </div>
     <div v-randomcolor>随机颜色</div>
+
+    <div>
+      <input />
+      <button class="button" @click="showDialog = true">可拖拽弹窗</button>
+    </div>
+
+    <LoadingCotantainer @loadMore="loadMore">
+      <template #content>
+        <div>
+          <div v-for="(item, index) in items" :key="index" class="load-item" v-randomcolor>{{ index + 1}}</div>
+        </div>
+      </template>
+    </LoadingCotantainer>
+    
+    <t-l-dialog v-model="showDialog" tableTitle="a fixed Table">
+      <template v-slot:content>
+        <div style="height: 100px;background-color: #cccccc">我是谁</div>
+      </template>
+    </t-l-dialog>
+
   </div>
 </template>
 <script>
+  import TLDialog from 'comp/TLDialog'
+  import LoadingCotantainer from 'comp/LoadingCotantainer'
   export default {
+    components: {
+      TLDialog,
+      LoadingCotantainer
+    },
     directives: {
       randomcolor: {
         mounted: function(el) {
-          console.log('---randomcolor inserted---', el)
-          const random = Math.ceil(Math.random() * 0xffffff)
-          el.style.color = '#' + random.toString(16)
+          const random = () => {
+            return Math.ceil(Math.random() * 0xffffff)
+          }
+          el.style.color = '#' + random().toString(16)
+          el.style.backgroundColor = '#' + random().toString(16)
         }
       },
       autoplay: {
         mounted: function(el) {
-          console.log('---autoplay inserted---', el)
+          console.log('---autoplay mounted---', el)
           if (el) {
             el.play()
           }
@@ -51,7 +79,15 @@
         }
       }
     },
+    created() {
+      this.items = [{}]
+    },
     methods: {
+      loadMore(param, who) {
+        console.log('loadMore', param)
+        this.items.push(...[{}, {}, {}, {}, {}])
+        console.log('this.items', this.items.length)
+      },
       mouseup(ev) {
         console.log('mouseup')
         this.isDown = false
@@ -78,11 +114,13 @@
     },
     data() {
       return {
-        left: 100,
-        top: 100,
+        left: 700,
+        top: 0,
         mouseX: 0,
         mouseY: 0,
-        isDown: false
+        isDown: false,
+        showDialog: false,
+        items: []
       }
     }
   }
@@ -91,6 +129,12 @@
 <style lang="scss" scoped>
   .self-directive {
     position: relative;
+    .load-item {
+      height: 200px;
+      line-height: 200px;
+      font-size: 30px;
+      text-align: center;
+    }
     .move-able {
       position: absolute;
       background-color: aqua;

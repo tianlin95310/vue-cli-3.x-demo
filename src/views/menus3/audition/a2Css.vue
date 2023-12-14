@@ -53,9 +53,9 @@
         6，display: table和table元素的区别？
           在布局上能实现类似效果，不过div+css的代码量更少，更精简，效果更高，因为table是整体加载完成才会渲染，而div是逐行渲染
 
-        7，属性选择器和伪类选择器优先级？
+        7，属性选择器和伪类选择器优先级？css中@layer的用法
           两者优先级相同
-          内联 > id > class > 属性 = 伪类
+          内联 > id > class = 属性 = 伪类 > 标签 > 通配符 、功能伪类
           
         8，Z-index生效条件
           1，position 为relative, fixed, abslolute才会生效
