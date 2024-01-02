@@ -34,7 +34,11 @@ export const MENUS = [
     }, {
       menuTitle: '异步组件探索',
       isOpen: false,
-      path: '/menu1/asyncComp'
+      path: '/menu1/testAsyncComp'
+    }, {
+      menuTitle: '临时Page',
+      isOpen: false,
+      path: '/menu1/tempPage'
     }]
   }, {
     menuTitle: '测试CSS的属性',

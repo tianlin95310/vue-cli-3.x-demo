@@ -11,17 +11,21 @@
     <v-model-child v-bind:value="value1"/>
     <not-v-model-child v-bind:value="value2" @change="change"/>
 
+    <updateBindValue ref="updateBindValue" :bindName="bindName" />
+    <button class="button" @click="changeProp">更新props值</button>
   </div>
 </template>
 
 <script>
   import notVModelChild from './comp/notVModelChild.vue'
   import vModelChild from './comp/vModelChild.vue'
+  import updateBindValue from './comp/updateBindValue'
 
   export default {
     components: {
       notVModelChild,
-      vModelChild
+      vModelChild,
+      updateBindValue
     },
     methods: {
       show() {
@@ -29,6 +33,13 @@
       },
       change() {
         this.value2.value = this.value2.value + '111'
+      },
+      changeProp() {
+        this.bindName = 'VVV'
+        this.$nextTick(() => {
+          this.$refs.updateBindValue.showName()
+        })
+        this.$refs.updateBindValue.showName()
       }
     },
     data() {
@@ -38,7 +49,8 @@
         },
         value2: {
           value: 'value2'
-        }
+        },
+        bindName: ''
       }
     }
   }

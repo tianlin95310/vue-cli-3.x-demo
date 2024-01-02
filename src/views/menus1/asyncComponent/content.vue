@@ -1,12 +1,13 @@
 <template>
-  <div class="content">
+  <div class="async-content page-container">
     Async Components
   </div>
 </template>
 
 <script>
   export default {
-    async setup() {
+    name: 'ACTContent',
+    setup() {
       const loadData = () => {
         return new Promise(resolve => {
           setTimeout(() => {
@@ -14,14 +15,15 @@
           }, 2000)
         })
       }
-      await loadData()
+      loadData()
       console.log('content setup')
     }
   }
 </script>
 
 <style>
-  .content {
+  .async-content {
     line-height: 300px;
+    background-color: antiquewhite;
   }
 </style>
