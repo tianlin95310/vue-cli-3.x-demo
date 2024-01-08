@@ -1,5 +1,5 @@
 <template>
-  <div>Loading...</div>
+  <div class="loadding-container">Loading...</div>
 </template>
 
 <script>
@@ -17,4 +17,8 @@
 </script>
 
 <style>
+.loadding-container {
+  height: 200px;
+  line-height: 200px;
+}
 </style>
