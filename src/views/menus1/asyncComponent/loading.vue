@@ -18,7 +18,7 @@
 
 <style>
 .loadding-container {
-  height: 200px;
-  line-height: 200px;
+  height: 100px;
+  line-height: 100px;
 }
 </style>

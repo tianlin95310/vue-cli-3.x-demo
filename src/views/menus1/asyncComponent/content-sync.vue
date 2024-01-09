@@ -1,6 +1,6 @@
 <template>
   <div class="sync-content">
-    Async Components with defineAsyncComponent
+    Sync Components
   </div>
 </template>
 
@@ -8,14 +8,14 @@
   export default {
     name: 'AsyncContent',
     setup() {
-      console.log('content setup')
+      console.log('AsyncContent setup')
     }
   }
 </script>
 
 <style>
   .sync-content {
-    line-height: 200px;
+    line-height: 100px;
     background-color: #ccc;
   }
 </style>

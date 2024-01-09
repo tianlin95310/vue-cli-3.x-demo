@@ -1,6 +1,6 @@
 <template>
-  <div class="async-content2">
-    Async Components With Async Setup, Suspense
+  <div class="async-content">
+    Async Components With Promise Setup
   </div>
 </template>
 
@@ -16,14 +16,14 @@
         })
       }
       await loadData()
-      console.log('content setup')
+      console.log('AsyncContent setup')
     }
   }
 </script>
 
 <style>
-  .async-content2 {
-    line-height: 200px;
+  .async-content {
+    line-height: 100px;
     background-color: #bbb;
   }
 </style>
