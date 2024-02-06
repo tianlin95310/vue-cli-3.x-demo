@@ -33,6 +33,8 @@
 
       <button class="button" @click="PromiseRace" title="任意一个先走完取哪个值">Promise.race</button>
 
+      <button class="button" @click="PromiseAllSettled">Promise.AllSettled</button>
+      
       <button class="button" @click="awaitAErrorPromise" title="任意一个先走完取哪个值">await Promise Error</button>
     </div>
 
@@ -173,6 +175,11 @@
       },
       PromiseAll() {
         Promise.all([this.promiseFun1(), this.promiseFun2()]).then(res => {
+          console.log('PromiseAll res', res)
+        })
+      },
+      PromiseAllSettled() {
+        Promise.allSettled([this.promiseFun1(), this.promiseFun2()]).then(res => {
           console.log('PromiseAll res', res)
         })
       },

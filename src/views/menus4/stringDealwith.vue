@@ -3,7 +3,7 @@
     <div>
       <button class="button" @click="testStrOp">测试字符串split操作</button>
       <button class="button" @click="strIndex">js字符串截取</button>
-      <button class="button" @click="strReplace">字符串替换</button>
+      <button class="button" @click="strReplace" title="replaceAll不是全部浏览器支持">字符串替换</button>
       <button class="button" @click="testStart">判断是以某段开头</button>
       <button class="button" @click="testReg()">去点数字前面的0</button>
       <button class="button" @click="testTeshu">判断是否包含特殊字符</button>
@@ -19,6 +19,7 @@
     <h5>
       千分位展示数据 112133.4567 = {{ numberFormat(112133.4567, 2, ".", ",") }}
     </h5>
+    
   </div>
 </template>
 <script>
@@ -103,6 +104,9 @@ export default {
 
       const str4 = "2022-12-12 12:12:12";
       console.log("str---" + str4.replace(/-/g, "/"));
+
+      // replaceAll not all browser supported
+      console.log("str---" + ' 1/2/3/4 '.replaceAll('/', "*"));
     },
     jsEmptyToJson() {
       const str = "";

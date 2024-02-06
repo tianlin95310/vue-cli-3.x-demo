@@ -34,7 +34,7 @@
           transform 属性不会重排与重绘
         .4 具体实现
           transform代替top等位移
-          使用visiable（不刷新布局）代替display： none
+          使用visibility（不刷新布局）代替display： none
           避免使用table布局
           
           尽可能在dom树的末端改变class
@@ -74,6 +74,9 @@
           类似于ps的蒙版
 
         12，relative布局也是可以使用位置属性的
+
+        13，visibility和display: none
+        visibility消失时不展示在界面，但是占据空间，不会响应事件，display在文档上，不占据空间
 
      </pre>
     </template>

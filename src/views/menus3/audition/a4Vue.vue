@@ -13,6 +13,8 @@
           3，diff算法优化
           4，静态提升，组件复用，对不参与更新的元素，只会被创建一次，之后会在每次渲染时候被不停的复用。
           5，事件侦听器缓存
+        3，v-if和v-show
+          v-if控制是否在文档上，v-show控制display属性
       </pre>
     </template>
   </t-l-collapse>
