@@ -15,6 +15,8 @@
           5，事件侦听器缓存
         3，v-if和v-show
           v-if控制是否在文档上，v-show控制display属性
+        4，vue2的.sync修饰符
+          用于处理数据双向绑定的
       </pre>
     </template>
   </t-l-collapse>

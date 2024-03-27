@@ -174,6 +174,11 @@ const routes = [
         path: 'htmlDeal',
         name: 'HtmlDeal',
         component: () => import('@/views/menus4/htmlDeal.vue')
+      },
+      {
+        path: 'bomAbout',
+        name: 'bomAbout',
+        component: () => import('@/views/menus4/bomAbout.vue')
       }
     ]
   },

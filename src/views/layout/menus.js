@@ -130,6 +130,10 @@ export const MENUS = [
       menuTitle: '元素的特殊处理',
       isOpen: false,
       path: '/menu4/htmlDeal'
+    }, {
+      menuTitle: '浏览器环境相关',
+      isOpen: false,
+      path: '/menu4/bomAbout'
     }]
   }, {
     menuTitle: '练手小项目',

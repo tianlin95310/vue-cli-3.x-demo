@@ -78,6 +78,9 @@
         13，visibility和display: none
         visibility消失时不展示在界面，但是占据空间，不会响应事件，display在文档上，不占据空间
 
+        14，元素监听
+          使用ResizeObserver监听元素
+
      </pre>
     </template>
   </t-l-collapse>
