@@ -21,6 +21,11 @@ module.exports = {
     // 多余的空格问题
     'no-trailing-spaces': ['off'],
     'no-unused-vars': ['off'],
+    "vue/script-indent": ["error", 2, {
+      "baseIndent": 0,
+      "switchCase": 0,
+      "ignores": []
+    }]
   },
   overrides:[
     	{

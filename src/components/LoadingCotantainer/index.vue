@@ -1,25 +1,20 @@
 <template>
-  <div
-    v-loadmore="loadMore"
-    class="loadmore-cotantainer scroll-bar"
-    style="height: 300px;"
-  >
+  <div v-loadmore="loadMore" class="loadmore-cotantainer scroll-bar" style="height: 300px;">
     <slot ref="body" name="content"></slot>
     <div v-if="loading" class="loading">加载中...</div>
   </div>
 </template>
 
 <script>
-/*eslint-disable */
 export default {
   directives: {
     loadmore: {
       mounted(el, binding) {
-        const wrapper = el;
-        const body = wrapper.children[0];
+        const wrapper = el
+        const body = wrapper.children[0]
         console.log('loadmore mounted', wrapper, body)
 
-        const immediate = binding.modifiers.immediate || false;
+        const immediate = binding.modifiers.immediate || false
         let lastScrollTop = 0
         wrapper.scrollFun = function() {
           const sign = 20
@@ -36,8 +31,8 @@ export default {
           }
         }
         const resizeObserver = new MutationObserver(() => {
-          const containerHeight = wrapper.getBoundingClientRect().height;
-          const bodyHeight = body.getBoundingClientRect().height;
+          const containerHeight = wrapper.getBoundingClientRect().height
+          const bodyHeight = body.getBoundingClientRect().height
           console.log('containerHeight', containerHeight, 'bodyHeight', bodyHeight)
           if (bodyHeight.clientHeight !== 0 && bodyHeight <= containerHeight) {
             binding.value && binding.value('initial')
@@ -79,8 +74,8 @@ export default {
     return {
       loading: false
     }
-  },
-};
+  }
+}
 </script>
 
 <style>
@@ -88,10 +83,10 @@ export default {
   border: 1px solid goldenrod;
   overflow: auto;
 }
+
 .loading {
   height: 50px;
   line-height: 50px;
   text-align: center;
 }
-  
 </style>

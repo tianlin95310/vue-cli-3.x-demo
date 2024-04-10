@@ -45,10 +45,15 @@ button {
 	margin: 8px 16px;
 }
 
+button {
+  user-select: none;
+}
+
 .button:hover {
 	border-radius: 8px;
 	background-color: #48a167;
 	border: 1px solid #48a167;
+	box-shadow: rgb(6, 158, 6) 1px 1px 1px 1px;
 }
 
 .download-a {

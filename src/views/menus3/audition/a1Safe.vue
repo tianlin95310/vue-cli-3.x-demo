@@ -5,7 +5,7 @@
   <!--  https://www.jb51.net/article/92639.htm-->
   <t-l-collapse title="1,安全性问题">
     <template v-slot:content>
-      <pre>
+      <pre class="scroll-bar">
         1，安全性问题？
           1.1 XSS 攻击: 注入恶意代码
             http请求头设置httpOnly防止访问cookie
@@ -18,7 +18,9 @@
           <div class="safe-test">
             <div v-html="html" style="width: 200px;height: 100px;background: #42b983" title="通过注入脚本读取隐私信息"></div>
             <p id="p"></p>
-            <div><span>输入的脚本内容：</span><input v-model="html" style="width: 88%;font-size: 11px;"></div>
+            <div>
+              <span>输入的脚本内容：</span><input v-model="html" style="width: 88%;font-size: 11px;">
+            </div>
           </div>
 
         2，HTTPS和http协议的区别？
@@ -89,26 +91,27 @@
 </template>
 
 <script>
-  import TLCollapse from '@/components/TLCollapse.vue'
-  export default {
-    name: 'a1Safe',
-    components: {
-      TLCollapse
-    },
-    data() {
-      return {
-        html: '<form id="test"></form><button form="test" class="button" formaction="javascript:alert(document.getElementById(\'p\').innerHTML = document.cookie)">用户注入的脚本</button>'
-      }
+import TLCollapse from '@/components/TLCollapse.vue'
+export default {
+  name: 'a1Safe',
+  components: {
+    TLCollapse
+  },
+  data() {
+    return {
+      html: '<form id="test"></form><button form="test" class="button" formaction="javascript:alert(document.getElementById(\'p\').innerHTML = document.cookie)">用户注入的脚本</button>'
     }
   }
+}
 </script>
 
 <style>
-  .safe-test {
-    background: yellow;
-    white-space: nowrap;
-  }
-  button {
-    margin: 16px;
-  }
+.safe-test {
+  background: yellow;
+  white-space: nowrap;
+}
+
+button {
+  margin: 16px;
+}
 </style>
