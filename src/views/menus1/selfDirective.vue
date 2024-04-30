@@ -11,13 +11,18 @@
     </div>
 
     <div>
-      输入框自动获取焦点：
-      <input v-focus />
+      <div>
+        第一个输入框：
+        <input />
+      </div>
+      <div>
+        第二个输入框：
+        <input v-focus />
+      </div>
     </div>
     <div v-randomcolor>随机颜色</div>
 
     <div>
-      <input />
       <button class="button" @click="showDialog = true">可拖拽弹窗</button>
     </div>
 
@@ -37,93 +42,87 @@
 
   </div>
 </template>
-<script>
+<script setup>
 import TLDialog from 'comp/TLDialog'
 import LoadingCotantainer from 'comp/LoadingCotantainer'
-export default {
-  components: {
-    TLDialog,
-    LoadingCotantainer
-  },
-  directives: {
-    randomcolor: {
-      mounted: function(el) {
-        const random = () => {
-          return Math.ceil(Math.random() * 0xffffff)
-        }
-        el.style.color = '#' + random().toString(16)
-        el.style.backgroundColor = '#' + random().toString(16)
-      }
-    },
-    autoplay: {
-      mounted: function(el) {
-        console.log('---autoplay mounted---', el)
-        if (el) {
-          el.play()
-        }
-      }
-    },
-    focus: {
-      // 指令的定义
-      created: function(el, binding) {
-        // console.log('---focus created', el)
-      },
-      beforeMount: function(el) {
-        // console.log('---focus beforeMount', el)
-      },
-      mounted: function(el) {
-        console.log('---focus mounted', el)
-        el.focus()
-      },
-      beforeUpdate: function(el) {
-        // console.log('---focus beforeUpdate', el)
-      }
+import { reactive, toRefs } from 'vue'
+
+const state = {
+  left: 700,
+  top: 0,
+  mouseX: 0,
+  mouseY: 0,
+  isDown: false,
+  showDialog: false,
+  items: null
+}
+const stateRefs = toRefs(reactive(state))
+const { showDialog, items } = stateRefs
+const { left, top } = stateRefs
+const vRandomcolor = {
+  mounted: function (el) {
+    const random = () => {
+      return Math.ceil(Math.random() * 0xffffff)
     }
-  },
-  created() {
-    this.items = []
-  },
-  methods: {
-    loadMore(param, who) {
-      console.log('loadMore called', param)
-      this.items.push(...[{}, {}, {}, {}, {}])
-      console.log('this.items', this.items.length)
-    },
-    mouseup(ev) {
-      console.log('mouseup')
-      this.isDown = false
-    },
-    mousemove(ev) {
-      if (!this.isDown) {
-        return
-      }
-      const dx = ev.clientX - this.mouseX
-      const dy = ev.clientY - this.mouseY
-      console.log('mousemove', ev.clientX, this.mouseX)
-      console.log('mousemove', dx, dy)
-      this.left += dx
-      this.top += dy
-      this.mouseX = ev.clientX
-      this.mouseY = ev.clientY
-    },
-    mousedown(ev) {
-      console.log('mousedown')
-      this.mouseX = ev.clientX
-      this.mouseY = ev.clientY
-      this.isDown = true
-    }
-  },
-  data() {
-    return {
-      left: 700,
-      top: 0,
-      mouseX: 0,
-      mouseY: 0,
-      isDown: false,
-      showDialog: false,
-      items: null
+    el.style.color = '#' + random().toString(16)
+    el.style.backgroundColor = '#' + random().toString(16)
+  }
+}
+const vAutoplay = {
+  mounted: function (el) {
+    console.log('---autoplay mounted---', el)
+    if (el) {
+      el.play()
     }
   }
+}
+
+const vFocus = {
+  // 指令的定义
+  created: function (el, binding) {
+    // console.log('---focus created', el)
+  },
+  beforeMount: function (el) {
+    // console.log('---focus beforeMount', el)
+  },
+  mounted: function (el) {
+    console.log('---focus mounted', el)
+    el.focus()
+  },
+  beforeUpdate: function (el) {
+    // console.log('---focus beforeUpdate', el)
+  }
+}
+state.items = []
+
+const loadMore = (param, who) => {
+  console.log('loadMore called', param)
+  state.items.push(...[{}, {}, {}, {}, {}])
+  console.log('state.items', state.items.length)
+}
+const mouseup = (ev) => {
+  console.log('mouseup')
+  state.isDown = false
+}
+const mousemove = (ev) => {
+  if (!state.isDown) {
+    return
+  }
+  const dx = ev.clientX - state.mouseX
+  const dy = ev.clientY - state.mouseY
+
+  left.value += dx
+  top.value += dy
+  state.mouseX = ev.clientX
+  state.mouseY = ev.clientY
+
+  console.log('mousemove', dx, dy, left, top)
+}
+const mousedown = (ev) => {
+  console.log('mousedown')
+  state.mouseX = ev.clientX
+  state.mouseY = ev.clientY
+  state.isDown = true
 }
 </script>
 

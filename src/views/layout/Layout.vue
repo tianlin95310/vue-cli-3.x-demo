@@ -33,7 +33,7 @@
 <script>
 import Content from './Content.vue'
 import { MENUS } from './menus'
-import { onMounted, ref, getCurrentInstance, getCurrentScope } from 'vue'
+import { onMounted, ref, getCurrentInstance } from 'vue'
 import device from '../../utils/Device.js'
 let CONTEXT = null
 // @ is an alias to /src
@@ -44,15 +44,10 @@ export default {
   },
   setup(props, context) {
     console.log('Layout---', props, 'context =', context)
-    console.log('CONTEXT', CONTEXT)
-
     CONTEXT = getCurrentInstance()
-
     console.log('CONTEXT', CONTEXT)
 
     onMounted(() => {
-      CONTEXT = getCurrentInstance()
-      console.log('Layout onMounted CONTEXT', CONTEXT)
       console.log('CONTEXT.$refs.content', CONTEXT.refs.content)
     })
     const menus = ref([])

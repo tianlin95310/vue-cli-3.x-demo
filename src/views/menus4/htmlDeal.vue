@@ -41,7 +41,7 @@
       <input v-model="number6" type="text" v-number />{{ number6 }}
     </div>
     <div>
-      <div>.number修饰符</div>
+      <div>.number修饰符知识替换数据类型为Number</div>
       <input v-model.number="number7" />{{ number7 }}
     </div>
     <h5>

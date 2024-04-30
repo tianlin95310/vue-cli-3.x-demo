@@ -61,11 +61,6 @@ const routes = [
         path: 'testAsyncComp',
         name: 'TestAsyncComp',
         component: () => import('@/views/menus1/testAsyncComp.vue')
-      },
-      {
-        path: 'tempPage',
-        name: 'TempPage',
-        component: () => import('@/views/menus1/tempPage.vue')
       }
     ]
   },

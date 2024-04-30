@@ -14,14 +14,12 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    // 缩进空格数
-    'vue/script-indent': ['error', 2, {'baseIndent': 1}],
     // 参数名前空格的问题
-    'space-before-function-paren': [2, 'never'],
+    'space-before-function-paren': ['off', 'never'],
     // 多余的空格问题
     'no-trailing-spaces': ['off'],
     'no-unused-vars': ['off'],
-    "vue/script-indent": ["error", 2, {
+    "vue/script-indent": ["off", 2, {
       "baseIndent": 0,
       "switchCase": 0,
       "ignores": []

@@ -35,11 +35,14 @@
     user-select: text;
     text-align: left;
     font-size: 1.5rem;
+    border: 1px solid greenyellow;
+    padding: 6px 10px;
 
     /*内容可读写，但粘贴内容中的富文本格式（如文本的颜色、大小，图片等）会丢失*/
-    /*attr(placeholder)可以去属性内容，通常用于content*/
+    /*attr(placeholder)可以取属性内容，通常用于content*/
     &[contenteditable=true] {
-      user-modify: read-write-plaintext-only;
+      // user-modify: read-write-plaintext-only;
+      -webkit-user-modify: read-write-plaintext-only;
 
       &:empty:before {
         content: attr(placeholder);
@@ -47,6 +50,10 @@
         display: block;
         color: #ccc;
       }
+    }
+    &[contenteditable=false] {
+      cursor: not-allowed;
+      color: #ccc;
     }
   }
 </style>

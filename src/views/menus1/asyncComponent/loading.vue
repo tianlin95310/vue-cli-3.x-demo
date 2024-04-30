@@ -3,11 +3,6 @@
 </template>
 
 <script>
-  /* eslint-disable */
-  import {
-    onMounted
-  } from 'vue'
-
   export default {
     name: 'loading',
     setup() {
