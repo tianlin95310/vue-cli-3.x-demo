@@ -87,7 +87,7 @@
         canvas.closePath()
 
         // 绘制当前进度
-        if (this.percent >= 0.1) {
+        if (this.percent >= 0.01) {
           const total = this.height - this.cylinderHeight - this.cylinderHeight
           const current = total * Math.min(this.percent, 1)
           canvas.beginPath()

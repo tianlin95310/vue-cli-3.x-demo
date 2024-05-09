@@ -1,78 +1,40 @@
 <template>
-  <div v-loadmore="loadMore" class="loadmore-cotantainer scroll-bar" style="height: 300px;">
+  <div v-loadmore="loadMore" load-more-immediate="true" class="loadmore-cotantainer scroll-bar" style="height: 300px;">
     <slot ref="body" name="content"></slot>
     <div v-if="loading" class="loading">加载中...</div>
   </div>
 </template>
 
 <script>
+import loadMore from './loadmore'
 export default {
   directives: {
-    loadmore: {
-      mounted(el, binding) {
-        const wrapper = el
-        const body = wrapper.children[0]
-        console.log('loadmore mounted', wrapper, body)
-
-        const immediate = binding.modifiers.immediate || false
-        let lastScrollTop = 0
-        wrapper.scrollFun = function() {
-          const sign = 20
-          if (this.scrollTop === 0) {
-            binding.value && binding.value('up', this)
-            return false
-          }
-          if (lastScrollTop !== this.scrollTop) {
-            lastScrollTop = this.scrollTop
-            const distanceToBottom = this.scrollHeight - this.scrollTop - this.clientHeight
-            if (distanceToBottom <= sign) {
-              binding.value && binding.value('down', this)
-            }
-          }
-        }
-        const resizeObserver = new MutationObserver(() => {
-          const containerHeight = wrapper.getBoundingClientRect().height
-          const bodyHeight = body.getBoundingClientRect().height
-          console.log('containerHeight', containerHeight, 'bodyHeight', bodyHeight)
-          if (bodyHeight.clientHeight !== 0 && bodyHeight <= containerHeight) {
-            binding.value && binding.value('initial')
-          }
-        })
-        wrapper.resizeObserver = resizeObserver
-        if (immediate) {
-          binding.value && binding.value('immediate')
-        }
-        if (wrapper) {
-          if (body) {
-            resizeObserver.observe(body, {
-              attributes: true,
-              childList: true,
-              subtree: true
-            })
-          }
-          wrapper.addEventListener('scroll', wrapper.scrollFun)
-        }
-      },
-      unmounted(el) {
-        const wrapper = el
-        if (el.resizeObserver) {
-          el.resizeObserver.disconnect()
-        }
-        if (wrapper) {
-          wrapper.removeEventListener('scroll', el.scrollFun)
-        }
-      }
-    }
+    loadmore: loadMore
   },
   methods: {
-    loadMore(param, who) {
+    loadMore() {
       this.loading = true
-      this.$emit('loadMore', param, who)
+      this.$emit('loadMore')
+    }
+  },
+  computed: {
+    loadingText() {
+      if (this.loading) {
+        return '加载中...'
+      } else if (this.error) {
+        return '点击重试...'
+      } else if (this.isDone) {
+        return '每日更多了...'
+      } else {
+        return '加载中...'
+      }
     }
   },
   data() {
     return {
-      loading: false
+      loading: false,
+      error: false,
+      isDone: false
     }
   }
 }

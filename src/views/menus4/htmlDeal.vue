@@ -41,18 +41,17 @@
       <input v-model="number6" type="text" v-number />{{ number6 }}
     </div>
     <div>
-      <div>.number修饰符知识替换数据类型为Number</div>
+      <div>.number修饰符 仅替换数据类型</div>
       <input v-model.number="number7" />{{ number7 }}
     </div>
-    <h5>
-      js的最长精度 Number.prototype.toPrecision
+    <div>
+      用number会超过16位的限制,可以输入1，js的最长精度 Number.prototype.toPrecision
       双精度浮点数的有效尾数是16位，在js中有效位数是17位，超过10位会截取
       可以理解为JS引擎会默认保留最多17位的有效小数 
       Number.MAX_SAFE_INTEGER + 1 === Number.MAX_SAFE_INTEGER + 2
-    </h5>
-    <div>用number会超过16位的限制,可以输入1</div>
+    </div>
     <div>
-      <div>type=number 修饰符</div>
+      <div>type=number</div>
       <input v-model="number8" type="number" />{{ number8 }}
     </div>
     <div>

@@ -125,13 +125,13 @@ import TLDialog from "@/components/TLDialog";
 import TLImageCut from "./canvas/TLImageCut";
 import TlRoundCountDown from "./canvas/TlRoundCountDown.vue";
 
-// import CylinderProgress from './canvas/CylinderProgress'
+import CylinderProgress from './canvas/CylinderProgress'
 // import TLWaveView from './canvas/TLWaveView'
 import TLWaveView from "vue-waveview";
 import "vue-waveview/vue-waveview.css";
 
-import CylinderProgress from "vue-cylinder-progress";
-import "vue-cylinder-progress/vue-cylinder-progress.css";
+// import CylinderProgress from "vue-cylinder-progress";
+// import "vue-cylinder-progress/vue-cylinder-progress.css";
 
 export default {
   name: "CanvasView",
@@ -187,7 +187,7 @@ export default {
             clearInterval(timer);
           }
         }
-      }, 50);
+      }, 200);
     }
     if (!this.isDone2) {
       this.isDone2 = true;

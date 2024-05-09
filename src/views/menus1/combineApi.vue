@@ -46,6 +46,8 @@
         <CombineComp ref="combineComp" :d3="d3" :d31="d31" :d32="d32" :d33="d33" @parFun="parFun"></CombineComp>
 
         <CombineCompSetup ref="combineCompSetup" @parFun="parFun"></CombineCompSetup>
+
+        <CombineCompcRefReactive></CombineCompcRefReactive>
       </div>
     </div>
   </div>
@@ -72,11 +74,13 @@ import {
 
 import CombineComp from './comp/combineComp.vue'
 import CombineCompSetup from './comp/combineComp_setup.vue'
+import CombineCompcRefReactive from './comp/combineComp_ref_reactive.vue'
 export default {
   name: 'CombineApi',
   components: {
     CombineComp,
-    CombineCompSetup
+    CombineCompSetup,
+    CombineCompcRefReactive
   },
   props: {
     prop1: {

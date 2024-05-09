@@ -26,13 +26,21 @@
       <button class="button" @click="showDialog = true">可拖拽弹窗</button>
     </div>
 
-    <LoadingCotantainer @loadMore="loadMore">
-      <template #content>
+    <div class="infinite">
+      <div class="item">
+        <LoadingCotantainer @loadMore="loadMore">
+          <template #content>
+            <div class="load-more-content">
+              <div v-for="(item, index) in items" :key="index" class="load-item" v-randomcolor>{{ index + 1 }}</div>
+            </div>
+          </template>
+        </LoadingCotantainer>
         <div>
-          <div v-for="(item, index) in items" :key="index" class="load-item" v-randomcolor>{{ index + 1 }}</div>
+          <button class="button" @click="items.push({})">添加一个元素</button>
+          <button class="button" @click="items = []">清空列表</button>
         </div>
-      </template>
-    </LoadingCotantainer>
+      </div>
+    </div>
 
     <t-l-dialog v-model="showDialog" tableTitle="a fixed Table">
       <template v-slot:content>
@@ -45,7 +53,7 @@
 <script setup>
 import TLDialog from 'comp/TLDialog'
 import LoadingCotantainer from 'comp/LoadingCotantainer'
-import { reactive, toRefs } from 'vue'
+import { reactive, toRefs, ref, isReactive, isRef } from 'vue'
 
 const state = {
   left: 700,
@@ -54,11 +62,20 @@ const state = {
   mouseY: 0,
   isDown: false,
   showDialog: false,
-  items: null
+  items: ref([]),
+  other: reactive({
+    recItems: []
+  })
 }
 const stateRefs = toRefs(reactive(state))
-const { showDialog, items } = stateRefs
+const { showDialog, items, other } = stateRefs
 const { left, top } = stateRefs
+/// items is a ref
+console.log('state items', isReactive(items), isRef(items))
+console.log('state showDialog', isReactive(showDialog), isRef(showDialog))
+console.log('state other', isReactive(other), isRef(other))
+console.log('state other', isReactive(other.value.recItems), isRef(other.value.recItems))
+
 const vRandomcolor = {
   mounted: function (el) {
     const random = () => {
@@ -93,12 +110,13 @@ const vFocus = {
     // console.log('---focus beforeUpdate', el)
   }
 }
-state.items = []
 
-const loadMore = (param, who) => {
-  console.log('loadMore called', param)
-  state.items.push(...[{}, {}, {}, {}, {}])
-  console.log('state.items', state.items.length)
+const loadMore = () => {
+  console.log('loadMore called')
+  setTimeout(() => {
+    // items.value.push(...[{}, {}, {}, {}, {}])
+    state.items.value.push(...[{}, {}, {}, {}, {}])
+  }, 2000)
 }
 const mouseup = (ev) => {
   console.log('mouseup')
@@ -130,11 +148,29 @@ const mousedown = (ev) => {
 .self-directive {
   position: relative;
 
-  .load-item {
-    height: 200px;
-    line-height: 200px;
-    font-size: 30px;
-    text-align: center;
+  .inf-container {
+    height: 300px;
+    border: 1px solid hotpink;
+    overflow: auto;
+  }
+
+  .infinite {
+    display: flex;
+
+    .item {
+      flex: 1;
+
+      .load-more-content {
+        .load-item {
+          height: 200px;
+          line-height: 200px;
+          font-size: 30px;
+          text-align: center;
+        }
+        
+      }
+
+    }
   }
 
   .move-able {

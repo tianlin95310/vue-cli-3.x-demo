@@ -330,6 +330,19 @@
         this.fun()
         this.fun('QQ')
         this.fun('QQ', 'wechat')
+        let delay = 200
+        let callback = () => {}
+        this.CCC(delay, callback, true !== false)
+      },
+      /**
+       * 
+       * @param {Number} delay 
+       * @param {Boolean} [noTrailing] 
+       * @param {Function} callback 
+       * @param {Boolean} [debounceMode] 
+       */
+      CCC(delay, noTrailing, callback, debounceMode) {
+        console.log('CCC函数的传参---', delay, noTrailing, callback, debounceMode)
       },
       change() {
         let person = {}

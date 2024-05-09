@@ -122,6 +122,9 @@
         19，function和Function的区别
         <Link to="/menus/func" title="function与Function"></Link>
 
+        20，何为undefined？
+        定义变量却不赋值，如let a;var b;void 0;
+
      </pre>
     </template>
   </t-l-collapse>

@@ -92,9 +92,8 @@
   .test-css-style {
     background-color: var(--primiryColor);
     color: black;
-    background-color: gainsboro;
     position: relative;
-    left: -16px;
+    left: 100px;
     // relative元素可为自身设置相对位置
 
     .test-float {

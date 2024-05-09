@@ -57,6 +57,8 @@
         12，前端性能
           通过performance对象可以获取
 
+        13，MutationObserver的用法
+
       </pre>
     </template>
   </t-l-collapse>
