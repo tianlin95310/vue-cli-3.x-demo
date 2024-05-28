@@ -1,5 +1,6 @@
 <template>
   <div class="date-format page-container">
+    <button class="button" @click="$forceUpdate()">刷新整个组件</button>
     <div>
       必须要有分隔符，才能识别字符串时间：{{date1}}
     </div>
@@ -23,32 +24,32 @@
     </div>
     <div>
       日期格式为yyyy-MM-dd的日期格式化：
-      {{ new Date(new Date().format('yyyy-MM-dd')).format('yyyy-MM-dd HH:mm:ss')}} ---LocalString---
+      {{ new Date(new Date().format('yyyy-MM-dd')).format('yyyy-MM-dd HH:mm:ss')}} ---Date---
       {{ new Date(new Date().format('yyyy-MM-dd')) }}
     </div>
     <div>
       日期格式为yyyy/MM/dd的日期格式化：
-      {{ new Date(new Date().format('yyyy/MM/dd')).format('yyyy-MM-dd HH:mm:ss')}} ---LocalString---
+      {{ new Date(new Date().format('yyyy/MM/dd')).format('yyyy-MM-dd HH:mm:ss')}} ---Date---
       {{ new Date(new Date().format('yyyy/MM/dd')) }}
     </div>
     <div>
       日期格式为yyyy-MM-dd的日期格式化：
-      {{new Date('2021-12-12').format('yyyy-MM-dd HH:mm:ss')}} ---LocalString---
-      {{ new Date('2021-12-12').toLocaleDateString() + new Date('2021-12-12').toLocaleTimeString() }}
+      {{new Date('2021-12-12').format('yyyy-MM-dd HH:mm:ss')}} ---toLocaleTimeString---
+      {{ new Date('2021-12-12') }}
     </div>
     <div>
       日期格式为yyyy/MM/dd的日期格式化：
-      {{new Date('2021/12/12').format('yyyy-MM-dd HH:mm:ss')}} ---LocalString---
-      {{ new Date('2021/12/12').toLocaleDateString() + new Date('2021/12/12').toLocaleTimeString() }}
+      {{new Date('2021/12/12').format('yyyy-MM-dd HH:mm:ss')}} ---toLocaleTimeString---
+      {{ new Date('2021/12/12') }}
     </div>
     <div>
       日期格式为yyyy-MM-dd HH:mm:ss的日期格式化：
-      {{new Date('2021-12-12 09:00:00').format('yyyy-MM-dd HH:mm:ss')}} ---LocalString---
+      {{new Date('2021-12-12 09:00:00').format('yyyy-MM-dd HH:mm:ss')}} ---toLocaleTimeString---
       {{new Date('2021-12-12 09:00:00').toLocaleTimeString() }}
     </div>
     <div>
       日期格式为yyyy/MM/dd HH:mm:ss的日期格式化：
-      {{ new Date('2021/12/12 09:00:00').format('yyyy-MM-dd HH:mm:ss') }} ---LocalString---
+      {{ new Date('2021/12/12 09:00:00').format('yyyy-MM-dd HH:mm:ss') }} ---toLocaleTimeString---
       {{ new Date('2021/12/12 09:00:00').toLocaleTimeString() }}
     </div>
     <div>
@@ -64,10 +65,13 @@
       时间减一月： {{ timeOffset('month', -1, new Date()).format('yyyy-MM-dd HH:mm:ss') }}
     </div>
     <div>
-      时间加100天： {{ timeOffset('day', 100, new Date('2023/07/11')).format('yyyy-MM-dd')}}
+      时间减8天： {{ timeOffset('day', -8, new Date('2024/06/08 13:49:00')).format('yyyy-MM-dd HH:mm:ss') }}
     </div>
     <div>
-      时间加100天： {{ timeOffset('day', 100, new Date()).format('yyyy-MM-dd')}}
+      2023/07/11加100天： {{ timeOffset('day', 100, new Date('2023/07/11')).format('yyyy-MM-dd HH:mm:ss')}}
+    </div>
+    <div>
+      2023-07-11加100天： {{ timeOffset('day', 100, new Date('2023-07-11')).format('yyyy-MM-dd HH:mm:ss')}}
     </div>
     <div>
       明天是： {{ timeOffset('day', 1, new Date()).nowFewWeeks()}}
@@ -143,7 +147,7 @@
   .date-format {
     font-size: 18px;
     div {
-      margin-top: 16px;
+      margin-top: 8px;
     }
   }
 

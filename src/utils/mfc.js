@@ -1,5 +1,5 @@
 export function loadMFCComponent(scope, module) {
-  return async() => {
+  return async () => {
     try {
       console.time(scope)
       await __webpack_init_sharing__('default')
@@ -9,7 +9,7 @@ export function loadMFCComponent(scope, module) {
       const Module = factory()
       console.timeEnd(scope)
       return Module
-    } catch(err) {
+    } catch (err) {
       return null
     }
   }

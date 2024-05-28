@@ -99,7 +99,7 @@ const handleScroll = function(cb) {
   if (container === el) {
     const scrollBottom = container.scrollTop + getClientHeight(container)
     shouldTrigger = container.scrollHeight - scrollBottom <= distance
-    console.log('shouldTrigger', shouldTrigger, container.scrollTop, scrollBottom, container.scrollHeight)
+    // console.log('shouldTrigger', shouldTrigger, container.scrollTop, scrollBottom, container.scrollHeight, distance)
   } else {
     const heightBelowTop = getOffsetHeight(el) + getElementTop(el) - getElementTop(container)
     const offsetHeight = getOffsetHeight(container)

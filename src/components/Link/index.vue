@@ -2,20 +2,18 @@
   <router-link class="highlight link-inline" :to="to">{{ title }}</router-link>
 </template>
 
-<script>
-  export default {
-    name: 'Link',
-    props: {
-      to: {
-        type: String,
-        default: '/'
-      },
-      title: {
-        type: String,
-        default: '首页'
-      }
-    }
+<script setup>
+import { defineProps } from 'vue'
+defineProps({
+  to: {
+    type: String,
+    default: '/'
+  },
+  title: {
+    type: String,
+    default: '首页'
   }
+})
 </script>
 
 <style>

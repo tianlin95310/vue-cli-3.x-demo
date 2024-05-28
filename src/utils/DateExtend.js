@@ -50,7 +50,7 @@ Date.prototype.format = function (format) {
  * @param date{date} 传入日期类型
  * @returns {星期四，...}
  */
-Date.prototype.nowFewWeeks = function() {
+Date.prototype.nowFewWeeks = function () {
   var date = this
   if (date instanceof Date) {
     var dayNames = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]

@@ -10,25 +10,15 @@
   </div>
 </template>
 
-<script>
-import { reactive, toRefs } from 'vue'
-export default {
-  name: 'TLCollapse',
-  props: {
-    title: {
-      type: String,
-      default: ''
-    }
-  },
-  setup() {
-    const state = reactive({
-      hide: true
-    })
-    return {
-      ...toRefs(state)
-    }
+<script setup>
+import { defineProps, ref } from 'vue'
+defineProps({
+  title: {
+    type: String,
+    default: ''
   }
-}
+})
+const hide = ref(true)
 </script>
 
 <style lang="scss" scoped>

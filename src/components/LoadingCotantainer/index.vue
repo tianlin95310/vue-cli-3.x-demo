@@ -1,43 +1,51 @@
 <template>
-  <div v-loadmore="loadMore" load-more-immediate="true" class="loadmore-cotantainer scroll-bar" style="height: 300px;">
+  <div v-loadmore="loadMore" load-more-immediate="true" load-more-distance="20" class="loadmore-cotantainer scroll-bar"
+    style="height: 300px;">
     <slot ref="body" name="content"></slot>
-    <div v-if="loading" class="loading">加载中...</div>
+    <div v-show="showLoading" class="loading">加载中...</div>
   </div>
 </template>
 
-<script>
-import loadMore from './loadmore'
-export default {
-  directives: {
-    loadmore: loadMore
-  },
-  methods: {
-    loadMore() {
-      this.loading = true
-      this.$emit('loadMore')
-    }
-  },
-  computed: {
-    loadingText() {
-      if (this.loading) {
-        return '加载中...'
-      } else if (this.error) {
-        return '点击重试...'
-      } else if (this.isDone) {
-        return '每日更多了...'
-      } else {
-        return '加载中...'
-      }
-    }
-  },
-  data() {
-    return {
-      loading: false,
-      error: false,
-      isDone: false
-    }
+<script setup>
+import { defineProps, defineEmits, defineExpose, reactive, computed } from 'vue'
+import vLoadmore from './loadmore'
+defineProps({
+  showLoading: {
+    type: Boolean,
+    default: true
   }
+})
+const state = reactive({
+  loading: false,
+  error: false,
+  isDone: false
+})
+
+const $emit = defineEmits(['loadMore'])
+const loadingText = computed(() => {
+  if (state.loading) {
+    return '加载中...'
+  } else if (state.error) {
+    return '点击重试...'
+  } else if (state.isDone) {
+    return '每日更多了...'
+  } else {
+    return '加载中...'
+  }
+})
+const loadMore = () => {
+  if (state.loading) {
+    return false
+  }
+  state.loading = true
+  $emit('loadMore')
 }
+const loadFinished = () => {
+  state.loading = false
+}
+defineExpose({
+  loadFinished
+})
 </script>
 
 <style>

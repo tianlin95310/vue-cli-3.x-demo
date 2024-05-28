@@ -42,7 +42,7 @@ var dateFormat = {
       date.setYear(date.getFullYear() + offset)
     } else if (unit === 'month') {
       date.setMonth(date.getMonth() + offset)
-    } else if (unit === 'day'){
+    } else if (unit === 'day') {
       date.setHours(date.getHours() + 24 * offset)
     }
     return new Date(date.getTime())

@@ -28,7 +28,7 @@
 
     <div class="infinite">
       <div class="item">
-        <LoadingCotantainer @loadMore="loadMore">
+        <LoadingCotantainer ref="loading" @loadMore="loadMore">
           <template #content>
             <div class="load-more-content">
               <div v-for="(item, index) in items" :key="index" class="load-item" v-randomcolor>{{ index + 1 }}</div>
@@ -53,7 +53,7 @@
 <script setup>
 import TLDialog from 'comp/TLDialog'
 import LoadingCotantainer from 'comp/LoadingCotantainer'
-import { reactive, toRefs, ref, isReactive, isRef } from 'vue'
+import { reactive, toRefs, ref, isReactive, isRef, onMounted } from 'vue'
 
 const state = {
   left: 700,
@@ -67,6 +67,7 @@ const state = {
     recItems: []
   })
 }
+const loading = ref(null)
 const stateRefs = toRefs(reactive(state))
 const { showDialog, items, other } = stateRefs
 const { left, top } = stateRefs
@@ -94,6 +95,10 @@ const vAutoplay = {
   }
 }
 
+onMounted(() => {
+  state.items.value = []
+})
+
 const vFocus = {
   // 指令的定义
   created: function (el, binding) {
@@ -112,10 +117,11 @@ const vFocus = {
 }
 
 const loadMore = () => {
-  console.log('loadMore called')
+  console.info('loadMore called')
   setTimeout(() => {
-    // items.value.push(...[{}, {}, {}, {}, {}])
     state.items.value.push(...[{}, {}, {}, {}, {}])
+    loading.value.loadFinished()
+    console.log('state.items', state.items.value)
   }, 2000)
 }
 const mouseup = (ev) => {

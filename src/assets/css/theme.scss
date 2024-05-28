@@ -59,8 +59,10 @@ button {
 
 .download-a {
   font-size: 1.2rem;
-  display: block;
   height: 32px;
+}
+.download-a + .download-a {
+	margin-left: 16px;
 }
 
 .page-container {
