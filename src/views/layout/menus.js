@@ -4,7 +4,7 @@ export const MENUS = [
     path: '/menu1',
     isOpen: false,
     subMenus: [{
-      menuTitle: '子组件更改父组件的data属性',
+      menuTitle: '父子组件交互',
       isOpen: false,
       path: '/menu1/testChildModP'
     }, {

@@ -51,7 +51,7 @@
 
     <div style="border: 1px solid;height: 100px;position: static;left: 100px;">我是static元素</div>
 
-    <div style="border: 1px solid;height: 100px;position: relative;left: 100px;">我是relative元素</div>
+    <div style="border: 1px solid;height: 100px;position: relative;left: 50px;">我是relative元素</div>
 
     <div style="border: 1px solid;height: 100px;position: absolute;left: 100px;">我是absolute元素</div>
 
@@ -120,7 +120,7 @@
     .test-before {
       display: inline-block;
       height: 120px;
-      width: 120px;
+      width: 160px;
       position: relative;
       line-height: 120px;
       background: lightgrey;

@@ -1,6 +1,5 @@
 <template>
-  <div v-loadmore="loadMore" load-more-immediate="true" load-more-distance="20" class="loadmore-cotantainer scroll-bar"
-    style="height: 300px;">
+  <div v-loadmore="loadMore" load-more-immediate="true" load-more-distance="20" class="loadmore-cotantainer scroll-bar">
     <slot ref="body" name="content"></slot>
     <div v-show="showLoading" class="loading">加载中...</div>
   </div>
@@ -52,6 +51,7 @@ defineExpose({
 .loadmore-cotantainer {
   border: 1px solid goldenrod;
   overflow: auto;
+  height: 100%;
 }
 
 .loading {

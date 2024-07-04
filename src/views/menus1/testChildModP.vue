@@ -11,8 +11,8 @@
     <v-model-child v-bind:value="value1"/>
     <not-v-model-child v-bind:value="value2" @change="change"/>
 
-    <updateBindValue ref="updateBindValue" :bindName="bindName" />
-    <button class="button" @click="changeProp">更新props值(在子组件里需要nextTick才能立即获取)</button>
+    <updateBindValue ref="updateBindValue" :bindName1="bindName1" />
+    <button class="button" @click="changeProp1">更新props值(在子组件里需要nextTick才能立即获取)</button>
   </div>
 </template>
 
@@ -34,12 +34,18 @@
       change() {
         this.value2.value = this.value2.value + '111'
       },
-      changeProp() {
-        this.bindName = 'update value'
+      changeProp1() {
+        this.bindName1 = 'update value'
         this.$nextTick(() => {
           this.$refs.updateBindValue.showName()
         })
         this.$refs.updateBindValue.showName()
+      },
+      changeParentAttri() {
+        console.log('changeParentAttri', this.bindName2)
+        this.$nextTick(() => {
+          console.log('changeParentAttri', this.bindName2)
+        })
       }
     },
     data() {
@@ -50,7 +56,8 @@
         value2: {
           value: 'value2'
         },
-        bindName: 'init valve'
+        bindName1: 'init valve',
+        bindName2: 'parent init value'
       }
     }
   }

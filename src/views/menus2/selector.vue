@@ -27,7 +27,7 @@
   // 不支持苹果上的属性的话,就采用自定义的其他属性
   @supports((not (bottom: constant(safe-area-inset-bottom))) and (not (top: constant(safe-area-inset-top)))) {
     .test-class {
-      background-color: red;
+      background-color: rgb(241, 168, 168);
     }
   }
 

@@ -129,6 +129,13 @@
         20，何为undefined？
         定义变量却不赋值，如let a;var b;void 0;
 
+        12，js如何准确的四舍五入保留2位小数
+        <code>
+          function roundToTwo(num) {
+            return Math.round((num + Number.EPSILON) * 100) / 100;
+          }
+        </code>
+
      </pre>
     </template>
   </t-l-collapse>

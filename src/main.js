@@ -11,7 +11,7 @@ import selfComps from '@/components'
 const whiteList = ['/login', '/login2']
 
 router.beforeEach((to, from, next) => {
-  console.log('---beforeEach---', from.path, to.path, getToken())
+  console.log('%c---beforeEach---', 'color: green', from.path, to.path, getToken())
   if (getToken()) {
     if (to.path === '/login') {
       next({ path: '/' })

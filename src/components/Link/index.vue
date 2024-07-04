@@ -4,6 +4,7 @@
 
 <script setup>
 import { defineProps } from 'vue'
+const name = 'Link'
 defineProps({
   to: {
     type: String,

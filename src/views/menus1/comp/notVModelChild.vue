@@ -4,7 +4,7 @@
     <div>
       <span class="span-break">{{value.value}}</span>
     </div>
-    <button @click="change" class="button">改变value2的值</button>
+    <button @click="change" class="button">通过emit调用更新父组件改变value2的值</button>
   </div>
 
 </template>

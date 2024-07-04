@@ -2,8 +2,7 @@
   <div class="self-directive page-container">
     <h2>测试使用自定义指令，前面加v-</h2>
 
-    <div class="move-able" :style="{ left: left + 'px', top: top + 'px' }" @mousedown="mousedown" @mousemove="mousemove"
-      @mouseup="mouseup">
+    <div class="move-able" :style="{ left: left + 'px', top: top + 'px' }" @mousedown="mousedown" @mousemove="mousemove" @mouseup="mouseup">
       <span>视频自动播放</span>
       <video v-autoplay :muted="true">
         <source src="@/assets/video/demo.mp4" type="video/mp4" />
@@ -26,20 +25,20 @@
       <button class="button" @click="showDialog = true">可拖拽弹窗</button>
     </div>
 
-    <div class="infinite">
-      <div class="item">
-        <LoadingCotantainer ref="loading" @loadMore="loadMore">
-          <template #content>
-            <div class="load-more-content">
-              <div v-for="(item, index) in items" :key="index" class="load-item" v-randomcolor>{{ index + 1 }}</div>
-            </div>
-          </template>
-        </LoadingCotantainer>
-        <div>
-          <button class="button" @click="items.push({})">添加一个元素</button>
-          <button class="button" @click="items = []">清空列表</button>
-        </div>
-      </div>
+    <div id="infinite" ref="infinite" class="infinite" @click="hideFullScreen">
+      <LoadingCotantainer ref="loading" @loadMore="loadMore">
+        <template #content>
+          <div class="load-more-content">
+            <div v-for="(item, index) in items" :key="index" class="load-item" v-randomcolor>{{ index + 1 }}</div>
+          </div>
+        </template>
+      </LoadingCotantainer>
+    </div>
+
+    <div>
+      <button class="button" @click="items.push({})">添加一个元素</button>
+      <button class="button" @click="items = []">清空列表</button>
+      <button class="button" @click="fullScreen">全屏</button>
     </div>
 
     <t-l-dialog v-model="showDialog" tableTitle="a fixed Table">
@@ -148,34 +147,54 @@ const mousedown = (ev) => {
   state.mouseY = ev.clientY
   state.isDown = true
 }
+// const fullScreen = () => {
+//   const ele = document.getElementById('infinite')
+//   console.log(ele.style, ele.classList, ele.className, ele.cssText)
+//   ele.parentElement.removeChild(ele)
+//   document.body.appendChild(ele)
+// }
+const fullScreen = () => {
+  const ele = document.getElementById('infinite')
+  ele.classList.add('component-full-screen')
+}
+const hideFullScreen = () => {
+  const ele = document.getElementById('infinite')
+  ele.classList.remove('component-full-screen')
+}
 </script>
 
 <style lang="scss" scoped>
+.component-full-screen {
+  position: fixed;
+  width: 80%;
+  height: 80% !important;
+  left: 10%;
+  top: 10%;
+  box-shadow: gray 0 0 3px 3px;
+
+  &:after {
+    content: 'X';
+    display: block;
+    position: absolute;
+    right: -16px;
+    top: -16px;
+    cursor: pointer;
+  }
+}
+
 .self-directive {
   position: relative;
 
-  .inf-container {
-    height: 300px;
-    border: 1px solid hotpink;
-    overflow: auto;
-  }
-
   .infinite {
-    display: flex;
+    height: 300px;
 
-    .item {
-      flex: 1;
-
-      .load-more-content {
-        .load-item {
-          height: 200px;
-          line-height: 200px;
-          font-size: 30px;
-          text-align: center;
-        }
-        
+    .load-more-content {
+      .load-item {
+        height: 200px;
+        line-height: 200px;
+        font-size: 30px;
+        text-align: center;
       }
-
     }
   }
 

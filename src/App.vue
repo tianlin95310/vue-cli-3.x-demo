@@ -19,9 +19,9 @@ import {
 } from 'vue'
 export default {
   setup(props, context) {
-    console.log('App setup---', this)
+    console.log('%c App setup---', 'color: red', this)
     onBeforeMount(() => {
-      console.log('App onBeforeMount---', this)
+      console.log('%c App onBeforeMount---', 'color: red', this)
     })
     onMounted(() => {
       function resetFont() {
@@ -34,34 +34,33 @@ export default {
           size = width / (375 / 14) + 'px'
         }
         document.getElementById('app').style.fontSize = size
-        console.log('is Pc =', device.IsPC(), '\t', 'document.style.fontSize =', size)
+        console.log('%c is Pc =', 'color: red', device.IsPC(), 'document.style.fontSize =', size)
       }
       resetFont()
       // 全局事件
       window.onresize = resetFont
-      console.log('App onMounted', 'clientWidth =', document.body.clientWidth, 'clientHeight =', document.body.clientHeight)
-      console.log('App onMounted', 'screen.width =', screen.width, 'screen.height =', screen.height)
+      console.log('%c App onMounted', 'color: red', 'clientWidth =', document.body.clientWidth, 'clientHeight =', document.body.clientHeight, 'screen.width =', screen.width, 'screen.height =', screen.height)
     })
     onBeforeUpdate(() => {
-      console.log('App onBeforeUpdate')
+      console.log('%c App onBeforeUpdate', 'color: red')
     })
     onUpdated(() => {
-      console.log('App onUpdated')
+      console.log('%c App onUpdated', 'color: red')
     })
     onBeforeUnmount(() => {
-      console.log('App onBeforeUnmount')
+      console.log('%c App onBeforeUnmount', 'color: red')
     })
     onUnmounted(() => {
-      console.log('App onUnmounted')
+      console.log('%c App onUnmounted', 'color: red')
     })
     onErrorCaptured(() => {
-      console.log('App onErrorCaptured')
+      console.log('%c App onErrorCaptured', 'color: red')
     })
     onRenderTracked(() => {
-      console.log('App onRenderTracked')
+      console.log('%c App onRenderTracked', 'color: red')
     })
     onRenderTriggered(() => {
-      console.log('App onRenderTriggered')
+      console.log('%c App onRenderTriggered', 'color: red')
     })
     return {
       tip2: 'v3.x采用setup返回data'
