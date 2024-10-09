@@ -102,6 +102,10 @@ export const MENUS = [
       isOpen: false,
       path: '/menu3/testEvent'
     }, {
+      menuTitle: 'js的各种位置属性',
+      isOpen: false,
+      path: '/menu3/positionAndSize'
+    }, {
       menuTitle: 'Web前端安全与面试问题',
       isOpen: false,
       path: '/menu3/htmlSafety'

@@ -1,4 +1,3 @@
-/*eslint-disable*/
 // create by tianlin
 
 /**

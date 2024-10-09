@@ -140,6 +140,11 @@ const routes = [
         component: () => import('@/views/menus3/testEvent.vue')
       },
       {
+        path: 'positionAndSize',
+        name: 'PositionAndSize',
+        component: () => import('@/views/menus3/positionAndSize.vue')
+      },
+      {
         path: 'htmlSafety',
         name: 'HtmlSafety',
         component: () => import('@/views/menus3/htmlSafety.vue')

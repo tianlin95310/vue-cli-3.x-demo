@@ -18,72 +18,102 @@
       <h2>表达式解析出表达式里的规则</h2>
       {{ getRulesInExp('{50 - #11 + #1 + 100 > 10} and #2 or {#3 / 2 > #4} and {#1 > #2}') }}
     </div>
+
+    <div>
+      <h2>计算children层级</h2>
+      {{ calculationLevel() }}
+    </div>
   </div>
 </template>
 <script>
-/*eslint-disable*/
-import { Cartesian } from "./util/Algorithm";
-import { treeDataTranslate } from "./util/TreeData";
-import NumberToText from "./util/NumberToText.js";
+import { Cartesian } from './util/Algorithm'
+import { treeDataTranslate } from './util/TreeData'
+import NumberToText from './util/NumberToText.js'
+import { calculationLevel } from './util/Deepth.js'
 export default {
-  name: "Algorithm",
+  name: 'Algorithm',
   data() {
     return {
-      abc: "asdasd"
-    };
+      abc: 'asdasd'
+    }
   },
   methods: {
+    calculationLevel() {
+      const array = [{
+        value: 1,
+        children: [{
+          value: 1,
+          children: [{
+            value: 1
+          }]
+        }]
+      }, {
+        value: 1,
+        children: [{
+          value: 1,
+          children: [{
+            value: 1,
+            children: [{
+              value: 1
+            }]
+          }]
+        }]
+      }, {
+        value: 1
+      }]
+      return calculationLevel(array)
+    },
     getRulesInExp(exp) {
       // g包围可以进行全局匹配，即可以匹配多个
-      let reg = /#[\d]+/g
+      const reg = /#[\d]+/g
       console.log(reg.test(exp))
       console.log(exp.match(reg))
     },
     NumberToText: NumberToText,
     treeData() {
-      let array = [
+      const array = [
         {
           id: 1,
-          parentId: "0"
+          parentId: '0'
         },
         {
           id: 2,
-          parentId: "0"
+          parentId: '0'
         },
         {
           id: 3,
-          parentId: "0"
+          parentId: '0'
         },
         {
           id: 4,
-          parentId: "2"
+          parentId: '2'
         },
         {
           id: 5,
-          parentId: "2"
+          parentId: '2'
         },
         {
           id: 6,
-          parentId: "3"
+          parentId: '3'
         }
-      ];
-      return treeDataTranslate(array);
+      ]
+      return treeDataTranslate(array)
     },
     comb() {
-      let array = [
-        ["a", "b"],
+      const array = [
+        ['a', 'b'],
         [1, 2, 3],
-        ["x", "y"]
-      ];
-      return Cartesian(array);
+        ['x', 'y']
+      ]
+      return Cartesian(array)
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
 .algorithm {
-  > div {
+  >div {
     vertical-align: top;
     display: inline-block;
     width: 33%;

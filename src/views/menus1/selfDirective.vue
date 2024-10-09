@@ -41,7 +41,7 @@
       <button class="button" @click="fullScreen">全屏</button>
     </div>
 
-    <t-l-dialog v-model="showDialog" tableTitle="a fixed Table">
+    <t-l-dialog v-model="showDialog" tableTitle="a fixed Table" :appendToBody="false">
       <template v-slot:content>
         <div style="height: 100px;background-color: #cccccc">我是谁</div>
       </template>

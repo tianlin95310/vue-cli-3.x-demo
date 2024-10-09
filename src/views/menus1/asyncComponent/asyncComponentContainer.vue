@@ -7,6 +7,5 @@
   </Suspense>
 </template>
 <script setup>
-/* eslint-disable */
-import Loading from "./loading.vue";
+import Loading from './loading.vue'
 </script>

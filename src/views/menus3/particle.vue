@@ -31,7 +31,7 @@
       'x' == 0 = {{ 'x' == 0 }}
       true == 0 = {{ true == 0 }}
       false == 0 = {{ false == 0 }}
-     </pre>
+    </pre>
     <pre>
       <span>||与()</span>
       <span>||运算 undefined || 1 - undefined || 2 = {{ undefined || 1 - undefined || 2 }}</span>
@@ -39,7 +39,7 @@
       undefined && 1 = {{ undefined && 1 }}
       1 && 2 = {{ 1 && 2 }}
 
-      </pre>
+    </pre>
     <pre>
       浮点数与0 0.00 == 0 = {{ 0.0 == 0 }}
       浮点数与0 0.000 === 0 = {{ 0.0 === 0 }}

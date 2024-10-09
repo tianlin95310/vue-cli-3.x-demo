@@ -3,18 +3,15 @@
     <h2>测试js中的数据和Map(控制台查看)</h2>
     <div>
       <button class="btn btn-primary" @click="array_fun">Array基本用法</button>
-    </div>
-    <div>
       <button class="btn btn-info" @click="map_fun">Map的用法</button>
-    </div>
-    <div>
       <button class="btn btn-danger" @click="obj_fun">Object的用法</button>
       <button class="btn btn-warning" @click="testeqcommon">
         常见的==比较
       </button>
-      <button class="button" @click="testeq">==操作符特殊用法</button>
     </div>
     <div>
+      <button class="button" @click="testeq">==操作符特殊用法</button>
+
       <button class="button" @click="testNull">测试空的判断</button>
     </div>
 
@@ -39,18 +36,9 @@
         - `typeof`一般用来判断原始值数据类型，**除了判断 null 会输出"object"，其它都是正确的**
         - `typeof`判断引用数据类型时，**除了判断函数会输出"function",其它都是输出"object"**
         **instanceof**
-        - Instanceof 可以准确的判断引用数据类型，它的原理是检测构造函数的`prototype`属性是否在某个实例对象的原型链上， 不能判断基本数据类型
+        - Instanceof 可以准确的判断引用数据类型，它的原理是检测构造函数的`prototype`属性是否在某
+          个实例对象的原型链上， 不能判断基本数据类型
       </pre>
-    </div>
-
-    <div>
-      <h2>html内置对象以及属性</h2>
-      <div>location.origin = {{ locationOrigin() }}</div>
-      <div>location.port = {{ location.port }}</div>
-      <div>location.href = {{ location.href }}</div>
-      <div>location.hash = {{ location.hash }}</div>
-      <div>location.search = {{ location.search }}</div>
-      <div>location.hostname = {{ location.hostname }}</div>
     </div>
   </div>
 </template>
@@ -58,13 +46,7 @@
 <script>
 /*eslint-disable*/
 export default {
-  computed: {
-    location: () => location
-  },
   methods: {
-    locationOrigin() {
-      return location.origin;
-    },
     stringAndString() {
       let index = 1
       console.log(toString("1"), '1'.toString(), index.toString());
