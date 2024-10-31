@@ -5,14 +5,14 @@
         <img :class="['icon-item', 'img-icon', isShow ? 'menu-show' : 'menu']" :style="{ marginLeft: marginLeft }" src="@/assets/svg/ic_collapse.svg"
           @click="collapse">
         <div v-if="isPc" class="right-icon">
-          <div class="icon-item text-icon">{{ username }}</div>
+          <div class="icon-item text-icon" @click="changeUsername">{{ username }}</div>
           <img class="icon-item img-icon wind-mill" src="@/assets/svg/test_svg.svg" title="莫挨老子" @click="logout">
         </div>
       </div>
     </div>
     <router-view v-slot="{ Component }" class="route-content scroll-bar">
       <transition name="fade-transform" mode="out-in">
-        <keep-alive :include="['CanvasView', 'HtmlView', 'HtmlSafety']">
+        <keep-alive :include="cachedViews">
           <component :is="Component" />
         </keep-alive>
       </transition>
@@ -20,59 +20,50 @@
   </div>
 </template>
 
-<script>
-import {
-  removeToken
-} from '@/cookies/Cookies.js'
-import { mapGetters } from 'vuex'
-import device from '../../utils/Device.js'
-export default {
-  data() {
-    const isPc = device.IsPC()
-    let isShow = false
-    let marginLeft = '18vw'
-    if (isPc) {
-      marginLeft = '18vw'
-      isShow = true
+<script setup>
+import { computed, ref, defineEmits } from 'vue'
+import { removeToken } from '@/cookies/Cookies.js'
+import { useStore } from 'vuex'
+import device from '@/utils/Device.js'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const store = useStore()
+const $emit = defineEmits(['collapse'])
+const isPc = device.IsPC()
+const isShow = ref(false)
+const marginLeft = ref('18vw')
+if (isPc) {
+  marginLeft.value = '18vw'
+  isShow.value = true
+} else {
+  marginLeft.value = '0'
+  isShow.value = false
+}
+const username = computed(() => store.getters.username)
+const cachedViews = computed(() => store.getters.cachedViews)
+const logout = () => {
+  removeToken()
+  router.push('/login')
+}
+const collapse = () => {
+  isShow.value = !isShow.value
+  if (isPc) {
+    if (isShow.value) {
+      marginLeft.value = '18vw'
     } else {
-      marginLeft = '0'
-      isShow = false
+      marginLeft.value = '12vw'
     }
-    return {
-      isShow: isShow,
-      isPc: isPc,
-      marginLeft: marginLeft
-    }
-  },
-  computed: {
-    ...mapGetters([
-      'username',
-      'cachedViews'
-    ])
-  },
-  methods: {
-    logout() {
-      removeToken()
-      this.$router.push('/login')
-    },
-    collapse() {
-      this.isShow = !this.isShow
-      if (this.isPc) {
-        if (this.isShow) {
-          this.marginLeft = '18vw'
-        } else {
-          this.marginLeft = '12vw'
-        }
-      } else {
-        if (this.isShow) {
-          this.marginLeft = '60vw'
-        } else {
-          this.marginLeft = '0'
-        }
-      }
-      this.$emit('collapse', this.isShow)
+  } else {
+    if (isShow.value) {
+      marginLeft.value = '60vw'
+    } else {
+      marginLeft.value = '0'
     }
   }
+  $emit('collapse', isShow.value)
+}
+const changeUsername = () => {
+  store.commit('SET_USERNAME', '李四')
 }
 </script>
 

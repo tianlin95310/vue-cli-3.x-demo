@@ -1,4 +1,4 @@
-export function loadMFCComponent(scope, module) {
+export function loadMFComponent(scope, module) {
   return async () => {
     try {
       console.time(scope)

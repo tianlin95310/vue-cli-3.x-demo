@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <transition name="fade" mode="out-in">
-      <div v-if="!isPc && isShow" class="nav-mask" @click="$refs.content.collapse()" />
+      <div v-if="!isPc && isShowMask" class="nav-mask" @click="$refs.content.collapse()" />
     </transition>
     <div :class="['nav-div', isPc ? '' : 'is-mobile']" :style="{ width: navWidth, left: navLeft }">
-      <div class="logo" @click="$router.push('/dashboard'); $refs.content.collapse()">
+      <div class="logo" @click="onLogoClick">
         <div>{{ tip1 }}</div>
       </div>
       <ul class="nav-con scroll-bar-menus">
@@ -30,122 +30,104 @@
 
 </template>
 
-<script>
+<script setup>
+import { onMounted, ref, getCurrentInstance } from 'vue'
 import Content from './Content.vue'
 import { MENUS } from './menus'
-import { onMounted, ref, getCurrentInstance } from 'vue'
-import device from '../../utils/Device.js'
-let CONTEXT = null
-// @ is an alias to /src
-export default {
-  name: 'Layout',
-  components: {
-    Content
-  },
-  setup(props, context) {
-    console.log('Layout---', props, 'context =', context)
-    CONTEXT = getCurrentInstance()
-    console.log('CONTEXT', CONTEXT)
-
-    onMounted(() => {
-      console.log('CONTEXT.$refs.content', CONTEXT.refs.content)
+import device from '@/utils/Device.js'
+import { useRoute, useRouter } from 'vue-router'
+const CONTEXT = getCurrentInstance()
+console.log('Layout setup CONTEXT', CONTEXT)
+const route = useRoute()
+const router = useRouter()
+const tip1 = 'Vue3.x Demo @TianLin'
+const menus = ref(MENUS)
+const menuPath = ref('')
+const isPc = device.IsPC()
+const isShowMask = isPc ? ref(true) : ref(false)
+const navWidth = ref('18vw')
+const navLeft = ref('-60vw')
+const contentPaddingLeft = ref('18vw')
+if (isPc) {
+  navWidth.value = '18vw'
+  navLeft.value = '0'
+  contentPaddingLeft.value = '18vw'
+} else {
+  navWidth.value = '60vw'
+  navLeft.value = '-60vw'
+  contentPaddingLeft.value = '0'
+}
+onMounted(() => {
+  console.log('Layout mounted CONTEXT.$refs.content', CONTEXT, CONTEXT.refs.content)
+  menuPath.value = route.path
+  updateFlag()
+})
+const updateDir = () => {
+  menus.value.forEach((menu) => {
+    if (menuPath.value === menu.path) {
+      menu.isOpen = !menu.isOpen
+    }
+  })
+}
+const updateFlag = () => {
+  console.log('Layout menuPath', menuPath.value)
+  menus.value.forEach((menu) => {
+    menu.subMenus.forEach((subMenu) => {
+      if (menuPath.value === subMenu.path) {
+        subMenu.isOpen = true
+        menu.isOpen = true
+      } else {
+        subMenu.isOpen = false
+      }
     })
-    const menus = ref([])
-    menus.value = MENUS
-    const menuPath = ref('')
-    const isPc = device.IsPC()
-    const navWidth = ref('18vw')
-    const navLeft = ref('-60vw')
-    const contentPaddingLeft = ref('18vw')
-    if (isPc) {
+  })
+}
+const collapse = (isShow) => {
+  isShowMask.value = isShow
+  if (isPc) {
+    if (isShow) {
       navWidth.value = '18vw'
       navLeft.value = '0'
       contentPaddingLeft.value = '18vw'
+    } else {
+      navWidth.value = '12vw'
+      navLeft.value = '0'
+      contentPaddingLeft.value = '12vw'
+    }
+  } else {
+    if (isShow) {
+      navWidth.value = '60vw'
+      navLeft.value = '0'
+      contentPaddingLeft.value = '0'
     } else {
       navWidth.value = '60vw'
       navLeft.value = '-60vw'
       contentPaddingLeft.value = '0'
     }
-
-    return {
-      tip1: 'Vue3.x Demo @TianLin',
-      tip2: 'v3.x采用setup返回data, 仍然可以使用data, 但不可同时使用',
-      menus,
-      navWidth,
-      menuPath,
-      navLeft,
-      contentPaddingLeft,
-      isShow: isPc ? ref(true) : ref(false),
-      isPc: isPc
-    }
-  },
-  mounted() {
-    console.log('Layout mounted')
-    this.menuPath = this.$route.path
-    this.updateFlag()
-  },
-  methods: {
-    updateDir() {
-      this.menus.forEach((menu) => {
-        if (this.menuPath === menu.path) {
-          menu.isOpen = !menu.isOpen
-        }
-      })
-    },
-    updateFlag() {
-      console.log('this.menuPath', this.menuPath)
-      this.menus.forEach((menu) => {
-        menu.subMenus.forEach((subMenu) => {
-          if (this.menuPath === subMenu.path) {
-            subMenu.isOpen = true
-            menu.isOpen = true
-          } else {
-            subMenu.isOpen = false
-          }
-        })
-      })
-    },
-    collapse(isShow) {
-      this.isShow = isShow
-      if (this.isPc) {
-        if (isShow) {
-          this.navWidth = '18vw'
-          this.navLeft = '0'
-          this.contentPaddingLeft = '18vw'
-        } else {
-          this.navWidth = '12vw'
-          this.navLeft = '0'
-          this.contentPaddingLeft = '12vw'
-        }
-      } else {
-        if (isShow) {
-          this.navWidth = '60vw'
-          this.navLeft = '0'
-          this.contentPaddingLeft = '0'
-        } else {
-          this.navWidth = '60vw'
-          this.navLeft = '-60vw'
-          this.contentPaddingLeft = '0'
-        }
-      }
-    },
-    onNavClick(obj) {
-      console.log('onNavClick', obj)
-      if (obj.path && obj.path !== '') {
-        this.$router.push(obj.path)
-      }
-      this.menuPath = obj.path
-      this.updateFlag()
-      if (!this.isPc) {
-        this.$refs.content.collapse()
-      }
-    },
-    show(menu) {
-      this.menuPath = menu.path
-      this.updateDir()
-    }
   }
 }
+const onNavClick = (obj) => {
+  console.log('onNavClick', obj)
+  if (obj.path && obj.path !== '') {
+    router.push(obj.path)
+  }
+  menuPath.value = obj.path
+  updateFlag()
+  if (!isPc) {
+    // this.$refs.content.collapse()
+    CONTEXT.refs.content.collapse()
+  }
+}
+const show = (menu) => {
+  menuPath.value = menu.path
+  updateDir()
+}
+
+const onLogoClick = () => {
+  router.push('/dashboard')
+  CONTEXT.refs.content.collapse()
+}
+
 </script>
 
 <style lang="scss">

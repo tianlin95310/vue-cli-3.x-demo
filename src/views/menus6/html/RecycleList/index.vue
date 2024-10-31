@@ -89,7 +89,7 @@ expose({
 <template>
   <div ref="containerRef" class="recycle-list">
     <div ref="bodyMatch" id="body-match" class="body-match"></div>
-    <div id="items" class="items" :style="{transform: `translateY(${lastScrollTop}px)`}">
+    <div id="items" class="items" :style="{ transform: `translateY(${lastScrollTop}px)` }">
       <div v-randomcolor v-for="(item, index) in state.reuseItems" :key="index" class="item"
         :style="{ height: `${itemHeight}px`, lineHeight: `${itemHeight}px` }">
         index{{ item }}

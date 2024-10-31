@@ -14,14 +14,14 @@ export function treeDataTranslate(data, id = 'id', pid = 'parentId') {
   }
   for (var k = 0; k < data.length; k++) {
     if (temp[data[k][pid]] && data[k][id] !== data[k][pid]) {
-      if (!temp[data[k][pid]]['children']) {
-        temp[data[k][pid]]['children'] = []
+      if (!temp[data[k][pid]].children) {
+        temp[data[k][pid]].children = []
       }
-      if (!temp[data[k][pid]]['_level']) {
-        temp[data[k][pid]]['_level'] = 1
+      if (!temp[data[k][pid]]._level) {
+        temp[data[k][pid]]._level = 1
       }
-      data[k]['_level'] = temp[data[k][pid]]._level + 1
-      temp[data[k][pid]]['children'].push(data[k])
+      data[k]._level = temp[data[k][pid]]._level + 1
+      temp[data[k][pid]].children.push(data[k])
     } else {
       res.push(data[k])
     }

@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 export default createStore({
   state: {
     username: Cookies.get('username') || '张三',
-    cachedViews: ['CanvasView', 'HtmlView']
+    cachedViews: ['CanvasView', 'HtmlView', 'HtmlSafety']
   },
   mutations: {
     SET_USERNAME: (state, username) => {
