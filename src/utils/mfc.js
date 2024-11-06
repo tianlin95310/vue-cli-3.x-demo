@@ -13,5 +13,12 @@ export function loadMFComponent(scope, module) {
       return null
     }
   }
+}
 
+export function loadAllComponent() {
+
+}
+
+export function installAllComponent() {
+  
 }
