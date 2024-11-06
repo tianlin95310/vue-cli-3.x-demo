@@ -1,6 +1,4 @@
 const path = require('path')
-const webpack = require('webpack');
-const { ModuleFederationPlugin } = require('webpack').container;
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
