@@ -119,7 +119,7 @@ const loadMore = () => {
   console.info('loadMore called')
   setTimeout(() => {
     state.items.value.push(...[{}, {}, {}, {}, {}])
-    loading.value.loadFinished()
+    loading.value && loading.value.loadFinished()
     console.log('state.items', state.items.value)
   }, 2000)
 }

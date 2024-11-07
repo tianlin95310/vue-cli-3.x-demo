@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref, onMounted, getCurrentInstance, nextTick, onBeforeUnmount, onUnmounted, expose, watch } from 'vue'
+import { reactive, ref, onMounted, getCurrentInstance, nextTick, onBeforeUnmount, defineExpose, watch } from 'vue'
 import { debounce } from 'lodash'
 const initBegin = 0
 const initEnd = 10
@@ -76,11 +76,12 @@ onMounted(() => {
   bodyMatch.value.style.height = state.list.length * itemHeight + 'px'
   container.addEventListener('scroll', onScrollFun)
 })
-onUnmounted(() => {
+
+onBeforeUnmount(() => {
   // containerRef.value.removeEventListener('scroll', debounce(onScrollFun, 200))
   containerRef.value.removeEventListener('scroll', onScrollFun)
 })
-expose({
+defineExpose({
   moveToFirst: renderLast,
   moveToLast: () => renderLast(false)
 })

@@ -1,15 +1,13 @@
+const { defineConfig } = require('@vue/cli-service')
 const path = require('path')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = 'Vue Cli 3.x'
-
-module.exports = {
+module.exports = defineConfig({
   publicPath: '/app3/',
   productionSourceMap: false,
   configureWebpack: {
-    name: name,
     resolve: {
       alias: {
         '@': resolve('src'),
@@ -28,5 +26,6 @@ module.exports = {
         }
       }
     }
-  }
-}
+  },
+  transpileDependencies: true
+})

@@ -2,7 +2,7 @@
   <div class="edit-div" :contenteditable="canEdit" v-html="innerHTML" placeholder="请输入内容..." @input="changeText" />
 </template>
 <script setup>
-import { defineProps, defineEmits } from 'vue'
+import { defineProps, defineEmits, toRef } from 'vue'
 const props = defineProps({
   modelValue: String,
   canEdit: {
@@ -11,7 +11,7 @@ const props = defineProps({
   }
 })
 const $emit = defineEmits(['update:modelValue', 'change'])
-const innerHTML = props.modelValue
+const innerHTML = toRef(props.modelValue)
 
 const changeText = (value) => {
   $emit('update:modelValue', value.target.innerHTML)
