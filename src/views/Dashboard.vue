@@ -8,7 +8,7 @@
 </template>
 <script setup>
 const href1 = require('@/assets/logo.png')
-console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+console.log('process.env.NODE_ENV', process.env, process.env.NODE_ENV)
 console.log('process.env.VUE_APP_BASE_URL', process.env.VUE_APP_BASE_URL)
 </script>
 <style lang="scss" scoped>
